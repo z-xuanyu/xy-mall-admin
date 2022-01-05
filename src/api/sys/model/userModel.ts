@@ -1,3 +1,12 @@
+/*
+ * @Author: xuanyu
+ * @LastEditors: xuanyu
+ * @email: 969718197@qq.com
+ * @github: https://github.com/z-xuanyu
+ * @Date: 2021-12-24 14:44:20
+ * @LastEditTime: 2022-01-05 10:32:37
+ * @Description: Modify here please
+ */
 /**
  * @description: Login interface parameters
  */
@@ -16,7 +25,7 @@ export interface RoleInfo {
  */
 export interface LoginResultModel {
   userId: string | number;
-  token: string;
+  accessToken: string;
   role: RoleInfo;
 }
 

@@ -7,7 +7,7 @@ import { PageEnum } from '/@/enums/pageEnum';
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '/@/enums/cacheEnum';
 import { getAuthCache, setAuthCache } from '/@/utils/auth';
 import { GetUserInfoModel, LoginParams } from '/@/api/sys/model/userModel';
-import { doLogout, getUserInfo, loginApi } from '/@/api/sys/user';
+import { getUserInfo, loginApi } from '/@/api/sys/user';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { router } from '/@/router';
@@ -80,7 +80,7 @@ export const useUserStore = defineStore({
       this.sessionTimeout = false;
     },
     /**
-     * @description: login
+     * @description: 管理员用户登录
      */
     async login(
       params: LoginParams & {
@@ -91,10 +91,9 @@ export const useUserStore = defineStore({
       try {
         const { goHome = true, mode, ...loginParams } = params;
         const data = await loginApi(loginParams, mode);
-        const { token } = data;
-
+        const { accessToken } = data;
         // save token
-        this.setToken(token);
+        this.setToken(accessToken);
         return this.afterLoginAction(goHome);
       } catch (error) {
         return Promise.reject(error);
@@ -127,8 +126,7 @@ export const useUserStore = defineStore({
       const userInfo = await getUserInfo();
       const { roles = [] } = userInfo;
       if (isArray(roles)) {
-        const roleList = roles.map((item) => item.value) as RoleEnum[];
-        this.setRoleList(roleList);
+        this.setRoleList(roles as any);
       } else {
         userInfo.roles = [];
         this.setRoleList([]);
@@ -137,16 +135,9 @@ export const useUserStore = defineStore({
       return userInfo;
     },
     /**
-     * @description: logout
+     * @description: 退出登录
      */
     async logout(goLogin = false) {
-      if (this.getToken) {
-        try {
-          await doLogout();
-        } catch {
-          console.log('注销Token失败');
-        }
-      }
       this.setToken(undefined);
       this.setSessionTimeout(false);
       this.setUserInfo(null);
