@@ -12,6 +12,7 @@ specifiers:
   '@commitlint/config-conventional': ^14.1.0
   '@iconify/iconify': ^2.0.4
   '@iconify/json': ^1.1.422
+  '@iconify/vue': ^3.1.1
   '@purge-icons/generated': ^0.7.0
   '@types/codemirror': ^5.60.5
   '@types/crypto-js': ^4.0.2
@@ -33,6 +34,8 @@ specifiers:
   '@vitejs/plugin-vue': ^1.9.4
   '@vitejs/plugin-vue-jsx': ^1.2.0
   '@vue/compiler-sfc': 3.2.21
+  '@vue/runtime-core': ^3.2.26
+  '@vue/shared': ^3.2.26
   '@vue/test-utils': ^2.0.0-rc.16
   '@vueuse/core': ^6.7.4
   '@vueuse/shared': ^6.7.4
@@ -107,6 +110,8 @@ dependencies:
   '@ant-design/colors': 6.0.0
   '@ant-design/icons-vue': 6.0.1_vue@3.2.21
   '@iconify/iconify': 2.0.4
+  '@vue/runtime-core': 3.2.26
+  '@vue/shared': 3.2.26
   '@vueuse/core': 6.7.4_vue@3.2.21
   '@vueuse/shared': 6.7.4_vue@3.2.21
   '@zxcvbn-ts/core': 1.0.0-beta.0
@@ -134,6 +139,7 @@ devDependencies:
   '@commitlint/cli': 14.1.0
   '@commitlint/config-conventional': 14.1.0
   '@iconify/json': 1.1.422
+  '@iconify/vue': 3.1.1_vue@3.2.21
   '@purge-icons/generated': 0.7.0
   '@types/codemirror': 5.60.5
   '@types/crypto-js': 4.0.2
@@ -1664,6 +1670,15 @@ packages:
     resolution: {integrity: sha512-yxIjzblsWIRZfXK+bfBWtm1LDD7+QlBXO/K7xnqU+LiOk6rJXvh+Veks/LgDD2wAi3PYQHVzCZBqp6OGGz6K/Q==}
     dev: true
 
+  /@iconify/vue/3.1.1_vue@3.2.21:
+    resolution: {integrity: sha512-lpRis4y8XHx0LQG1pbD71BuDlYKzCG3xKNsTs6svajQQe1DgkBbt1PEERnJTnmo9UzihTR0Bq7OwPQt7zR25RQ==}
+    peerDependencies:
+      vue: 3.x
+    dependencies:
+      cross-fetch: 3.1.4
+      vue: 3.2.21
+    dev: true
+
   /@intlify/core-base/9.1.9:
     resolution: {integrity: sha512-x5T0p/Ja0S8hs5xs+ImKyYckVkL4CzcEXykVYYV6rcbXxJTe2o58IquSqX9bdncVKbRZP7GlBU1EcRaQEEJ+vw==}
     engines: {node: '>= 10'}
@@ -2629,6 +2644,12 @@ packages:
     dependencies:
       '@vue/shared': 3.2.21
 
+  /@vue/reactivity/3.2.26:
+    resolution: {integrity: sha512-h38bxCZLW6oFJVDlCcAiUKFnXI8xP8d+eO0pcDxx+7dQfSPje2AO6M9S9QO6MrxQB7fGP0DH0dYQ8ksf6hrXKQ==}
+    dependencies:
+      '@vue/shared': 3.2.26
+    dev: false
+
   /@vue/ref-transform/3.2.21:
     resolution: {integrity: sha512-uiEWWBsrGeun9O7dQExYWzXO3rHm/YdtFNXDVqCSoPypzOVxWxdiL+8hHeWzxMB58fVuV2sT80aUtIVyaBVZgQ==}
     dependencies:
@@ -2643,6 +2664,13 @@ packages:
     dependencies:
       '@vue/reactivity': 3.2.21
       '@vue/shared': 3.2.21
+    dev: false
+
+  /@vue/runtime-core/3.2.26:
+    resolution: {integrity: sha512-BcYi7qZ9Nn+CJDJrHQ6Zsmxei2hDW0L6AB4vPvUQGBm2fZyC0GXd/4nVbyA2ubmuhctD5RbYY8L+5GUJszv9mQ==}
+    dependencies:
+      '@vue/reactivity': 3.2.26
+      '@vue/shared': 3.2.26
     dev: false
 
   /@vue/runtime-dom/3.2.21:
@@ -2665,6 +2693,10 @@ packages:
 
   /@vue/shared/3.2.21:
     resolution: {integrity: sha512-5EQmIPK6gw4UVYUbM959B0uPsJ58+xoMESCZs3N89XyvJ9e+fX4pqEPrOGV8OroIk3SbEvJcC+eYc8BH9JQrHA==}
+
+  /@vue/shared/3.2.26:
+    resolution: {integrity: sha512-vPV6Cq+NIWbH5pZu+V+2QHE9y1qfuTq49uNWw4f7FDEeZaDU2H2cx5jcUZOAKW7qTrUS4k6qZPbMy1x4N96nbA==}
+    dev: false
 
   /@vue/test-utils/2.0.0-rc.16_vue@3.2.21:
     resolution: {integrity: sha512-TubikDVkI2LuRKRPSLv3lYpbpvvucT2DIcGqfBVpvYs4W19u0EBTJEdmfwmSuLY7H1TyAr9Stur3PI1sWWvTGQ==}
