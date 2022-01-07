@@ -4,13 +4,13 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:38:30
- * @LastEditTime: 2022-01-05 16:49:42
+ * @LastEditTime: 2022-01-06 10:18:05
  * @Description: Modify here please
  */
 
-export interface QueryCategoryParameters {
-  pageNumber: number;
-  pageSize: number;
+import { BasicPageParams } from '../model/baseModel';
+
+export interface QueryCategoryParameters extends BasicPageParams {
   name: string;
 }
 

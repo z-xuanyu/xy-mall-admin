@@ -4,15 +4,15 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:11:58
- * @LastEditTime: 2022-01-05 12:13:14
+ * @LastEditTime: 2022-01-06 10:17:41
  * @Description: Modify here please
  */
 
-export interface QueryadminParameters {
+import { BasicPageParams } from '../model/baseModel';
+
+export interface QueryadminParameters extends BasicPageParams {
   name: string;
   status: boolean;
-  pageNumber: number;
-  pageSize: number;
 }
 
 export interface CreateAdminParmeters {

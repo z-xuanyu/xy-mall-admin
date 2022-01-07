@@ -4,12 +4,12 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:03:21
- * @LastEditTime: 2022-01-05 18:03:42
+ * @LastEditTime: 2022-01-06 14:04:54
  * @Description: 分类列表
 -->
 <script setup lang="ts">
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import CategoryModal from './CategoryModel.vue';
+  import CategoryModal from './CategoryModal.vue';
   import { useModal } from '/@/components/Modal';
   import { getCategoryList, removeCategory } from '/@/api/category';
   import { useMessage } from '/@/hooks/web/useMessage';
