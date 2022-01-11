@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-07 16:10:58
- * @LastEditTime: 2022-01-07 18:08:45
+ * @LastEditTime: 2022-01-08 15:52:19
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -22,6 +22,14 @@
   const [registerModal, { openModal }] = useModal();
   const { createMessage } = useMessage();
   const treeData = ref<TreeItem[]>([]);
+
+  defineProps({
+    // 是否选择器卡片
+    isSelectCard: {
+      type: Boolean,
+      default: false,
+    },
+  });
 
   onMounted(() => {
     fetch();
@@ -60,14 +68,13 @@
     fetch();
   }
   // 选中
-  function handleSelect(keys) {
-    console.log(111);
-    emit('select', keys[0]);
+  function handleSelect(keys, e) {
+    emit('select', e.node.dataRef._id);
   }
 </script>
 
 <template>
-  <div class="h-[800px]">
+  <div class="h-[450px]" :class="!isSelectCard ? 'md:h-[800px]' : 'md:h-[500px]'">
     <ScrollContainer class="mt-4">
       <BasicTree
         title="分组名称"
@@ -84,7 +91,7 @@
               <Icon icon="bx:bxs-folder-open" width="24" color="rgb(255,206,49)" />
               <span class="ml-2">{{ item.name }}</span>
             </div>
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-2" v-if="!isSelectCard">
               <Icon icon="carbon:edit" width="20" @click.stop="handleEdit(item)" />
               <Popconfirm
                 title="您确认删除该分类?"
@@ -99,8 +106,8 @@
       </BasicTree>
     </ScrollContainer>
   </div>
-  <div class="text-center py-5">
+  <div class="text-center py-5" v-if="!isSelectCard">
     <Button type="primary" @click="handleCreate">新建分组</Button>
   </div>
-  <LibraryCategoryModal @register="registerModal" @success="handleSuccess" />
+  <LibraryCategoryModal @register="registerModal" @success="handleSuccess" v-if="!isSelectCard" />
 </template>

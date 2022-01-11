@@ -4,35 +4,10 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-07 15:00:28
- * @LastEditTime: 2022-01-07 17:45:38
+ * @LastEditTime: 2022-01-08 11:25:23
  * @Description: Modify here please
  */
-import { ref } from 'vue';
 import { FormSchema } from '/@/components/Form';
-//每行个数
-export const grid = ref(9);
-// slider属性
-export const useSlider = (min = 6, max = 12) => {
-  // 每行显示个数滑动条
-  const getMarks = () => {
-    const l = {};
-    for (let i = min; i < max + 1; i++) {
-      l[i] = {
-        style: {
-          color: '#fff',
-        },
-        label: i,
-      };
-    }
-    return l;
-  };
-  return {
-    min,
-    max,
-    marks: getMarks(),
-    step: 1,
-  };
-};
 
 // 转化树形结构数组
 

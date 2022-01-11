@@ -4,10 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-07 15:50:08
- * @LastEditTime: 2022-01-07 15:54:31
+ * @LastEditTime: 2022-01-08 14:58:57
  * @Description: Modify here please
  */
-import { CreateMediaLibraryParameters } from './type';
+import {
+  CreateMediaLibraryParameters,
+  QueryMediaLibraryParameters,
+  UploadFileParams,
+} from './type';
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
@@ -15,9 +19,10 @@ enum Api {
 }
 
 // 媒体文件列表
-export function getMediaLibraryList() {
+export function getMediaLibraryList(params: QueryMediaLibraryParameters) {
   return defHttp.get({
     url: Api.MediaLibrary,
+    params,
   });
 }
 
@@ -42,4 +47,14 @@ export function removeMediaLibrary(id: string) {
   return defHttp.delete({
     url: `${Api.MediaLibrary}/${id}`,
   });
+}
+
+// 文件上传
+export function upload(params: UploadFileParams) {
+  return defHttp.uploadFile(
+    {
+      url: '/upload',
+    },
+    params,
+  );
 }
