@@ -4,15 +4,16 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-01-06 11:59:30
+ * @LastEditTime: 2022-01-11 17:04:30
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
 import { h } from 'vue';
 import { useMessage } from '/@/hooks/web/useMessage';
-import { Switch } from 'ant-design-vue';
+import { Switch, Image, Tag } from 'ant-design-vue';
 import { formatToDateTime } from '/@/utils/dateUtil';
+import { bannerTypeMap } from '/@/enumMaps';
 export const columns: BasicColumn[] = [
   {
     title: '名称',
@@ -23,26 +24,41 @@ export const columns: BasicColumn[] = [
   {
     title: '类型',
     dataIndex: 'type',
-    width: 160,
-    align: 'left',
+    width: 50,
+    align: 'center',
+    customRender: ({ record }) => {
+      return h(Tag, { color: '#108ee9' }, { default: () => bannerTypeMap[record.type] });
+    },
   },
   {
     title: 'Banner图',
     dataIndex: 'image',
     width: 160,
-    align: 'left',
+    align: 'center',
+    customRender: ({ record }) => {
+      return h(Image, {
+        src: record.image,
+        width: 50,
+      });
+    },
   },
   {
     title: '链接',
     dataIndex: 'url',
     width: 160,
     align: 'left',
+    customRender: ({ record }) => {
+      return record.url ? h('a', { href: record.url, target: '_blank' }, record.url) : '无';
+    },
   },
   {
     title: '关联商品',
     dataIndex: 'productId',
     width: 160,
     align: 'left',
+    customRender: ({ record }) => {
+      return record.productId ? '关联产品' : '无';
+    },
   },
   {
     title: '状态',
@@ -139,6 +155,7 @@ export const formSchema: FormSchema[] = [
     label: '图片',
     component: 'Input',
     required: true,
+    slot: 'image',
   },
   {
     field: 'url',

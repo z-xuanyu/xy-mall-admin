@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-01-06 11:50:25
+ * @LastEditTime: 2022-01-11 15:04:32
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -13,9 +13,11 @@
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { formSchema } from './banner.data';
   import { createBanner, updateBanner } from '/@/api/banner';
+  import UploadImage from '/@/views/media-library/UploadImage.vue';
 
   const emit = defineEmits(['success', 'register']);
   const bannerId = ref<string>('');
+  const bannerImg = ref([]);
   const isUpdate = ref(true);
   const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
     labelWidth: 80,
@@ -29,6 +31,7 @@
 
     if (unref(isUpdate)) {
       bannerId.value = data.record._id;
+      bannerImg.value = [data.record.image];
       setFieldsValue({
         ...data.record,
       });
@@ -41,13 +44,11 @@
       setModalProps({ confirmLoading: true });
       // 新增
       if (!unref(isUpdate)) {
-        await createBanner(values);
+        const data = { ...values, image: bannerImg.value[0] };
+        await createBanner(data);
       } else {
         // 编辑
-        const data = {
-          name: values.name,
-          email: values.email,
-        };
+        const data = { ...values, image: bannerImg.value[0] };
         await updateBanner(bannerId.value, data);
       }
       closeModal();
@@ -60,7 +61,11 @@
 
 <template>
   <BasicModal v-bind="$attrs" @register="registerModal" :title="getTitle" @ok="handleSubmit">
-    <BasicForm @register="registerForm" />
+    <BasicForm @register="registerForm">
+      <template #image>
+        <UploadImage v-model="bannerImg" />
+      </template>
+    </BasicForm>
   </BasicModal>
 </template>
 

@@ -4,11 +4,11 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 17:35:14
- * @LastEditTime: 2022-01-11 11:23:01
+ * @LastEditTime: 2022-01-11 15:22:41
  * @Description: Modify here please
 -->
 <script setup lang="ts">
-  import { ref, watch, provide } from 'vue';
+  import { ref, provide, watchEffect } from 'vue';
   import { Icon } from '@iconify/vue';
   import { Image } from 'ant-design-vue';
   import { useModal } from '/@/components/Modal';
@@ -17,7 +17,7 @@
 
   const props = defineProps({
     modelValue: {
-      type: [String, Array],
+      type: Array,
       default: () => [],
     },
     // 是否多图上传
@@ -27,7 +27,10 @@
     },
   });
 
-  const dataVal = ref(props.modelValue);
+  let dataVal = ref([]);
+  watchEffect(() => {
+    dataVal.value = props.modelValue;
+  });
   const isReplace = ref(false);
   const currentIndex = ref(0); // 替换当前的index
   const currentDelIndex = ref(0); // 删除选择项index
@@ -41,6 +44,7 @@
   //   确认
   function handleSuccess(val) {
     dataVal.value = JSON.parse(JSON.stringify(val.map((item) => (item?.url ? item.url : item))));
+    emit('update:modelValue', dataVal.value);
   }
 
   // 替换图片
@@ -55,22 +59,12 @@
     currentDelIndex.value = index;
     dataVal.value.splice(index, 1);
   }
-  //   响应式监听
-  watch(
-    () => dataVal.value,
-    () => {
-      emit(
-        'update:modelValue',
-        dataVal.value.map((item) => (item?.url ? item.url : item)),
-      );
-    },
-  );
 </script>
 
 <template>
   <div class="upload-image">
     <div class="flex space-x-3">
-      <template v-if="dataVal">
+      <template v-if="dataVal.length">
         <!-- 多图上传 -->
         <template v-if="multiple">
           <div
@@ -117,9 +111,9 @@
                 bg-gray-400
               "
             >
-              <span @click="openModal">替换</span>
+              <span @click="handleReplaceImage(0)">替换</span>
               <span>|</span>
-              <span>删除</span>
+              <span @click="handleDelImage(0)">删除</span>
             </div>
           </div>
         </div>
@@ -127,7 +121,7 @@
 
       <div
         @click="openModal"
-        v-if="!dataVal || multiple"
+        v-if="!dataVal.length || multiple"
         class="
           w-28
           h-28
