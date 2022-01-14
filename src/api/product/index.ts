@@ -4,10 +4,10 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 10:50:13
- * @LastEditTime: 2022-01-13 10:59:09
+ * @LastEditTime: 2022-01-13 15:46:25
  * @Description: Modify here please
  */
-import { GetProductParameters, UpdateProductParameters } from './type';
+import { CreateProductParmeters, GetProductParameters, UpdateProductParameters } from './type';
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
@@ -22,6 +22,13 @@ export function getProductList(params: GetProductParameters) {
   });
 }
 
+// 添加产品
+export function createProduct(params: CreateProductParmeters) {
+  return defHttp.post({
+    url: Api.Product,
+    params,
+  });
+}
 /**
  * 获取产品信息
  *

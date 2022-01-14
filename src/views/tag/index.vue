@@ -3,23 +3,23 @@
  * @LastEditors: xuanyu
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
- * @Date: 2022-01-05 12:33:22
- * @LastEditTime: 2022-01-13 14:30:46
- * @Description: 产品列表
+ * @Date: 2022-01-05 11:03:21
+ * @LastEditTime: 2022-01-13 16:06:33
+ * @Description: 标签列表
 -->
-
 <script setup lang="ts">
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
+  import TagModal from './TagModal.vue';
+  import { useModal } from '/@/components/Modal';
+  import { getTagList, removeTag } from '/@/api/tag';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { useDrawer } from '/@/components/Drawer';
-  import { getProductList, removeProduct } from '/@/api/product';
-  import { searchFormSchema, columns } from './product.data';
-  import ProductDrawer from './ProductDrawer.vue';
+  import { searchFormSchema, columns } from './tag.data';
 
   const { createMessage } = useMessage();
+  const [registerModal, { openModal }] = useModal();
   const [registerTable, { reload }] = useTable({
-    title: '产品列表',
-    api: getProductList,
+    title: '标签列表',
+    api: getTagList,
     columns,
     formConfig: {
       labelWidth: 120,
@@ -41,19 +41,16 @@
     },
   });
 
-  const [registerDrawer, { openDrawer }] = useDrawer();
-
   // 编辑
   const handleEdit = (record: Recordable) => {
-    console.log(record);
-    openDrawer(true, {
+    openModal(true, {
       record,
       isUpdate: true,
     });
   };
   // 添加
   const handleCreate = () => {
-    openDrawer(true, {
+    openModal(true, {
       isUpdate: false,
     });
   };
@@ -62,17 +59,17 @@
   };
   // 处理删除
   const handleDelete = async (record: Recordable) => {
-    await removeProduct(record._id);
+    await removeTag(record._id);
     handleSuccess();
     createMessage.success('删除成功!');
   };
 </script>
 
 <template>
-  <div class="product-page">
+  <div class="tag-page">
     <BasicTable @register="registerTable" :rowSelection="{ type: 'checkbox' }">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增产品 </a-button>
+        <a-button type="primary" @click="handleCreate"> 新增标签 </a-button>
       </template>
       <template #action="{ record }">
         <TableAction
@@ -93,7 +90,7 @@
         />
       </template>
     </BasicTable>
-    <ProductDrawer @register="registerDrawer" @success="handleSuccess" />
+    <TagModal @register="registerModal" @success="handleSuccess" />
   </div>
 </template>
 

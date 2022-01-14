@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-01-13 11:46:52
+ * @LastEditTime: 2022-01-13 14:27:58
  * @Description: 产品模块配置项
  */
 
@@ -33,6 +33,12 @@ export const columns: BasicColumn[] = [
     customRender: ({ record }) => {
       return h(Image, { src: record.pic, width: 50, fallback: errorImage });
     },
+  },
+  {
+    title: '产品标签',
+    dataIndex: 'tags',
+    width: 200,
+    align: 'left',
   },
   {
     title: '价格',
@@ -105,7 +111,7 @@ export const searchFormSchema: FormSchema[] = [
 export const formSchema: FormSchema[] = [
   {
     field: 'title',
-    label: '标题',
+    label: '产品名称',
     component: 'Input',
     required: true,
   },
@@ -140,10 +146,10 @@ export const formSchema: FormSchema[] = [
     ],
   },
   {
-    field: 'content',
+    field: 'description',
     component: 'Input',
-    label: '新闻内容',
-    defaultValue: '新闻内容',
+    label: '产品描述',
+    defaultValue: '描述',
     rules: [{ required: true }],
     render: ({ model, field }) => {
       return h(Tinymce, {
