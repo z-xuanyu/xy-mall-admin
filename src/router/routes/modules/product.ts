@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:31:40
- * @LastEditTime: 2022-01-05 16:35:00
+ * @LastEditTime: 2022-01-20 15:28:05
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
@@ -17,7 +17,6 @@ const dashboard: AppRouteModule = {
   component: LAYOUT,
   redirect: '/Product/index',
   meta: {
-    hideChildrenInMenu: true,
     icon: 'bx:bxl-product-hunt',
     title: '产品管理',
     orderNo: 100000,
@@ -30,7 +29,24 @@ const dashboard: AppRouteModule = {
       meta: {
         title: '产品列表',
         icon: 'ci:list-checklist',
-        hideMenu: true,
+      },
+    },
+    {
+      path: 'params/template',
+      name: 'ProductParamsTemplate',
+      component: () => import('/@/views/product/ParamsTemplate.vue'),
+      meta: {
+        title: '参数模板',
+        icon: 'ls:paramater',
+      },
+    },
+    {
+      path: 'sku/template',
+      name: 'ProductSkuTemplate',
+      component: () => import('/@/views/product/SkuTemplate.vue'),
+      meta: {
+        title: '规格模板',
+        icon: 'ant-design:skin-outlined',
       },
     },
   ],
