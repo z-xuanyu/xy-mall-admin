@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-01-05 12:23:15
+ * @LastEditTime: 2022-02-11 17:35:54
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -55,6 +55,7 @@
         const data = {
           name: values.name,
           email: values.email,
+          roles: values.roles,
         };
         await updateAdmin(state.adminId, data);
       }
