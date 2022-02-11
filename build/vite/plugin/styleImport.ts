@@ -1,3 +1,12 @@
+/*
+ * @Author: xuanyu
+ * @LastEditors: xuanyu
+ * @email: 969718197@qq.com
+ * @github: https://github.com/z-xuanyu
+ * @Date: 2021-12-24 14:44:20
+ * @LastEditTime: 2022-02-11 15:45:45
+ * @Description: Modify here please
+ */
 /**
  *  Introduces component library styles on demand.
  * https://github.com/anncwb/vite-plugin-style-import
@@ -19,6 +28,7 @@ export function configStyleImportPlugin(isBuild: boolean) {
             'anchor-link',
             'sub-menu',
             'menu-item',
+            'menu-divider',
             'menu-item-group',
             'breadcrumb-item',
             'breadcrumb-separator',
