@@ -4,14 +4,15 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-07 15:56:23
- * @LastEditTime: 2022-01-07 17:47:45
+ * @LastEditTime: 2022-02-12 17:53:47
  * @Description: Modify here please
 -->
 <script setup lang="ts">
   import { ref, computed, unref } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { BasicForm, useForm } from '/@/components/Form/index';
-  import { formSchema, TransformTreeArr } from './data';
+  import { TransformTreeArr } from '/@/utils';
+  import { formSchema } from './data';
   import {
     createLibraryCategory,
     getLibraryCategoryList,

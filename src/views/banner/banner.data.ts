@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-02-12 09:55:37
+ * @LastEditTime: 2022-02-12 17:50:02
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
@@ -152,17 +152,10 @@ export const formSchema: FormSchema[] = [
         ],
         onChange: (value: any) => {
           const { updateSchema } = formActionType;
-          if (value == 1) {
-            updateSchema({
-              field: 'url',
-              show: true,
-            });
-          } else {
-            updateSchema({
-              field: 'url',
-              show: false,
-            });
-          }
+          updateSchema({
+            field: 'url',
+            show: value == 1,
+          });
         },
       };
     },

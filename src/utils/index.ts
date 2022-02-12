@@ -89,3 +89,19 @@ export const withInstall = <T>(component: T, alias?: string) => {
   };
   return component as T & Plugin;
 };
+
+// 转化树形结构数组
+
+export function TransformTreeArr(arr = [], parentId = null) {
+  if (!Array.isArray(arr)) return;
+  return arr
+    .filter((item: any) => item.parentId == parentId)
+    .map((childItem: any) =>
+      TransformTreeArr(arr, childItem._id).length
+        ? {
+            ...childItem,
+            children: TransformTreeArr(arr, childItem._id),
+          }
+        : { ...childItem },
+    );
+}

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-07 16:10:58
- * @LastEditTime: 2022-01-08 15:52:19
+ * @LastEditTime: 2022-02-12 17:54:34
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -17,7 +17,7 @@
   import LibraryCategoryModal from './LibraryCategoryModal.vue';
   import { removeLibraryCategory, getLibraryCategoryList } from '/@/api/library-category';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { TransformTreeArr } from './data';
+  import { TransformTreeArr } from '/@/utils';
 
   const [registerModal, { openModal }] = useModal();
   const { createMessage } = useMessage();

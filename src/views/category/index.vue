@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:03:21
- * @LastEditTime: 2022-01-06 14:04:54
+ * @LastEditTime: 2022-02-12 17:51:59
  * @Description: 分类列表
 -->
 <script setup lang="ts">
@@ -13,7 +13,8 @@
   import { useModal } from '/@/components/Modal';
   import { getCategoryList, removeCategory } from '/@/api/category';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { searchFormSchema, columns, TransformTreeArr } from './category.data';
+  import { TransformTreeArr } from '/@/utils';
+  import { searchFormSchema, columns } from './category.data';
 
   const { createMessage } = useMessage();
   const [registerModal, { openModal }] = useModal();

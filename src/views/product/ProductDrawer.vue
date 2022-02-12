@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-02-12 15:13:23
+ * @LastEditTime: 2022-02-12 17:42:44
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
@@ -16,6 +16,8 @@
   import { useMessage } from '/@/hooks/web/useMessage';
   import { formSchema } from './product.data';
   import { createProduct, updateProduct } from '/@/api/product';
+  import { getCategoryList } from '/@/api/category';
+  import { TransformTreeArr } from '/@/utils';
 
   const emit = defineEmits(['success', 'register']);
   const { createMessage } = useMessage();
@@ -24,7 +26,7 @@
   const productPic = ref([]);
 
   //    提交表单
-  const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
+  const [registerForm, { resetFields, setFieldsValue, validate, updateSchema }] = useForm({
     labelWidth: 120,
     showResetButton: false,
     showSubmitButton: false,
@@ -39,12 +41,20 @@
     setDrawerProps({ confirmLoading: false });
     isUpdate.value = !!data?.isUpdate;
     if (unref(isUpdate)) {
-      // 新闻id
+      // 产品id
       productId.value = data.record._id;
       setFieldsValue({
         ...data.record,
       });
     }
+
+    // 产品分类
+    const categoryList = await getCategoryList();
+    const treeData = TransformTreeArr(categoryList.items);
+    updateSchema({
+      field: 'category',
+      componentProps: { treeData },
+    });
   });
 
   const getTitle = computed(() => (!unref(isUpdate) ? '添加产品' : '编辑产品'));
@@ -88,6 +98,10 @@
       <!-- 产品规格 -->
       <template #sku="{ model, field }">
         <ProductSkuForm v-model:value="model[field]" />
+      </template>
+      <!-- 产品封面 -->
+      <template #bannerImg="{ model, field }">
+        <UploadImage :multiple="true" v-model="model[field]" />
       </template>
     </BasicForm>
   </BasicDrawer>

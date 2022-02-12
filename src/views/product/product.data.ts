@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-02-12 14:29:42
+ * @LastEditTime: 2022-02-12 17:49:39
  * @Description: 产品模块配置项
  */
 
@@ -122,13 +122,6 @@ export const formSchema: FormSchema[] = [
     required: true,
   },
   {
-    field: 'pic',
-    label: '封面图',
-    component: 'Input',
-    required: true,
-    slot: 'pic',
-  },
-  {
     field: 'tags',
     component: 'Select',
     label: '标签',
@@ -160,7 +153,7 @@ export const formSchema: FormSchema[] = [
     ],
   },
   {
-    field: 'parentId',
+    field: 'category',
     label: '分类',
     component: 'TreeSelect',
     required: true,
@@ -178,6 +171,61 @@ export const formSchema: FormSchema[] = [
     },
   },
   {
+    field: 'pic',
+    label: '封面图',
+    component: 'Input',
+    required: true,
+    slot: 'pic',
+  },
+  {
+    field: 'skuType',
+    label: '选择规格',
+    component: 'RadioGroup',
+    required: true,
+    defaultValue: 1,
+    componentProps: ({ formActionType }) => {
+      return {
+        options: [
+          {
+            label: '单规格',
+            value: 1,
+          },
+          {
+            label: '多规格',
+            value: 2,
+          },
+          {
+            label: '无',
+            value: 3,
+          },
+        ],
+        onChange: (value: any) => {
+          const { updateSchema } = formActionType;
+
+          updateSchema({
+            field: 'sku',
+            show: value.target.value === 2,
+          });
+
+          updateSchema({
+            field: 'price',
+            show: value.target.value !== 2,
+          });
+
+          updateSchema({
+            field: 'discountsPrice',
+            show: value.target.value !== 2,
+          });
+
+          updateSchema({
+            field: 'inventory',
+            show: value.target.value !== 2,
+          });
+        },
+      };
+    },
+  },
+  {
     field: 'sku',
     component: 'Input',
     label: '规格',
@@ -189,6 +237,14 @@ export const formSchema: FormSchema[] = [
         trigger: 'blur',
       },
     ],
+    show: false,
+  },
+  {
+    field: 'bannerImg',
+    label: '轮播图',
+    component: 'Input',
+    required: true,
+    slot: 'bannerImg',
   },
   {
     field: 'price',
@@ -198,6 +254,7 @@ export const formSchema: FormSchema[] = [
     componentProps: {
       placeholder: '请输入售价',
     },
+    show: true,
   },
   {
     field: 'discountsPrice',
@@ -207,6 +264,7 @@ export const formSchema: FormSchema[] = [
     componentProps: {
       placeholder: '请输入折扣价',
     },
+    show: true,
   },
   {
     field: 'inventory',
@@ -216,6 +274,7 @@ export const formSchema: FormSchema[] = [
     componentProps: {
       placeholder: '请输入库存',
     },
+    show: true,
   },
   {
     field: 'status',

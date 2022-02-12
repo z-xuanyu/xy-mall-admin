@@ -4,26 +4,10 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-07 15:00:28
- * @LastEditTime: 2022-01-08 11:25:23
+ * @LastEditTime: 2022-02-12 17:53:49
  * @Description: Modify here please
  */
 import { FormSchema } from '/@/components/Form';
-
-// 转化树形结构数组
-
-export function TransformTreeArr(arr = [], parentId = null) {
-  if (!Array.isArray(arr)) return;
-  return arr
-    .filter((item: any) => item.parentId == parentId)
-    .map((childItem: any) =>
-      TransformTreeArr(arr, childItem._id).length
-        ? {
-            ...childItem,
-            children: TransformTreeArr(arr, childItem._id),
-          }
-        : { ...childItem },
-    );
-}
 
 // 文件分类 formSchema
 

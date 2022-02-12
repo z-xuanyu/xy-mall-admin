@@ -4,27 +4,11 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:53:34
- * @LastEditTime: 2022-01-05 18:08:13
+ * @LastEditTime: 2022-02-12 17:18:28
  * @Description: Modify here please
  */
 import { BasicColumn, FormSchema } from '/@/components/Table';
 import { formatToDateTime } from '/@/utils/dateUtil';
-
-// 转化树形结构数组
-
-export function TransformTreeArr(arr = [], parentId = null) {
-  if (!Array.isArray(arr)) return;
-  return arr
-    .filter((item: any) => item.parentId == parentId)
-    .map((childItem: any) =>
-      TransformTreeArr(arr, childItem._id).length
-        ? {
-            ...childItem,
-            children: TransformTreeArr(arr, childItem._id),
-          }
-        : { ...childItem },
-    );
-}
 
 export const columns: BasicColumn[] = [
   {
