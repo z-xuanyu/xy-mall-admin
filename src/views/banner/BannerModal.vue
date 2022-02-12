@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-01-11 15:04:32
+ * @LastEditTime: 2022-02-11 18:15:29
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -28,17 +28,26 @@
     resetFields();
     setModalProps({ confirmLoading: false });
     isUpdate.value = !!data?.isUpdate;
-
     if (unref(isUpdate)) {
       bannerId.value = data.record._id;
       bannerImg.value = [data.record.image];
       setFieldsValue({
         ...data.record,
       });
+    } else {
+      bannerImg.value = [];
     }
   });
-  const getTitle = computed(() => (!unref(isUpdate) ? '新增账号' : '编辑账号'));
+
+  const getTitle = computed(() => (!unref(isUpdate) ? '新增Banner' : '编辑Banner'));
   async function handleSubmit() {
+    // 选择图片
+    if (bannerImg.value.length) {
+      setFieldsValue({
+        image: bannerImg.value[0],
+      });
+    }
+
     try {
       const values = await validate();
       setModalProps({ confirmLoading: true });

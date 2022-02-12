@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-01-11 17:04:30
+ * @LastEditTime: 2022-02-12 09:55:37
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
@@ -130,24 +130,41 @@ export const formSchema: FormSchema[] = [
     field: 'type',
     component: 'Select',
     label: '类型',
-    componentProps: {
-      options: [
-        {
-          label: '外链',
-          value: 1,
-          key: '1',
+    required: true,
+    componentProps: ({ formActionType }) => {
+      return {
+        options: [
+          {
+            label: '外链',
+            value: 1,
+            key: '1',
+          },
+          {
+            label: '关联商品',
+            value: 2,
+            key: '2',
+          },
+          {
+            label: '无',
+            value: 3,
+            key: '3',
+          },
+        ],
+        onChange: (value: any) => {
+          const { updateSchema } = formActionType;
+          if (value == 1) {
+            updateSchema({
+              field: 'url',
+              show: true,
+            });
+          } else {
+            updateSchema({
+              field: 'url',
+              show: false,
+            });
+          }
         },
-        {
-          label: '关联商品',
-          value: 2,
-          key: '2',
-        },
-        {
-          label: '无',
-          value: 3,
-          key: '3',
-        },
-      ],
+      };
     },
   },
   {
@@ -161,6 +178,14 @@ export const formSchema: FormSchema[] = [
     field: 'url',
     label: '链接',
     component: 'Input',
+    show: false,
     required: true,
   },
+  // {
+  //   field: 'product',
+  //   label: '关联商品',
+  //   component: 'Input',
+  //   show: true,
+  //   required: true,
+  // },
 ];

@@ -4,12 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-01-13 14:36:11
+ * @LastEditTime: 2022-02-12 15:13:23
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
   import { ref, unref, computed } from 'vue';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
+  import UploadImage from '/@/views/media-library/UploadImage.vue';
+  import ProductSkuForm from './components/ProductSkuForm.vue';
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { formSchema } from './product.data';
@@ -19,6 +21,7 @@
   const { createMessage } = useMessage();
   let isUpdate = ref<boolean>(true);
   let productId = ref<string>('');
+  const productPic = ref([]);
 
   //    提交表单
   const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
@@ -73,11 +76,20 @@
     v-bind="$attrs"
     @register="registerDrawer"
     :title="getTitle"
-    width="50%"
+    width="1000px"
     showFooter
     @ok="handleSubmit"
   >
-    <BasicForm @register="registerForm" />
+    <BasicForm @register="registerForm">
+      <!-- 产品封面 -->
+      <template #pic>
+        <UploadImage v-model="productPic" />
+      </template>
+      <!-- 产品规格 -->
+      <template #sku="{ model, field }">
+        <ProductSkuForm v-model:value="model[field]" />
+      </template>
+    </BasicForm>
   </BasicDrawer>
 </template>
 

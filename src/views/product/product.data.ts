@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-01-13 14:27:58
+ * @LastEditTime: 2022-02-12 14:29:42
  * @Description: 产品模块配置项
  */
 
@@ -20,7 +20,7 @@ const errorImage =
 import { h } from 'vue';
 export const columns: BasicColumn[] = [
   {
-    title: '产品名称',
+    title: '标题',
     dataIndex: 'title',
     width: 200,
     align: 'left',
@@ -111,9 +111,22 @@ export const searchFormSchema: FormSchema[] = [
 export const formSchema: FormSchema[] = [
   {
     field: 'title',
-    label: '产品名称',
+    label: '标题',
     component: 'Input',
     required: true,
+  },
+  {
+    field: 'subTitle',
+    label: '副标题',
+    component: 'Input',
+    required: true,
+  },
+  {
+    field: 'pic',
+    label: '封面图',
+    component: 'Input',
+    required: true,
+    slot: 'pic',
   },
   {
     field: 'tags',
@@ -123,6 +136,7 @@ export const formSchema: FormSchema[] = [
       span: 8,
     },
     componentProps: {
+      placeholder: '请选择标签',
       mode: 'multiple',
       options: [
         {
@@ -144,6 +158,71 @@ export const formSchema: FormSchema[] = [
         type: 'array',
       },
     ],
+  },
+  {
+    field: 'parentId',
+    label: '分类',
+    component: 'TreeSelect',
+    required: true,
+    colProps: {
+      span: 8,
+    },
+    componentProps: {
+      placeholder: '请选择分类',
+      replaceFields: {
+        title: 'name',
+        key: '_id',
+        value: '_id',
+      },
+      getPopupContainer: () => document.body,
+    },
+  },
+  {
+    field: 'sku',
+    component: 'Input',
+    label: '规格',
+    slot: 'sku',
+    rules: [
+      {
+        required: true,
+        message: '请填写规格完整信息',
+        trigger: 'blur',
+      },
+    ],
+  },
+  {
+    field: 'price',
+    label: '售价',
+    component: 'InputNumber',
+    required: true,
+    componentProps: {
+      placeholder: '请输入售价',
+    },
+  },
+  {
+    field: 'discountsPrice',
+    label: '折扣价',
+    component: 'InputNumber',
+    required: true,
+    componentProps: {
+      placeholder: '请输入折扣价',
+    },
+  },
+  {
+    field: 'inventory',
+    label: '库存',
+    component: 'InputNumber',
+    required: true,
+    componentProps: {
+      placeholder: '请输入库存',
+    },
+  },
+  {
+    field: 'status',
+    label: '是否上架',
+    component: 'Switch',
+    defaultValue: true,
+    required: true,
   },
   {
     field: 'description',
