@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-02-12 17:42:44
+ * @LastEditTime: 2022-02-12 18:23:52
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
@@ -43,9 +43,12 @@
     if (unref(isUpdate)) {
       // 产品id
       productId.value = data.record._id;
+      productPic.value = [data.record.pic];
       setFieldsValue({
         ...data.record,
       });
+    } else {
+      productPic.value = [];
     }
 
     // 产品分类
@@ -61,16 +64,22 @@
 
   // 保存
   const handleSubmit = async () => {
+    // 选择图片
+    if (productPic.value.length) {
+      setFieldsValue({
+        pic: productPic.value[0],
+      });
+    }
     try {
       const values = await validate();
       setDrawerProps({ confirmLoading: true });
       if (!unref(isUpdate)) {
-        // 添加新闻 api
+        // 添加产品 api
         await createProduct(values);
         createMessage.success('添加成功!');
       } else {
-        // 编辑新闻 api
-        await updateProduct(newsId.value, values);
+        // 编辑产品 api
+        await updateProduct(productId.value, values);
         createMessage.success('编辑成功!');
       }
       closeDrawer();
@@ -97,7 +106,7 @@
       </template>
       <!-- 产品规格 -->
       <template #sku="{ model, field }">
-        <ProductSkuForm v-model:value="model[field]" />
+        <ProductSkuForm v-model="model[field]" />
       </template>
       <!-- 产品封面 -->
       <template #bannerImg="{ model, field }">

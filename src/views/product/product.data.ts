@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-02-12 17:49:39
+ * @LastEditTime: 2022-02-14 10:28:22
  * @Description: 产品模块配置项
  */
 
@@ -204,22 +204,26 @@ export const formSchema: FormSchema[] = [
 
           updateSchema({
             field: 'sku',
+            required: value.target.value === 2,
             show: value.target.value === 2,
           });
 
           updateSchema({
             field: 'price',
             show: value.target.value !== 2,
+            required: value.target.value !== 2,
           });
 
           updateSchema({
             field: 'discountsPrice',
             show: value.target.value !== 2,
+            required: value.target.value !== 2,
           });
 
           updateSchema({
             field: 'inventory',
             show: value.target.value !== 2,
+            required: value.target.value !== 2,
           });
         },
       };
@@ -230,13 +234,7 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     label: '规格',
     slot: 'sku',
-    rules: [
-      {
-        required: true,
-        message: '请填写规格完整信息',
-        trigger: 'blur',
-      },
-    ],
+    required: true,
     show: false,
   },
   {
