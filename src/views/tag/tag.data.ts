@@ -4,14 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-01-13 15:53:16
+ * @LastEditTime: 2022-02-14 10:55:01
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
 import { h } from 'vue';
 import { useMessage } from '/@/hooks/web/useMessage';
-import { Switch } from 'ant-design-vue';
+import { Switch, Tag } from 'ant-design-vue';
 import { formatToDateTime } from '/@/utils/dateUtil';
 export const columns: BasicColumn[] = [
   {
@@ -25,6 +25,15 @@ export const columns: BasicColumn[] = [
     dataIndex: 'description',
     width: 160,
     align: 'left',
+  },
+  {
+    title: '标签类型',
+    dataIndex: 'type',
+    width: 160,
+    align: 'left',
+    customRender: ({ record }) => {
+      return h(Tag, { color: 'success' }, { default: () => (record.type == 1 ? '产品' : '文章') });
+    },
   },
   {
     title: '状态',
@@ -71,6 +80,18 @@ export const searchFormSchema: FormSchema[] = [
     colProps: { span: 4 },
   },
   {
+    field: 'type',
+    label: '类型',
+    component: 'Select',
+    componentProps: {
+      options: [
+        { label: '产品', value: 1 },
+        { label: '文章', value: 2 },
+      ],
+    },
+    colProps: { span: 4 },
+  },
+  {
     field: 'status',
     label: '状态',
     component: 'Select',
@@ -91,6 +112,18 @@ export const formSchema: FormSchema[] = [
     label: '名称',
     component: 'Input',
     required: true,
+  },
+  {
+    field: 'type',
+    label: '类型',
+    component: 'Select',
+    required: true,
+    componentProps: {
+      options: [
+        { label: '产品', value: 1, key: 1 },
+        { label: '文章', value: 2, key: 2 },
+      ],
+    },
   },
   {
     field: 'description',

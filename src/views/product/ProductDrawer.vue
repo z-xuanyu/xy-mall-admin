@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-02-12 18:23:52
+ * @LastEditTime: 2022-02-14 16:49:31
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
@@ -17,6 +17,7 @@
   import { formSchema } from './product.data';
   import { createProduct, updateProduct } from '/@/api/product';
   import { getCategoryList } from '/@/api/category';
+  import { getTagList } from '/@/api/tag';
   import { TransformTreeArr } from '/@/utils';
 
   const emit = defineEmits(['success', 'register']);
@@ -40,12 +41,45 @@
     resetFields();
     setDrawerProps({ confirmLoading: false });
     isUpdate.value = !!data?.isUpdate;
+
+    updateSchema({
+      field: 'sku',
+      ifShow: false,
+      required: false,
+    });
+
     if (unref(isUpdate)) {
       // 产品id
       productId.value = data.record._id;
       productPic.value = [data.record.pic];
       setFieldsValue({
         ...data.record,
+        tags: data.record.tags.map((item) => item._id),
+        category: data.record.category._id,
+      });
+
+      updateSchema({
+        field: 'sku',
+        ifShow: data.record.skuType == 2,
+        required: data.record.skuType == 2,
+      });
+
+      updateSchema({
+        field: 'price',
+        show: data.record.skuType !== 2,
+        required: data.record.skuType !== 2,
+      });
+
+      updateSchema({
+        field: 'costPrice',
+        show: data.record.skuType !== 2,
+        required: data.record.skuType !== 2,
+      });
+
+      updateSchema({
+        field: 'inventory',
+        show: data.record.skuType !== 2,
+        required: data.record.skuType !== 2,
       });
     } else {
       productPic.value = [];
@@ -57,6 +91,21 @@
     updateSchema({
       field: 'category',
       componentProps: { treeData },
+    });
+
+    // 产品标签
+    const getProductTags = await getTagList({ type: 1 });
+    updateSchema({
+      field: 'tags',
+      componentProps: {
+        options: getProductTags.items.map((item) => {
+          return {
+            label: item.name,
+            value: item._id,
+            key: item._id,
+          };
+        }),
+      },
     });
   });
 
@@ -72,6 +121,16 @@
     }
     try {
       const values = await validate();
+
+      // 校验规格信息
+      for (let item of values.sku) {
+        if (!item.skuName) return createMessage.error('请填写规格名称');
+        for (let value of item.skuValues) {
+          for (const key in value) {
+            if (!value[key] && key != 'image') return createMessage.error('请填写规格值');
+          }
+        }
+      }
       setDrawerProps({ confirmLoading: true });
       if (!unref(isUpdate)) {
         // 添加产品 api

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:31:40
- * @LastEditTime: 2022-01-20 15:28:05
+ * @LastEditTime: 2022-02-14 11:03:06
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
@@ -34,7 +34,7 @@ const dashboard: AppRouteModule = {
     {
       path: 'params/template',
       name: 'ProductParamsTemplate',
-      component: () => import('/@/views/product/ParamsTemplate.vue'),
+      component: () => import('/@/views/product/params-template/index.vue'),
       meta: {
         title: '参数模板',
         icon: 'ls:paramater',
@@ -43,7 +43,7 @@ const dashboard: AppRouteModule = {
     {
       path: 'sku/template',
       name: 'ProductSkuTemplate',
-      component: () => import('/@/views/product/SkuTemplate.vue'),
+      component: () => import('/@/views/product/sku-template/index.vue'),
       meta: {
         title: '规格模板',
         icon: 'ant-design:skin-outlined',

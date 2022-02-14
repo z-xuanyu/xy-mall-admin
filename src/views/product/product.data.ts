@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-02-14 10:28:22
+ * @LastEditTime: 2022-02-14 16:49:22
  * @Description: 产品模块配置项
  */
 
@@ -26,7 +26,7 @@ export const columns: BasicColumn[] = [
     align: 'left',
   },
   {
-    title: '产品图片',
+    title: '封面图',
     dataIndex: 'pic',
     width: 160,
     align: 'center',
@@ -35,10 +35,28 @@ export const columns: BasicColumn[] = [
     },
   },
   {
-    title: '产品标签',
+    title: '分类',
+    dataIndex: 'category',
+    width: 200,
+    align: 'center',
+    customRender: ({ record }) => {
+      return h(Tag, { color: 'cyan' }, { default: () => record.category.name });
+    },
+  },
+  {
+    title: '标签',
     dataIndex: 'tags',
     width: 200,
     align: 'left',
+    customRender: ({ record }) => {
+      return h(
+        'div',
+        {
+          class: 'space-x-2',
+        },
+        record.tags.map((item) => h(Tag, { color: 'blue' }, { default: () => item.name })),
+      );
+    },
   },
   {
     title: '价格',
@@ -131,18 +149,7 @@ export const formSchema: FormSchema[] = [
     componentProps: {
       placeholder: '请选择标签',
       mode: 'multiple',
-      options: [
-        {
-          label: '推荐',
-          value: '推荐',
-          key: '1',
-        },
-        {
-          label: '新品',
-          value: '新品',
-          key: '2',
-        },
-      ],
+      options: [],
     },
     rules: [
       {
@@ -194,10 +201,6 @@ export const formSchema: FormSchema[] = [
             label: '多规格',
             value: 2,
           },
-          {
-            label: '无',
-            value: 3,
-          },
         ],
         onChange: (value: any) => {
           const { updateSchema } = formActionType;
@@ -205,7 +208,7 @@ export const formSchema: FormSchema[] = [
           updateSchema({
             field: 'sku',
             required: value.target.value === 2,
-            show: value.target.value === 2,
+            ifShow: value.target.value === 2,
           });
 
           updateSchema({
@@ -215,7 +218,7 @@ export const formSchema: FormSchema[] = [
           });
 
           updateSchema({
-            field: 'discountsPrice',
+            field: 'costPrice',
             show: value.target.value !== 2,
             required: value.target.value !== 2,
           });
@@ -234,8 +237,8 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     label: '规格',
     slot: 'sku',
-    required: true,
-    show: false,
+    required: false,
+    ifShow: false,
   },
   {
     field: 'bannerImg',
@@ -255,7 +258,7 @@ export const formSchema: FormSchema[] = [
     show: true,
   },
   {
-    field: 'discountsPrice',
+    field: 'costPrice',
     label: '折扣价',
     component: 'InputNumber',
     required: true,
