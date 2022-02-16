@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-01-05 16:15:15
+ * @LastEditTime: 2022-02-16 11:03:56
  * @Description: Modify here please
  */
 
@@ -13,6 +13,7 @@ import { FormSchema } from '/@/components/Table';
 import { Tinymce } from '/@/components/Tinymce';
 import { formatToDateTime } from '/@/utils/dateUtil';
 import { h } from 'vue';
+import { Tag } from 'ant-design-vue';
 export const columns: BasicColumn[] = [
   {
     title: '标题',
@@ -25,7 +26,13 @@ export const columns: BasicColumn[] = [
     dataIndex: 'tags',
     width: 160,
     align: 'left',
-    slots: { customRender: 'tags' },
+    customRender: ({ record }) => {
+      return h(
+        'div',
+        { class: 'space-x-2' },
+        record.tags.map((item) => h(Tag, { color: '#2db7f5' }, { default: () => item.name })),
+      );
+    },
   },
   {
     title: '内容要摘',
@@ -72,18 +79,7 @@ export const formSchema: FormSchema[] = [
     },
     componentProps: {
       mode: 'multiple',
-      options: [
-        {
-          label: '推荐',
-          value: '推荐',
-          key: '1',
-        },
-        {
-          label: '新品',
-          value: '新品',
-          key: '2',
-        },
-      ],
+      options: [],
     },
     rules: [
       {

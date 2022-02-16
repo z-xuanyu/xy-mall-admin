@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-02-14 16:49:22
+ * @LastEditTime: 2022-02-14 17:05:59
  * @Description: 产品模块配置项
  */
 
@@ -64,7 +64,9 @@ export const columns: BasicColumn[] = [
     width: 160,
     align: 'center',
     customRender: ({ record }) => {
-      return `￥ ${record.price}`;
+      return record.skuType == 1
+        ? `￥ ${record.price}`
+        : `￥ ${record.sku && record.sku[0].skuValues[0].price}`;
     },
   },
   {
@@ -72,6 +74,11 @@ export const columns: BasicColumn[] = [
     dataIndex: 'inventory',
     width: 160,
     align: 'center',
+    customRender: ({ record }) => {
+      return record.skuType == 1
+        ? record.inventory
+        : record.sku && record.sku[0].skuValues[0].inventory;
+    },
   },
   {
     title: '销量',

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 12:32:34
- * @LastEditTime: 2022-01-05 16:12:47
+ * @LastEditTime: 2022-02-16 11:03:50
  * @Description: 新闻列表
 -->
 <script setup lang="ts">
@@ -14,7 +14,6 @@
   import { useDrawer } from '/@/components/Drawer';
   import { getNewsList, removeNews } from '/@/api/news';
   import { searchFormSchema, columns } from './news.data';
-  import { Tag } from 'ant-design-vue';
 
   const { createMessage } = useMessage();
   const [registerTable, { reload }] = useTable({
@@ -72,13 +71,6 @@
     <BasicTable @register="registerTable" :rowSelection="{ type: 'checkbox' }">
       <template #toolbar>
         <a-button type="primary" @click="handleCreate"> 新增新闻 </a-button>
-      </template>
-      <template #tags="{ record }">
-        <div class="space-x-2">
-          <Tag color="#2db7f5" v-for="(item, tagIndex) in record.tags" :key="tagIndex">{{
-            item
-          }}</Tag>
-        </div>
       </template>
       <template #content="{ record }">
         <div v-html="record.content" class="overflow-hidden"></div>

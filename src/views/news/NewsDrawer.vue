@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:18:10
- * @LastEditTime: 2022-01-05 15:53:28
+ * @LastEditTime: 2022-02-16 11:06:01
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -14,13 +14,14 @@
   import { useMessage } from '/@/hooks/web/useMessage';
   import { formSchema } from './news.data';
   import { createNews, updateNews } from '/@/api/news';
+  import { getTagList } from '/@/api/tag';
 
   const emit = defineEmits(['success', 'register']);
 
   const isUpdate = ref(true);
   const { createMessage } = useMessage();
   let newsId = ref<string>('');
-  const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
+  const [registerForm, { resetFields, setFieldsValue, validate, updateSchema }] = useForm({
     labelWidth: 120,
     showResetButton: false,
     showSubmitButton: false,
@@ -34,11 +35,29 @@
     resetFields();
     setDrawerProps({ confirmLoading: false });
     isUpdate.value = !!data?.isUpdate;
+
+    // 文章标题
+    const tags = await getTagList({ type: 2 });
+
+    updateSchema({
+      field: 'tags',
+      componentProps: {
+        options: tags.items.map((item) => {
+          return {
+            label: item.name,
+            value: item._id,
+            key: item._id,
+          };
+        }),
+      },
+    });
+
     if (unref(isUpdate)) {
       // 新闻id
       newsId.value = data.record._id;
       setFieldsValue({
         ...data.record,
+        tags: data.record.tags.map((item) => item._id),
       });
     }
   });
