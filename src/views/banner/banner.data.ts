@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-02-12 17:50:02
+ * @LastEditTime: 2022-02-16 11:53:27
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
@@ -57,7 +57,7 @@ export const columns: BasicColumn[] = [
     width: 160,
     align: 'left',
     customRender: ({ record }) => {
-      return record.productId ? '关联产品' : '无';
+      return record.product ? record.product.title : '无';
     },
   },
   {
@@ -69,7 +69,7 @@ export const columns: BasicColumn[] = [
         record.pendingStatus = false;
       }
       return h(Switch, {
-        checked: record.status,
+        checked: record.status == 2,
         checkedChildren: '已启用',
         unCheckedChildren: '已禁用',
         loading: record.pendingStatus,
@@ -155,6 +155,13 @@ export const formSchema: FormSchema[] = [
           updateSchema({
             field: 'url',
             show: value == 1,
+            required: value == 1,
+          });
+
+          updateSchema({
+            field: 'product',
+            show: value == 2,
+            required: value == 2,
           });
         },
       };
@@ -172,13 +179,14 @@ export const formSchema: FormSchema[] = [
     label: '链接',
     component: 'Input',
     show: false,
-    required: true,
+    required: false,
   },
-  // {
-  //   field: 'product',
-  //   label: '关联商品',
-  //   component: 'Input',
-  //   show: true,
-  //   required: true,
-  // },
+  {
+    field: 'product',
+    label: '关联商品',
+    component: 'Input',
+    show: false,
+    required: false,
+    slot: 'product',
+  },
 ];
