@@ -1,3 +1,12 @@
+/*
+ * @Author: xuanyu
+ * @LastEditors: xuanyu
+ * @email: 969718197@qq.com
+ * @github: https://github.com/z-xuanyu
+ * @Date: 2021-12-24 14:44:22
+ * @LastEditTime: 2022-02-16 15:38:16
+ * @Description: Modify here please
+ */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
@@ -9,9 +18,9 @@ const dashboard: AppRouteModule = {
   component: LAYOUT,
   redirect: '/dashboard/analysis',
   meta: {
-    orderNo: 10,
+    orderNo: 1,
     icon: 'ion:grid-outline',
-    title: t('routes.dashboard.dashboard'),
+    title: '系统首页',
   },
   children: [
     {

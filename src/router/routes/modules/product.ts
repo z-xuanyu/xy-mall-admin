@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:31:40
- * @LastEditTime: 2022-02-14 11:03:06
+ * @LastEditTime: 2022-02-16 15:40:34
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
@@ -15,11 +15,11 @@ const dashboard: AppRouteModule = {
   path: '/product',
   name: 'Product',
   component: LAYOUT,
-  redirect: '/Product/index',
+  redirect: '/product/index',
   meta: {
     icon: 'bx:bxl-product-hunt',
-    title: '产品管理',
-    orderNo: 100000,
+    title: '商品管理',
+    orderNo: 3,
   },
   children: [
     {
@@ -27,8 +27,17 @@ const dashboard: AppRouteModule = {
       name: 'ProductPage',
       component: () => import('/@/views/product/index.vue'),
       meta: {
-        title: '产品列表',
+        title: '商品列表',
         icon: 'ci:list-checklist',
+      },
+    },
+    {
+      path: 'category',
+      name: 'ProductCategory',
+      component: () => import('/@/views/product/category/index.vue'),
+      meta: {
+        title: '商品分类',
+        icon: 'bx:bx-category',
       },
     },
     {

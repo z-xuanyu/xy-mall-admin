@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-14 10:08:22
- * @LastEditTime: 2022-01-14 10:12:07
+ * @LastEditTime: 2022-02-16 15:12:09
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
@@ -19,7 +19,7 @@ const dashboard: AppRouteModule = {
   meta: {
     hideChildrenInMenu: true,
     icon: 'ant-design:pic-left-outlined',
-    title: '产品专题',
+    title: '推广专题',
     orderNo: 100000,
   },
   children: [

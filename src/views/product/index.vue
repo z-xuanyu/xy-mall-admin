@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 12:33:22
- * @LastEditTime: 2022-02-14 17:00:37
+ * @LastEditTime: 2022-02-16 15:11:00
  * @Description: 产品列表
 -->
 
@@ -18,7 +18,7 @@
 
   const { createMessage } = useMessage();
   const [registerTable, { reload }] = useTable({
-    title: '产品列表',
+    title: '商品列表',
     api: getProductList,
     columns,
     formConfig: {

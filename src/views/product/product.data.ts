@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-02-14 17:05:59
+ * @LastEditTime: 2022-02-16 15:10:31
  * @Description: 产品模块配置项
  */
 
@@ -125,7 +125,7 @@ export const columns: BasicColumn[] = [
 export const searchFormSchema: FormSchema[] = [
   {
     field: 'name',
-    label: '产品名称',
+    label: '标题',
     component: 'Input',
     labelWidth: 70,
     colProps: { span: 6 },
