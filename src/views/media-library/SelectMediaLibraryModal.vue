@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 15:02:59
- * @LastEditTime: 2022-01-11 11:17:58
+ * @LastEditTime: 2022-02-16 12:44:05
  * @Description: Modify here please
 -->
 
@@ -34,8 +34,12 @@
   const emit = defineEmits(['success', 'register']);
   const selectVal = ref([]);
   const selectCardRef = ref<HTMLElement>(null);
+
+  let selectCategoryId = ref<string | null>(null);
   //   选择分类
-  function handleSelectCategory() {}
+  function handleSelectCategory(categoryId: string) {
+    selectCategoryId.value = categoryId;
+  }
 
   //   选择中素材
   function handleSelectVal(val) {
@@ -87,6 +91,7 @@
         <SelectMediaCard
           @select="handleSelectVal"
           ref="selectCardRef"
+          :categoryId="selectCategoryId"
           :multiple="multiple"
           :dataVal="dataVal"
         />

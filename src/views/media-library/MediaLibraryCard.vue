@@ -4,14 +4,19 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 11:23:44
- * @LastEditTime: 2022-01-10 18:27:33
+ * @LastEditTime: 2022-02-16 12:16:24
  * @Description: Modify here please
 -->
 <script setup lang="ts">
   import { ref, onMounted, watch } from 'vue';
-  import { Card, Button, List, Image, Upload } from 'ant-design-vue';
+  import { Card, Button, List, Image, Upload, Popconfirm } from 'ant-design-vue';
   import { Icon } from '@iconify/vue';
-  import { upload, createMediaLibrary, getMediaLibraryList } from '/@/api/media-library';
+  import {
+    upload,
+    createMediaLibrary,
+    getMediaLibraryList,
+    removeMediaLibrary,
+  } from '/@/api/media-library';
   import { useMessage } from '/@/hooks/web/useMessage';
 
   const ListItem = List.Item;
@@ -100,6 +105,13 @@
     }
     loading.value = false;
   }
+
+  // 删除素材
+  async function handleDelMedia(id) {
+    await removeMediaLibrary(id);
+    createMessage.success('删除成功!');
+    fetch();
+  }
 </script>
 
 <template>
@@ -129,17 +141,16 @@
                   <Image :src="item.url" />
                 </div>
               </template>
-              <template #actions>
-                <span>删除</span>
-              </template>
 
               <CardMeta>
                 <template #title>
                   <div class="flex justify-between items-center">
                     <h6 class="w-20 truncate">{{ item.name }}</h6>
-                    <div class="flex space-x-2 cursor-pointer"
-                      ><Icon icon="carbon:edit" width="20" /><Icon icon="carbon:delete" width="20"
-                    /></div>
+                    <div class="flex space-x-2 cursor-pointer">
+                      <Popconfirm title="您确认要删除该素材?" @confirm="handleDelMedia(item._id)">
+                        <Icon icon="carbon:delete" width="20" />
+                      </Popconfirm>
+                    </div>
                   </div>
                 </template>
               </CardMeta>
