@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 12:33:22
- * @LastEditTime: 2022-02-16 15:11:00
+ * @LastEditTime: 2022-02-18 17:37:57
  * @Description: 产品列表
 -->
 
@@ -72,7 +72,7 @@
   <div class="product-page">
     <BasicTable @register="registerTable" :rowSelection="{ type: 'checkbox' }">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增产品 </a-button>
+        <a-button type="primary" @click="handleCreate"> 新增商品 </a-button>
       </template>
       <template #action="{ record }">
         <TableAction

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-02-14 16:49:31
+ * @LastEditTime: 2022-02-18 17:37:04
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
@@ -24,7 +24,6 @@
   const { createMessage } = useMessage();
   let isUpdate = ref<boolean>(true);
   let productId = ref<string>('');
-  const productPic = ref([]);
 
   //    提交表单
   const [registerForm, { resetFields, setFieldsValue, validate, updateSchema }] = useForm({
@@ -51,11 +50,11 @@
     if (unref(isUpdate)) {
       // 产品id
       productId.value = data.record._id;
-      productPic.value = [data.record.pic];
       setFieldsValue({
         ...data.record,
         tags: data.record.tags.map((item) => item._id),
         category: data.record.category._id,
+        pic: [data.record.pic],
       });
 
       updateSchema({
@@ -81,8 +80,6 @@
         show: data.record.skuType !== 2,
         required: data.record.skuType !== 2,
       });
-    } else {
-      productPic.value = [];
     }
 
     // 产品分类
@@ -109,28 +106,26 @@
     });
   });
 
-  const getTitle = computed(() => (!unref(isUpdate) ? '添加产品' : '编辑产品'));
+  const getTitle = computed(() => (!unref(isUpdate) ? '添加商品' : '编辑商品'));
 
   // 保存
   const handleSubmit = async () => {
-    // 选择图片
-    if (productPic.value.length) {
-      setFieldsValue({
-        pic: productPic.value[0],
-      });
-    }
     try {
       const values = await validate();
 
       // 校验规格信息
-      for (let item of values.sku) {
-        if (!item.skuName) return createMessage.error('请填写规格名称');
-        for (let value of item.skuValues) {
-          for (const key in value) {
-            if (!value[key] && key != 'image') return createMessage.error('请填写规格值');
+      if (values.sku) {
+        for (let item of values.sku) {
+          if (!item.skuName) return createMessage.error('请填写规格名称');
+          for (let value of item.skuValues) {
+            for (const key in value) {
+              if (!value[key] && key != 'image') return createMessage.error('请填写规格值');
+            }
           }
         }
       }
+
+      values.pic = values.pic[0];
       setDrawerProps({ confirmLoading: true });
       if (!unref(isUpdate)) {
         // 添加产品 api
@@ -160,8 +155,8 @@
   >
     <BasicForm @register="registerForm">
       <!-- 产品封面 -->
-      <template #pic>
-        <UploadImage v-model="productPic" />
+      <template #pic="{ model, field }">
+        <UploadImage v-model="model[field]" />
       </template>
       <!-- 产品规格 -->
       <template #sku="{ model, field }">
