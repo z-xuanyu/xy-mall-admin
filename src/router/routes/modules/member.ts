@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 16:10:13
- * @LastEditTime: 2022-02-25 10:27:21
+ * @LastEditTime: 2022-02-25 12:14:17
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
@@ -46,6 +46,17 @@ const memberPage: AppRouteModule = {
       meta: {
         title: '会员设置',
         icon: 'la:user-cog',
+      },
+    },
+    {
+      path: 'detail/:id',
+      name: 'MemberDetail',
+      component: () => import('/@/views/member/detail/index.vue'),
+      meta: {
+        title: '会员详细',
+        icon: 'mdi:card-account-details-outline',
+        currentActiveMenu: '/member/index',
+        hideMenu: true,
       },
     },
   ],
