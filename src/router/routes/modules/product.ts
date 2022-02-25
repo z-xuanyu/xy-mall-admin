@@ -4,14 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:31:40
- * @LastEditTime: 2022-02-16 15:40:34
+ * @LastEditTime: 2022-02-25 10:29:19
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
 
-const dashboard: AppRouteModule = {
+const productPage: AppRouteModule = {
   path: '/product',
   name: 'Product',
   component: LAYOUT,
@@ -24,7 +24,7 @@ const dashboard: AppRouteModule = {
   children: [
     {
       path: 'index',
-      name: 'ProductPage',
+      name: 'ProductList',
       component: () => import('/@/views/product/index.vue'),
       meta: {
         title: '商品列表',
@@ -61,4 +61,4 @@ const dashboard: AppRouteModule = {
   ],
 };
 
-export default dashboard;
+export default productPage;

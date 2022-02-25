@@ -4,16 +4,16 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 15:42:29
- * @LastEditTime: 2022-01-13 15:45:23
+ * @LastEditTime: 2022-02-25 10:29:59
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
 
-const dashboard: AppRouteModule = {
+const tagPage: AppRouteModule = {
   path: '/tags',
-  name: 'TagPage',
+  name: 'Tag',
   component: LAYOUT,
   redirect: '/tags/index',
   meta: {
@@ -36,4 +36,4 @@ const dashboard: AppRouteModule = {
   ],
 };
 
-export default dashboard;
+export default tagPage;

@@ -4,14 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:31:40
- * @LastEditTime: 2022-02-16 15:52:08
+ * @LastEditTime: 2022-02-25 10:29:37
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
 
-const dashboard: AppRouteModule = {
+const systemSettingPage: AppRouteModule = {
   path: '/system-setting',
   name: 'SystemSetting',
   component: LAYOUT,
@@ -33,4 +33,4 @@ const dashboard: AppRouteModule = {
   ],
 };
 
-export default dashboard;
+export default systemSettingPage;

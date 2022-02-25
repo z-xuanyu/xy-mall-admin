@@ -4,14 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-14 10:08:22
- * @LastEditTime: 2022-02-16 15:12:09
+ * @LastEditTime: 2022-02-25 10:28:53
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
 
-const dashboard: AppRouteModule = {
+const productTopicPage: AppRouteModule = {
   path: '/product/topic',
   name: 'ProductTopic',
   component: LAYOUT,
@@ -36,4 +36,4 @@ const dashboard: AppRouteModule = {
   ],
 };
 
-export default dashboard;
+export default productTopicPage;

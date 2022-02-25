@@ -4,14 +4,20 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:09:20
- * @LastEditTime: 2022-01-05 11:48:52
+ * @LastEditTime: 2022-02-25 10:12:57
  * @Description: 管理员api模块
  */
-import { CreateAdminParmeters, QueryadminParameters, UpdateAdminParmeters } from './type';
+import {
+  CreateAdminParmeters,
+  QueryadminParameters,
+  UpdateAdminParmeters,
+  UpdateStatusParmeters,
+} from './type';
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
   Admin = '/admin',
+  updateStatus = '/admin/updateStatus',
 }
 
 // 管理员列表
@@ -55,5 +61,13 @@ export function updateAdmin(id: string, params: UpdateAdminParmeters): Promise<a
 export function removeAdmin(id: string): Promise<any> {
   return defHttp.delete({
     url: `${Api.Admin}/${id}`,
+  });
+}
+
+// 更新管理状态
+export function updateStatus(id: string, params: UpdateStatusParmeters) {
+  return defHttp.put({
+    url: `${Api.updateStatus}/${id}`,
+    params,
   });
 }

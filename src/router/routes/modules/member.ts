@@ -4,14 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 16:10:13
- * @LastEditTime: 2022-02-16 16:20:10
+ * @LastEditTime: 2022-02-25 10:27:21
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
 
-const dashboard: AppRouteModule = {
+const memberPage: AppRouteModule = {
   path: '/member',
   name: 'Member',
   component: LAYOUT,
@@ -51,4 +51,4 @@ const dashboard: AppRouteModule = {
   ],
 };
 
-export default dashboard;
+export default memberPage;

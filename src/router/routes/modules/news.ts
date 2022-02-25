@@ -4,14 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:28:32
- * @LastEditTime: 2022-01-05 16:16:25
+ * @LastEditTime: 2022-02-25 10:28:14
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
 
-const dashboard: AppRouteModule = {
+const newsPage: AppRouteModule = {
   path: '/news',
   name: 'News',
   component: LAYOUT,
@@ -25,7 +25,7 @@ const dashboard: AppRouteModule = {
   children: [
     {
       path: 'index',
-      name: 'NewsPage',
+      name: 'NewsList',
       component: () => import('/@/views/news/index.vue'),
       meta: {
         title: '新闻列表',
@@ -36,4 +36,4 @@ const dashboard: AppRouteModule = {
   ],
 };
 
-export default dashboard;
+export default newsPage;

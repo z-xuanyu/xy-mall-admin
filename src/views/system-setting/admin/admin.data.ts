@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-02-11 17:37:58
+ * @LastEditTime: 2022-02-25 10:14:44
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
@@ -15,6 +15,7 @@ import { Switch, Tag } from 'ant-design-vue';
 import { formatToDateTime } from '/@/utils/dateUtil';
 import { RoleEnum } from '/@/enums/roleEnum';
 import { roleTypeMap } from '/@/enumMaps';
+import { updateStatus } from '/@/api/admin';
 
 // 获取角色选项
 function getRoleOptions() {
@@ -74,14 +75,13 @@ export const columns: BasicColumn[] = [
         checkedChildren: '已启用',
         unCheckedChildren: '已禁用',
         loading: record.pendingStatus,
-        onChange(checked: boolean) {
+        onChange: async (checked: boolean) => {
           record.pendingStatus = true;
           const { createMessage } = useMessage();
-          setTimeout(() => {
-            createMessage.success(`状态更改成功!`);
-            record.status = checked;
-            record.pendingStatus = false;
-          }, 1000);
+          await updateStatus(record._id, { status: checked });
+          createMessage.success(`状态更改成功!`);
+          record.status = checked;
+          record.pendingStatus = false;
         },
       });
     },

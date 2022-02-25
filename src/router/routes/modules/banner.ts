@@ -4,14 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-06 10:26:00
- * @LastEditTime: 2022-01-06 10:42:11
+ * @LastEditTime: 2022-02-25 10:26:15
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
 
-const dashboard: AppRouteModule = {
+const bannerPage: AppRouteModule = {
   path: '/banner',
   name: 'Banner',
   component: LAYOUT,
@@ -25,7 +25,7 @@ const dashboard: AppRouteModule = {
   children: [
     {
       path: 'index',
-      name: 'BannerPage',
+      name: 'BannerList',
       component: () => import('/@/views/banner/index.vue'),
       meta: {
         title: 'Banner列表',
@@ -36,4 +36,4 @@ const dashboard: AppRouteModule = {
   ],
 };
 
-export default dashboard;
+export default bannerPage;

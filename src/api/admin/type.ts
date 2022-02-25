@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:11:58
- * @LastEditTime: 2022-01-06 10:17:41
+ * @LastEditTime: 2022-02-25 10:10:52
  * @Description: Modify here please
  */
 
@@ -23,4 +23,9 @@ export interface CreateAdminParmeters {
 
 export interface UpdateAdminParmeters {
   name: string;
+}
+
+export interface UpdateStatusParmeters {
+  // 状态
+  status: boolean;
 }

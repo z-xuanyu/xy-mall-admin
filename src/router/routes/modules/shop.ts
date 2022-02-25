@@ -4,14 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:31:40
- * @LastEditTime: 2022-02-16 15:36:07
+ * @LastEditTime: 2022-02-25 10:25:51
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
 
-const dashboard: AppRouteModule = {
+const shopPage: AppRouteModule = {
   path: '/shop',
   name: 'Shop',
   component: LAYOUT,
@@ -39,7 +39,16 @@ const dashboard: AppRouteModule = {
         icon: 'bxs:hot',
       },
     },
+    {
+      path: 'time-limit',
+      name: 'TimeLimitProduct',
+      component: () => import('/@/views/shop/time-limit-product/index.vue'),
+      meta: {
+        title: '限时精选',
+        icon: 'bx:select-multiple',
+      },
+    },
   ],
 };
 
-export default dashboard;
+export default shopPage;
