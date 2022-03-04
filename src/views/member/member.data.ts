@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 12:26:06
- * @LastEditTime: 2022-02-25 11:53:03
+ * @LastEditTime: 2022-02-25 16:43:02
  * @Description: Modify here please
  */
 
@@ -18,7 +18,7 @@ export const columns: BasicColumn[] = [
     title: '名称',
     dataIndex: 'name',
     width: 80,
-    align: 'left',
+    align: 'center',
   },
   {
     title: '邮箱',

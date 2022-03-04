@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 16:10:13
- * @LastEditTime: 2022-02-25 12:14:17
+ * @LastEditTime: 2022-02-25 15:36:00
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
@@ -41,7 +41,7 @@ const memberPage: AppRouteModule = {
     },
     {
       path: 'setting',
-      name: 'MemberPaying',
+      name: 'MemberSetting',
       component: () => import('/@/views/member/setting/index.vue'),
       meta: {
         title: '会员设置',
