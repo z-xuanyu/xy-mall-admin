@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 11:23:44
- * @LastEditTime: 2022-02-16 12:16:24
+ * @LastEditTime: 2022-03-08 11:45:07
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -134,7 +134,7 @@
         :pagination="paginationProp"
       >
         <template #renderItem="{ item }">
-          <ListItem class="md:h-[800px] h-[450px]">
+          <ListItem>
             <Card>
               <template #cover>
                 <div class="h-[180px] overflow-hidden">
@@ -170,5 +170,13 @@
     position: absolute;
     bottom: 0;
     right: 0;
+  }
+  .list-card :deep(.ant-image) {
+    height: 100%;
+    width: 100%;
+  }
+  .list-card :deep(.ant-image-img) {
+    height: 100%;
+    object-fit: cover;
   }
 </style>
