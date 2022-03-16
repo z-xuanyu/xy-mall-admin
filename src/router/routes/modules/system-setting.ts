@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:31:40
- * @LastEditTime: 2022-02-25 10:29:37
+ * @LastEditTime: 2022-03-16 14:32:42
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
@@ -28,6 +28,15 @@ const systemSettingPage: AppRouteModule = {
       meta: {
         title: '管理员账号',
         icon: 'line-md:account',
+      },
+    },
+    {
+      path: 'website',
+      name: 'WebsitePage',
+      component: () => import('/@/views/system-setting/website/index.vue'),
+      meta: {
+        title: '站点设置',
+        icon: 'dashicons:admin-site-alt3',
       },
     },
   ],
