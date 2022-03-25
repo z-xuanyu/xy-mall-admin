@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:31:40
- * @LastEditTime: 2022-03-16 14:32:42
+ * @LastEditTime: 2022-03-25 18:28:30
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
@@ -28,6 +28,24 @@ const systemSettingPage: AppRouteModule = {
       meta: {
         title: '管理员账号',
         icon: 'line-md:account',
+      },
+    },
+    {
+      path: 'role',
+      name: 'RolePage',
+      component: () => import('/@/views/system-setting/role/index.vue'),
+      meta: {
+        title: '角色管理',
+        icon: 'eos-icons:role-binding-outlined',
+      },
+    },
+    {
+      path: 'menu',
+      name: 'MenuPage',
+      component: () => import('/@/views/system-setting/menu/index.vue'),
+      meta: {
+        title: '菜单管理',
+        icon: 'heroicons-solid:menu-alt-2',
       },
     },
     {

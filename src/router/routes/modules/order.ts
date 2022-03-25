@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:31:40
- * @LastEditTime: 2022-02-25 10:28:31
+ * @LastEditTime: 2022-03-25 17:51:46
  * @Description: Modify here please
  */
 import type { AppRouteModule } from '/@/router/types';
@@ -33,7 +33,7 @@ const orderPage: AppRouteModule = {
     {
       path: 'refunds-dispose',
       name: 'OrderRefundsDispose',
-      component: () => import('/@/views/order/refunds_dispose/index.vue'),
+      component: () => import('/@/views/order/refunds-dispose/index.vue'),
       meta: {
         title: '退款处理',
         icon: 'ri:refund-line',
