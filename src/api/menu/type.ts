@@ -4,9 +4,15 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-28 10:03:31
- * @LastEditTime: 2022-03-28 10:47:05
+ * @LastEditTime: 2022-03-28 16:08:29
  * @Description: Modify here please
  */
+import { BasicPageParams } from '../model/baseModel';
+
+export interface QueryMenuParameters extends BasicPageParams {
+  // 菜单名称
+  title?: string;
+}
 
 interface TagItem {
   //   是否显示小圆点

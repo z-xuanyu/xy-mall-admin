@@ -4,10 +4,10 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-25 16:53:24
- * @LastEditTime: 2022-03-25 17:05:54
+ * @LastEditTime: 2022-03-28 16:07:07
  * @Description: Modify here please
  */
-import { AddRoleParameters, UpdateRoleParameters } from './type';
+import { AddRoleParameters, QueryRoleParameters, UpdateRoleParameters } from './type';
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
@@ -15,10 +15,11 @@ enum Api {
 }
 
 // 获取角色列表
-export function getRoles() {
+export function getRoles(params: QueryRoleParameters) {
   return defHttp.get({
     url: Api.Role,
     method: 'GET',
+    params,
   });
 }
 

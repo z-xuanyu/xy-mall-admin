@@ -4,10 +4,10 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-28 10:03:21
- * @LastEditTime: 2022-03-28 10:13:41
+ * @LastEditTime: 2022-03-28 16:09:04
  * @Description: Modify here please
  */
-import { AddMenuParameters, UpdateMenuParameters } from './type';
+import { AddMenuParameters, QueryMenuParameters, UpdateMenuParameters } from './type';
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
@@ -15,9 +15,10 @@ enum Api {
 }
 
 // 获取菜单列表
-export function getMenus() {
+export function getMenus(params: QueryMenuParameters) {
   return defHttp.get({
     url: Api.Menu,
+    params,
   });
 }
 

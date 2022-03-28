@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-25 16:49:06
- * @LastEditTime: 2022-03-25 18:22:18
+ * @LastEditTime: 2022-03-28 16:14:31
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -15,6 +15,8 @@
   import { formSchema } from './role.data';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { addRole, updateRole } from '/@/api/role';
+  import { getMenus } from '/@/api/menu';
+  import { TransformTreeArr } from '/@/utils';
 
   const emits = defineEmits(['success', 'register']);
 
@@ -31,8 +33,10 @@
     resetFields();
     setModalProps({ confirmLoading: false });
     if (!menuList.value.length) {
-      //   const menuListRes = await getMenuList();
-      //   state.menuList = list2tree(menuListRes);
+      const menuListRes = await getMenus();
+      menuList.value = TransformTreeArr(
+        menuListRes.items.map((item) => ({ ...item, title: item.meta.title })),
+      );
     }
     isUpdate.value = !!data?.isUpdate;
     if (unref(isUpdate)) {
@@ -68,12 +72,14 @@
   <BasicModal v-bind="$attrs" @register="registerModal" :title="getTitle" @ok="handleSubmit">
     <BasicForm @register="registerForm">
       <template #menuIds="{ model, field }">
-        <BasicTree
-          v-model:value="model[field]"
-          :treeData="menuList"
-          :replaceFields="{ title: 'name', key: '_id' }"
-          checkable
-        />
+        <div class="h-auto border rounded-sm">
+          <BasicTree
+            v-model:value="model[field]"
+            :treeData="menuList"
+            :replaceFields="{ title: 'title', key: '_id' }"
+            checkable
+          />
+        </div>
       </template>
     </BasicForm>
   </BasicModal>
