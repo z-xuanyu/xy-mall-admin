@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-02-25 10:14:44
+ * @LastEditTime: 2022-03-28 17:28:41
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
@@ -13,24 +13,7 @@ import { h } from 'vue';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { Switch, Tag } from 'ant-design-vue';
 import { formatToDateTime } from '/@/utils/dateUtil';
-import { RoleEnum } from '/@/enums/roleEnum';
-import { roleTypeMap } from '/@/enumMaps';
 import { updateStatus } from '/@/api/admin';
-
-// 获取角色选项
-function getRoleOptions() {
-  const roleOption: any = [];
-  for (const key in RoleEnum) {
-    const item = {
-      label: roleTypeMap[RoleEnum[key]],
-      value: RoleEnum[key],
-      key: RoleEnum[key],
-    };
-    roleOption.push(item);
-  }
-
-  return roleOption;
-}
 
 export const columns: BasicColumn[] = [
   {
@@ -56,8 +39,8 @@ export const columns: BasicColumn[] = [
         {
           class: 'space-x-2',
         },
-        record.roles.map((item) =>
-          h(Tag, { color: 'success' }, { default: () => roleTypeMap[item] }),
+        record.roleIds.map((item: any) =>
+          h(Tag, { color: 'success' }, { default: () => item.name }),
         ),
       );
     },
@@ -147,14 +130,10 @@ export const formSchema: FormSchema[] = [
     required: true,
   },
   {
-    field: 'roles',
+    field: 'roleIds',
     label: '角色',
-    component: 'Select',
+    component: 'Input',
+    slot: 'roleIds',
     required: true,
-    componentProps: {
-      placeholder: '请选择角色',
-      mode: 'multiple',
-      options: getRoleOptions(),
-    },
   },
 ];

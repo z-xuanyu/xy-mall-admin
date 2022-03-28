@@ -4,20 +4,21 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-02-11 18:01:07
+ * @LastEditTime: 2022-03-28 17:18:47
  * @Description: Modify here please
 -->
 <script setup lang="ts">
-  import { ref, reactive, unref, computed } from 'vue';
+  import { ref, unref, computed } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { formSchema } from './admin.data';
   import { createAdmin, updateAdmin } from '/@/api/admin';
+  import { getRoles } from '/@/api/role';
+  import { Row, Col, CheckboxGroup, Checkbox } from 'ant-design-vue';
 
   const emit = defineEmits(['success', 'register']);
-  const state = reactive({
-    adminId: '',
-  });
+  const adminId = ref(null);
+  const roleList = ref([]);
   const isUpdate = ref(true);
   const [registerForm, { resetFields, setFieldsValue, updateSchema, validate }] = useForm({
     labelWidth: 80,
@@ -28,9 +29,11 @@
     resetFields();
     setModalProps({ confirmLoading: false });
     isUpdate.value = !!data?.isUpdate;
+    const roleListRes = await getRoles();
+    roleList.value = roleListRes.items;
 
     if (unref(isUpdate)) {
-      state.adminId = data.record._id;
+      adminId.value = data.record._id;
       setFieldsValue({
         ...data.record,
       });
@@ -69,7 +72,17 @@
 
 <template>
   <BasicModal v-bind="$attrs" @register="registerModal" :title="getTitle" @ok="handleSubmit">
-    <BasicForm @register="registerForm" />
+    <BasicForm @register="registerForm">
+      <template #roleIds="{ model, field }">
+        <CheckboxGroup class="w-full" v-model:value="model[field]">
+          <Row>
+            <Col :span="8" v-for="item in roleList" :key="item._id">
+              <Checkbox :value="item._id">{{ item.name }}</Checkbox>
+            </Col>
+          </Row>
+        </CheckboxGroup>
+      </template>
+    </BasicForm>
   </BasicModal>
 </template>
 
