@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-25 16:49:06
- * @LastEditTime: 2022-03-28 16:14:31
+ * @LastEditTime: 2022-03-29 11:17:46
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -35,7 +35,7 @@
     if (!menuList.value.length) {
       const menuListRes = await getMenus();
       menuList.value = TransformTreeArr(
-        menuListRes.items.map((item) => ({ ...item, title: item.meta.title })),
+        menuListRes.map((item) => ({ ...item, title: item.meta.title })),
       );
     }
     isUpdate.value = !!data?.isUpdate;

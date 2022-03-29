@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-28 10:03:21
- * @LastEditTime: 2022-03-28 16:09:04
+ * @LastEditTime: 2022-03-29 10:11:08
  * @Description: Modify here please
  */
 import { AddMenuParameters, QueryMenuParameters, UpdateMenuParameters } from './type';
@@ -12,6 +12,7 @@ import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
   Menu = '/menu',
+  PermissionsMenu = '/menu/permissions',
 }
 
 // 获取菜单列表
@@ -19,6 +20,13 @@ export function getMenus(params: QueryMenuParameters) {
   return defHttp.get({
     url: Api.Menu,
     params,
+  });
+}
+
+// 获取用户权限菜单列表
+export function getPermissionsMenu() {
+  return defHttp.get({
+    url: Api.PermissionsMenu,
   });
 }
 

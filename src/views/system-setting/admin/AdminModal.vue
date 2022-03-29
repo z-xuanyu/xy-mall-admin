@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-03-28 17:18:47
+ * @LastEditTime: 2022-03-28 17:33:15
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -36,6 +36,7 @@
       adminId.value = data.record._id;
       setFieldsValue({
         ...data.record,
+        roleIds: data.record.roleIds.map((item: any) => item._id),
       });
     }
     // 如果编辑不显示密码输入框

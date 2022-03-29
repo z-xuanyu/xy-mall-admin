@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-28 10:28:02
- * @LastEditTime: 2022-03-28 15:00:36
+ * @LastEditTime: 2022-03-29 11:08:38
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -39,9 +39,7 @@
       });
     }
     const menus = await getMenus();
-    const menuTree = TransformTreeArr(
-      menus.items.map((item) => ({ ...item, title: item.meta.title })),
-    );
+    const menuTree = TransformTreeArr(menus.map((item) => ({ ...item, title: item.meta.title })));
     updateSchema({
       field: 'parentId',
       componentProps: { treeData: menuTree },

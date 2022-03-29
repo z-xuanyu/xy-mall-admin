@@ -18,11 +18,12 @@ import { ERROR_LOG_ROUTE, PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic';
 
 import { filter } from '/@/utils/helper/treeHelper';
 
-import { getMenuList } from '/@/api/sys/menu';
+import { getPermissionsMenu } from '/@/api/menu';
 import { getPermCode } from '/@/api/sys/user';
 
 import { useMessage } from '/@/hooks/web/useMessage';
 import { PageEnum } from '/@/enums/pageEnum';
+import { TransformTreeArr } from '/@/utils';
 
 interface PermissionState {
   // Permission code list
@@ -171,7 +172,7 @@ export const usePermissionStore = defineStore({
           routes = flatMultiLevelRoutes(routes);
           break;
 
-        //  If you are sure that you do not need to do background dynamic permissions, please comment the entire judgment below
+        // 后端控制路由权限
         case PermissionModeEnum.BACK:
           const { createMessage } = useMessage();
 
@@ -182,10 +183,43 @@ export const usePermissionStore = defineStore({
 
           // !Simulate to obtain permission codes from the background,
           // this function may only need to be executed once, and the actual project can be put at the right time by itself
-          let routeList: AppRouteRecordRaw[] = [];
+          let routeList: AppRouteRecordRaw[] = [
+            {
+              path: '/dashboard',
+              name: 'Dashboard',
+              component: 'LAYOUT',
+              redirect: '/dashboard/analysis',
+              meta: {
+                orderNo: 1,
+                icon: 'ion:grid-outline',
+                title: '系统首页',
+              },
+              children: [
+                {
+                  path: 'analysis',
+                  name: 'Analysis',
+                  component: '/dashboard/analysis/index',
+                  meta: {
+                    // affix: true,
+                    title: t('routes.dashboard.analysis'),
+                  },
+                },
+                {
+                  path: 'workbench',
+                  name: 'Workbench',
+                  component: '/dashboard/workbench/index',
+                  meta: {
+                    title: t('routes.dashboard.workbench'),
+                  },
+                },
+              ],
+            },
+          ];
           try {
-            this.changePermissionCode();
-            routeList = (await getMenuList()) as AppRouteRecordRaw[];
+            // this.changePermissionCode(); // 权限码：TODO
+            const routeRes = (await getPermissionsMenu()) as any;
+            const menuList = TransformTreeArr(routeRes);
+            routeList = routeList.concat(menuList);
           } catch (error) {
             console.error(error);
           }
