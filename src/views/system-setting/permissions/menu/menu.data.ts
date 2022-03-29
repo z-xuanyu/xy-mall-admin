@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-28 10:27:38
- * @LastEditTime: 2022-03-28 15:21:37
+ * @LastEditTime: 2022-03-29 15:25:50
  * @Description: Modify here please
  */
 import { BasicColumn, FormSchema } from '/@/components/Table';
@@ -12,13 +12,13 @@ import { h } from 'vue';
 import { formatToDateTime } from '/@/utils/dateUtil';
 import { Icon } from '/@/components/Icon';
 import { Tag } from 'ant-design-vue';
-const viewObj = import.meta.glob('../../../views/**/index.{vue,tsx}');
+const viewObj = import.meta.glob('../../../../views/**/index.{vue,tsx}');
 const views = Object.keys(viewObj);
 const componenOptions = views
   .filter((item) => !item.includes('/sys/'))
   .map((v) => ({
-    value: v.split('../../../views')[1].split('.vue')[0],
-    label: v.split('../../../views')[1].split('.vue')[0],
+    value: v.split('../../../../views')[1].split('.vue')[0],
+    label: v.split('../../../../views')[1].split('.vue')[0],
   }));
 
 componenOptions.push({
@@ -117,6 +117,13 @@ export const formSchema: FormSchema[] = [
     componentProps: {
       placeholder: '请输入路由路径,例如：/user',
     },
+    rules: [
+      {
+        pattern: /\/[a-z]/i,
+        message: '必须是/开头,字母命名路径',
+        trigger: 'change',
+      },
+    ],
   },
   {
     field: 'title',
