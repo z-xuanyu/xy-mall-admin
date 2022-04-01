@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-02-18 17:37:04
+ * @LastEditTime: 2022-04-01 17:14:25
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
@@ -42,7 +42,7 @@
     isUpdate.value = !!data?.isUpdate;
 
     updateSchema({
-      field: 'sku',
+      field: 'skus',
       ifShow: false,
       required: false,
     });
@@ -55,10 +55,14 @@
         tags: data.record.tags.map((item) => item._id),
         category: data.record.category._id,
         pic: [data.record.pic],
+        skus: {
+          skuAttrs: data.record.skuAttrs,
+          skus: data.record.skus,
+        },
       });
 
       updateSchema({
-        field: 'sku',
+        field: 'skus',
         ifShow: data.record.skuType == 2,
         required: data.record.skuType == 2,
       });
@@ -112,19 +116,8 @@
   const handleSubmit = async () => {
     try {
       const values = await validate();
-
-      // 校验规格信息
-      if (values.sku) {
-        for (let item of values.sku) {
-          if (!item.skuName) return createMessage.error('请填写规格名称');
-          for (let value of item.skuValues) {
-            for (const key in value) {
-              if (!value[key] && key != 'image') return createMessage.error('请填写规格值');
-            }
-          }
-        }
-      }
-
+      values.skuAttrs = values.skus.skuAttrs;
+      values.skus = values.skus.skus;
       values.pic = values.pic[0];
       setDrawerProps({ confirmLoading: true });
       if (!unref(isUpdate)) {
@@ -142,6 +135,17 @@
       setDrawerProps({ confirmLoading: false });
     }
   };
+
+  // 关闭
+  function handleVisibleChange(value) {
+    if (!value) {
+      updateSchema({
+        field: 'skus',
+        ifShow: false,
+        required: false,
+      });
+    }
+  }
 </script>
 
 <template>
@@ -149,9 +153,10 @@
     v-bind="$attrs"
     @register="registerDrawer"
     :title="getTitle"
-    width="1000px"
+    width="100%"
     showFooter
     @ok="handleSubmit"
+    @visible-change="handleVisibleChange"
   >
     <BasicForm @register="registerForm">
       <!-- 产品封面 -->
@@ -159,7 +164,7 @@
         <UploadImage v-model="model[field]" />
       </template>
       <!-- 产品规格 -->
-      <template #sku="{ model, field }">
+      <template #skus="{ model, field }">
         <ProductSkuForm v-model="model[field]" />
       </template>
       <!-- 产品封面 -->

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-02-16 15:10:31
+ * @LastEditTime: 2022-04-01 12:35:31
  * @Description: 产品模块配置项
  */
 
@@ -63,22 +63,12 @@ export const columns: BasicColumn[] = [
     dataIndex: 'price',
     width: 160,
     align: 'center',
-    customRender: ({ record }) => {
-      return record.skuType == 1
-        ? `￥ ${record.price}`
-        : `￥ ${record.sku && record.sku[0].skuValues[0].price}`;
-    },
   },
   {
     title: '库存',
     dataIndex: 'inventory',
     width: 160,
     align: 'center',
-    customRender: ({ record }) => {
-      return record.skuType == 1
-        ? record.inventory
-        : record.sku && record.sku[0].skuValues[0].inventory;
-    },
   },
   {
     title: '销量',
@@ -213,7 +203,7 @@ export const formSchema: FormSchema[] = [
           const { updateSchema } = formActionType;
 
           updateSchema({
-            field: 'sku',
+            field: 'skus',
             required: value.target.value === 2,
             ifShow: value.target.value === 2,
           });
@@ -240,10 +230,10 @@ export const formSchema: FormSchema[] = [
     },
   },
   {
-    field: 'sku',
+    field: 'skus',
     component: 'Input',
     label: '规格',
-    slot: 'sku',
+    slot: 'skus',
     required: false,
     ifShow: false,
   },
