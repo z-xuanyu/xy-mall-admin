@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-12 14:33:38
- * @LastEditTime: 2022-04-01 17:15:21
+ * @LastEditTime: 2022-04-02 11:28:01
  * @Description: 封装产品规格添加修改Form
 -->
 <script setup lang="ts">
@@ -13,6 +13,7 @@
   import { CloseCircleOutlined } from '@ant-design/icons-vue';
   import { descartes } from '/@/utils';
   import { useMessage } from '/@/hooks/web/useMessage';
+  import UploadImage from '/@/views/media-library/UploadImage.vue';
   const { createMessage } = useMessage();
 
   const props = defineProps({
@@ -54,6 +55,7 @@
         return {
           ...item,
           ...obj,
+          image: item.image ? [item.image] : [],
         };
       });
     }
@@ -96,7 +98,7 @@
           name: item.name,
           values: item.values.map((v) => v.name),
         })),
-        skus: newV,
+        skus: newV.map((item) => ({ ...item, image: item.image.join() })),
       });
     },
     { deep: true },
@@ -125,7 +127,7 @@
         costPrice: 0,
         weight: 0,
         artNo: '',
-        image: '',
+        image: [],
         skuNames: item,
       };
     });
@@ -176,6 +178,7 @@
           <th class="py-4 border" v-for="(h, index) in headerNames" :key="index + 'header'">{{
             h
           }}</th>
+          <th class="border">图片</th>
           <th class="border">价格</th>
           <th class="border">库存</th>
           <th class="border">成本价(元)</th>
@@ -192,7 +195,18 @@
               >
                 <span class="py-4 inline-block">{{ item[`value${vIndex + 1}`] }}</span>
               </td>
-              <td class="px-5 py-1 text-center border">
+              <td class="text-center border">
+                <div class="p-1">
+                  <UploadImage
+                    v-model="item.image"
+                    :isShowTips="false"
+                    justify="justify-center"
+                    width="w-14"
+                    height="h-14"
+                  />
+                </div>
+              </td>
+              <td class="py-1 text-center border">
                 <InputNumber
                   placeholder="请输入价格"
                   :min="0"
@@ -201,10 +215,10 @@
                   v-model:value="item.price"
                 />
               </td>
-              <td class="px-5 py-1 text-center border">
+              <td class="py-1 text-center border">
                 <InputNumber placeholder="请输入库存" :min="0" v-model:value="item.inventory" />
               </td>
-              <td class="px-5 py-1 text-center border">
+              <td class="py-1 text-center border">
                 <InputNumber
                   placeholder="请输入原价"
                   :min="0"
@@ -213,7 +227,7 @@
                   v-model:value="item.costPrice"
                 />
               </td>
-              <td class="px-5 py-1 text-center border">
+              <td class="py-1 text-center border">
                 <InputNumber placeholder="请输入重量" :min="0" v-model:value="item.weight" />
               </td>
               <td class="px-5 py-1 text-center border">

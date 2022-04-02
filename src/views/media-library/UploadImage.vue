@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 17:35:14
- * @LastEditTime: 2022-01-11 15:22:41
+ * @LastEditTime: 2022-04-02 10:09:13
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -24,6 +24,30 @@
     multiple: {
       type: Boolean,
       default: false,
+    },
+
+    // 宽度
+    width: {
+      type: [String, Number],
+      default: 'w-28',
+    },
+
+    // 高度
+    height: {
+      type: [String, Number],
+      default: 'h-28',
+    },
+
+    // 是否显示提示没有上传前文字
+    isShowTips: {
+      type: Boolean,
+      default: true,
+    },
+
+    // 方向
+    justify: {
+      type: String,
+      default: '',
     },
   });
 
@@ -63,7 +87,7 @@
 
 <template>
   <div class="upload-image">
-    <div class="flex space-x-3">
+    <div class="flex space-x-3" :class="[justify]">
       <template v-if="dataVal.length">
         <!-- 多图上传 -->
         <template v-if="multiple">
@@ -95,7 +119,11 @@
           </div>
         </template>
         <!-- 单图 -->
-        <div class="w-28 relative photo h-28 overflow-hidden cursor-pointer rounded" v-else>
+        <div
+          class="relative photo overflow-hidden cursor-pointer rounded"
+          :class="[width, height]"
+          v-else
+        >
           <Image class="object-cover" :src="dataVal[0]" />
           <div class="hidden active">
             <div
@@ -122,9 +150,8 @@
       <div
         @click="openModal"
         v-if="!dataVal.length || multiple"
+        :class="[width, height]"
         class="
-          w-28
-          h-28
           border-width-2 border-dashed border-gray-300
           rounded-md
           flex
@@ -137,7 +164,7 @@
           <div class="flex justify-center">
             <Icon icon="fluent:add-24-filled" />
           </div>
-          <p>添加图片</p>
+          <p v-if="isShowTips">添加图片</p>
         </div>
       </div>
     </div>
