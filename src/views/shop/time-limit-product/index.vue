@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 15:20:46
- * @LastEditTime: 2022-02-25 10:22:22
+ * @LastEditTime: 2022-04-02 16:44:14
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -75,19 +75,10 @@
     <!-- 价格 -->
     <template #price="{ record }">
       <div class="text-red-500">
-        <span>￥</span
-        ><span class="text-xl">{{
-          record.skuType == 1 ? record.price : record.sku && record.sku[0].skuValues[0].price
-        }}</span></div
+        <span>￥</span><span class="text-xl">{{ record.price }}</span></div
       >
       <div>
-        <s class="text-gray-400"
-          >￥{{
-            record.skuType == 1
-              ? record.costPrice
-              : record.sku && record.sku[0].skuValues[0].costPrice
-          }}</s
-        >
+        <s class="text-gray-400">￥{{ record.costPrice }}</s>
       </div>
     </template>
     <template #isTimeLimit="{ record }">

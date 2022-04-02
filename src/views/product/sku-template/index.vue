@@ -4,13 +4,17 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-19 16:58:30
- * @LastEditTime: 2022-04-02 16:05:32
+ * @LastEditTime: 2022-04-02 17:52:40
  * @Description: 产品规格模板
 -->
 <script setup lang="ts">
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { columns, searchFormSchema } from './skuTemplate.data';
   import { getProductSkuTemplateList } from '/@/api/sku-template';
+  import SkuTemplateModal from './SkuTemplateModal.vue';
+  import { useModal } from '/@/components/Modal';
+
+  const [registerModal, { openModal }] = useModal();
 
   const [registerTable, { reload }] = useTable({
     title: '规格模板列表',
@@ -38,15 +42,25 @@
 
   // 新增
   function handleCreate() {
-    // reload();
+    openModal(true, {
+      isUpdate: false,
+    });
   }
   // 编辑
   function handleEdit(record: Recordable) {
-    console.log(record);
+    openModal(true, {
+      record,
+      isUpdate: true,
+    });
   }
 
   // 删除
   function handleDelete() {
+    reload();
+  }
+
+  // 成功
+  function handleSuccess() {
     reload();
   }
 </script>
@@ -76,5 +90,6 @@
         />
       </template>
     </BasicTable>
+    <SkuTemplateModal @register="registerModal" @success="handleSuccess" />
   </div>
 </template>
