@@ -3,19 +3,17 @@
  * @LastEditors: xuanyu
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
- * @Date: 2022-01-19 16:58:30
- * @LastEditTime: 2022-04-02 16:05:32
- * @Description: 产品规格模板
+ * @Date: 2022-04-02 15:57:14
+ * @LastEditTime: 2022-04-02 16:04:07
+ * @Description: Modify here please
 -->
 <script setup lang="ts">
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { columns, searchFormSchema } from './skuTemplate.data';
-  import { getProductSkuTemplateList } from '/@/api/sku-template';
+  import { columns, searchFormSchema } from './unit.data';
 
   const [registerTable, { reload }] = useTable({
-    title: '规格模板列表',
+    title: '商品单位列表',
     columns,
-    api: getProductSkuTemplateList,
     formConfig: {
       labelWidth: 120,
       schemas: searchFormSchema,
@@ -52,7 +50,7 @@
 </script>
 
 <template>
-  <div class="sku-template-page">
+  <div class="unit-page">
     <BasicTable @register="registerTable" :rowSelection="{ type: 'checkbox' }">
       <template #toolbar>
         <a-button type="primary" @click="handleCreate"> 新增 </a-button>
@@ -74,7 +72,8 @@
             },
           ]"
         />
-      </template>
-    </BasicTable>
-  </div>
+      </template> </BasicTable
+  ></div>
 </template>
+
+<style scoped></style>
