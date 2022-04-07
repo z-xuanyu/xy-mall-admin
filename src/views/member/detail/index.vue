@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 12:10:39
- * @LastEditTime: 2022-02-25 15:30:55
+ * @LastEditTime: 2022-04-07 15:10:45
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -16,6 +16,10 @@
   import MemberCollection from './components/MemberCollection.vue';
   import MemberAddress from './components/MemberAddress.vue';
   import MemberCoupon from './components/MemberCoupon.vue';
+  import { useRoute } from 'vue-router';
+
+  const route = useRoute();
+  const userId = ref(route.params.id);
 
   const activeKey = ref('order');
 
@@ -60,7 +64,7 @@
         @tabChange="onTabChange"
       >
         <p v-if="activeKey === 'order'">
-          <MemberOrder />
+          <MemberOrder :userId="userId" />
         </p>
         <p v-if="activeKey === 'footprint'">
           <MemberFootprint />
@@ -69,7 +73,7 @@
           <MemberCollection />
         </p>
         <p v-if="activeKey === 'address'">
-          <MemberAddress />
+          <MemberAddress :userId="userId" />
         </p>
         <p v-if="activeKey === 'coupon'">
           <MemberCoupon />

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 15:22:14
- * @LastEditTime: 2022-03-30 16:36:55
+ * @LastEditTime: 2022-04-07 15:13:05
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -65,7 +65,7 @@
           {{ record.userName }}
         </router-link>
       </template>
-      <!-- 删除信息 -->
+      <!-- 商品信息 -->
       <template #productInfo="{ record }">
         <div class="flex items-center" v-for="(item, index) in record.products" :key="item._id">
           <Image :src="item.pic" :width="100" :height="100" />

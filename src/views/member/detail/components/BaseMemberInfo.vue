@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 14:15:26
- * @LastEditTime: 2022-02-25 15:07:43
+ * @LastEditTime: 2022-04-07 15:32:07
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -36,8 +36,8 @@
 </script>
 
 <template>
-  <div class="flex space-x-4 justify-between">
-    <div class="bg-white w-1/2 2xl:w-1/3 flex p-3">
+  <div class="md:flex md:space-x-4 justify-between">
+    <div class="bg-white w-full md:w-1/2 2xl:w-1/3 flex p-3">
       <div>
         <h1 class="text-lg font-bold space-x-2 flex items-center px-1">
           <span>阿宇</span>
@@ -73,8 +73,8 @@
         </div>
       </div>
     </div>
-    <div class="bg-white flex items-center justify-around w-1/2 2xl:w-2/3 p-3">
-      <div class="flex space-x-5" v-for="(item, index) in memberInfo2" :key="index">
+    <div class="bg-white flex items-center justify-around w-full md:w-1/2 2xl:w-2/3 p-3">
+      <div class="text-center" v-for="(item, index) in memberInfo2" :key="index">
         <div
           class="
             w-16
@@ -89,7 +89,7 @@
           "
           >{{ item.text }}</div
         >
-        <div class="space-y-2">
+        <div class="space-y-2 mt-2">
           <div class="text-md">{{ item.name }}</div>
           <div class="text-xl font-bold">{{ item.count }}</div>
         </div>
