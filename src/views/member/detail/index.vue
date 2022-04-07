@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 12:10:39
- * @LastEditTime: 2022-04-07 15:10:45
+ * @LastEditTime: 2022-04-07 17:29:28
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -67,10 +67,10 @@
           <MemberOrder :userId="userId" />
         </p>
         <p v-if="activeKey === 'footprint'">
-          <MemberFootprint />
+          <MemberFootprint :userId="userId" />
         </p>
         <p v-if="activeKey === 'collection'">
-          <MemberCollection />
+          <MemberCollection :userId="userId" />
         </p>
         <p v-if="activeKey === 'address'">
           <MemberAddress :userId="userId" />

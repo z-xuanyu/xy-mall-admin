@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 10:52:30
- * @LastEditTime: 2022-02-28 15:21:24
+ * @LastEditTime: 2022-04-07 17:25:33
  * @Description: Modify here please
  */
 
@@ -19,3 +19,10 @@ export interface GetMemberUserAddressListParameters {
   // 用户id
   userId: string;
 }
+
+export interface GetMemberViewHistoriesParameters extends BasicPageParams {
+  // 用户id
+  userId: string;
+}
+
+export type GetMemberCollectionsParameters = GetMemberViewHistoriesParameters;
