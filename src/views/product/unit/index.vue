@@ -4,16 +4,22 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-02 15:57:14
- * @LastEditTime: 2022-04-02 16:04:07
+ * @LastEditTime: 2022-04-07 10:34:23
  * @Description: Modify here please
 -->
 <script setup lang="ts">
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { columns, searchFormSchema } from './unit.data';
+  import { getProductUnits } from '/@/api/product-unit';
+  import UnitModal from './UnitModal.vue';
+  import { useModal } from '/@/components/Modal';
+
+  const [registerModal, { openModal }] = useModal();
 
   const [registerTable, { reload }] = useTable({
     title: '商品单位列表',
     columns,
+    api: getProductUnits,
     formConfig: {
       labelWidth: 120,
       schemas: searchFormSchema,
@@ -36,15 +42,24 @@
 
   // 新增
   function handleCreate() {
-    // reload();
+    openModal(true, {
+      isUpdate: false,
+    });
   }
   // 编辑
   function handleEdit(record: Recordable) {
-    console.log(record);
+    openModal(true, {
+      record,
+      isUpdate: true,
+    });
   }
-
   // 删除
   function handleDelete() {
+    reload();
+  }
+
+  // 成功
+  function handleSuccess() {
     reload();
   }
 </script>
@@ -72,8 +87,10 @@
             },
           ]"
         />
-      </template> </BasicTable
-  ></div>
+      </template>
+    </BasicTable>
+    <UnitModal @register="registerModal" @success="handleSuccess" />
+  </div>
 </template>
 
 <style scoped></style>
