@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 15:22:14
- * @LastEditTime: 2022-04-07 15:13:05
+ * @LastEditTime: 2022-04-08 10:23:00
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -84,8 +84,11 @@
         <TableAction
           :actions="[
             {
-              icon: 'clarity:note-edit-line',
-              onClick: handleEdit.bind(null, record),
+              icon: 'icon-park-outline:transaction-order',
+              popConfirm: {
+                title: '查看详细',
+                confirm: handleEdit.bind(null, record),
+              },
             },
             {
               icon: 'ant-design:delete-outlined',

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 15:18:48
- * @LastEditTime: 2022-04-07 17:29:16
+ * @LastEditTime: 2022-04-07 17:42:18
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -62,7 +62,7 @@
       pageSize: pageSize.value,
       ...p,
     });
-    total.value = result.totalCount;
+    total.value = result.total;
     list.value = result.items;
     loading.value = false;
   }
