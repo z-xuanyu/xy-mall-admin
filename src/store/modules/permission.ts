@@ -200,16 +200,15 @@ export const usePermissionStore = defineStore({
                   name: 'Analysis',
                   component: '/dashboard/analysis/index',
                   meta: {
-                    // affix: true,
-                    title: t('routes.dashboard.analysis'),
+                    title: '首页',
                   },
                 },
                 {
-                  path: 'workbench',
-                  name: 'Workbench',
-                  component: '/dashboard/workbench/index',
+                  path: 'analysis/product',
+                  name: 'AnalysisProduct',
+                  component: '/dashboard/analysis/product/index',
                   meta: {
-                    title: t('routes.dashboard.workbench'),
+                    title: '商品统计',
                   },
                 },
               ],

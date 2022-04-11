@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2021-12-24 14:44:22
- * @LastEditTime: 2022-04-08 11:07:03
+ * @LastEditTime: 2022-04-11 15:16:25
  * @Description: Modify here please
 -->
 <template>
@@ -15,23 +15,22 @@
       <NavbarGrid />
     </div>
     <!-- 订单总计 -->
-    <SiteAnalysis class="!my-4 enter-y" :loading="loading" />
+    <OrderAnalysis class="!my-4 enter-y" :loading="loading" />
     <!-- 用户统计 -->
-    <div class="md:flex enter-y">
-      <VisitRadar class="md:w-1/3 w-full" :loading="loading" />
-      <VisitSource class="md:w-1/3 !md:mx-4 !md:my-0 !my-4 w-full" :loading="loading" />
-      <SalesProductPie class="md:w-1/3 w-full" :loading="loading" />
+    <div class="md:flex space-x-5">
+      <UserAnalysis class="md:w-2/3 w-full" :dataTime="get30days()" />
+      <BuyUserPie class="md:w-1/3 w-full" />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
   import { ref } from 'vue';
   import GrowCard from './components/GrowCard.vue';
-  import SiteAnalysis from './components/SiteAnalysis.vue';
-  import VisitSource from './components/VisitSource.vue';
-  import VisitRadar from './components/VisitRadar.vue';
-  import SalesProductPie from './components/SalesProductPie.vue';
+  import OrderAnalysis from './components/OrderAnalysis.vue';
   import NavbarGrid from './components/NavbarGrid.vue';
+  import UserAnalysis from './components/UserAnalysis.vue';
+  import BuyUserPie from './components/BuyUserPie.vue';
+  import { get30days } from '/@/utils/dateUtil';
 
   const loading = ref(true);
 
