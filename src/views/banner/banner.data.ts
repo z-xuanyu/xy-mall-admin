@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-02-16 11:53:27
+ * @LastEditTime: 2022-04-12 16:30:41
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
@@ -14,6 +14,8 @@ import { useMessage } from '/@/hooks/web/useMessage';
 import { Switch, Image, Tag } from 'ant-design-vue';
 import { formatToDateTime } from '/@/utils/dateUtil';
 import { bannerTypeMap } from '/@/enumMaps';
+import { changeBannerStatus } from '/@/api/banner';
+
 export const columns: BasicColumn[] = [
   {
     title: '名称',
@@ -73,14 +75,13 @@ export const columns: BasicColumn[] = [
         checkedChildren: '已启用',
         unCheckedChildren: '已禁用',
         loading: record.pendingStatus,
-        onChange(checked: boolean) {
+        onChange: async (checked: boolean) => {
           record.pendingStatus = true;
           const { createMessage } = useMessage();
-          setTimeout(() => {
-            createMessage.success(`状态更改成功!`);
-            record.status = checked;
-            record.pendingStatus = false;
-          }, 1000);
+          await changeBannerStatus(record._id, { status: checked ? 2 : 1 });
+          record.status = checked ? 2 : 1;
+          record.pendingStatus = false;
+          createMessage.success(`状态更改成功!`);
         },
       });
     },
@@ -102,19 +103,35 @@ export const searchFormSchema: FormSchema[] = [
     label: '名称',
     component: 'Input',
     labelWidth: 50,
-    colProps: { span: 4 },
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请输入名称',
+    },
   },
   {
     field: 'status',
     label: '状态',
     component: 'Select',
     componentProps: {
+      placeholder: '请选择状态',
       options: [
         { label: '启用', value: 2 },
         { label: '停用', value: 1 },
       ],
     },
-    colProps: { span: 4 },
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
   },
 ];
 

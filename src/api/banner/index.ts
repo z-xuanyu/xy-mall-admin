@@ -4,10 +4,15 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-06 10:12:18
- * @LastEditTime: 2022-01-06 10:25:31
+ * @LastEditTime: 2022-04-12 16:21:56
  * @Description: banner 接口模块
  */
-import { CreateBannerParameters, QueryBannerParameters, UpdateBannerParameters } from './type';
+import {
+  ChangeBannerStatus,
+  CreateBannerParameters,
+  QueryBannerParameters,
+  UpdateBannerParameters,
+} from './type';
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
@@ -55,5 +60,13 @@ export function updateBanner(id: string, params: UpdateBannerParameters): Promis
 export function removeBanner(id: string): Promise<any> {
   return defHttp.delete({
     url: `${Api.Banner}/${id}`,
+  });
+}
+
+// 改变banner 状态
+export function changeBannerStatus(id: string, params: ChangeBannerStatus) {
+  return defHttp.put({
+    url: `${Api.Banner}/${id}/changeStatus`,
+    params,
   });
 }

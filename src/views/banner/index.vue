@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 12:31:34
- * @LastEditTime: 2022-02-11 17:58:06
+ * @LastEditTime: 2022-04-12 16:12:53
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -68,7 +68,7 @@
   <div class="banner-page">
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增Banner </a-button>
+        <a-button type="primary" @click="handleCreate"> 新增 </a-button>
       </template>
       <template #action="{ record }">
         <TableAction
