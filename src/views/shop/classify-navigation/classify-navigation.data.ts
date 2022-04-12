@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-17 09:54:46
- * @LastEditTime: 2022-02-18 15:29:50
+ * @LastEditTime: 2022-04-12 15:33:40
  * @Description: Modify here please
  */
 
@@ -13,6 +13,7 @@ import { formatToDateTime } from '/@/utils/dateUtil';
 import { Switch, Image, Tag } from 'ant-design-vue';
 import { h } from 'vue';
 import { useMessage } from '/@/hooks/web/useMessage';
+import { changeClassifyNavigationStatus } from '/@/api/classify-navigation';
 
 export const columns: BasicColumn[] = [
   {
@@ -52,6 +53,12 @@ export const columns: BasicColumn[] = [
     },
   },
   {
+    title: '排序',
+    dataIndex: 'sort',
+    width: 80,
+    align: 'center',
+  },
+  {
     title: '状态',
     dataIndex: 'status',
     width: 160,
@@ -65,14 +72,13 @@ export const columns: BasicColumn[] = [
         checkedChildren: '已启用',
         unCheckedChildren: '已禁用',
         loading: record.pendingStatus,
-        onChange(checked: boolean) {
+        onChange: async (checked: boolean) => {
           record.pendingStatus = true;
           const { createMessage } = useMessage();
-          setTimeout(() => {
-            createMessage.success(`状态更改成功!`);
-            record.status = checked;
-            record.pendingStatus = false;
-          }, 1000);
+          await changeClassifyNavigationStatus(record._id, { status: checked });
+          record.status = checked;
+          record.pendingStatus = false;
+          createMessage.success(`状态更改成功!`);
         },
       });
     },
@@ -99,32 +105,55 @@ export const searchFormSchema: FormSchema[] = [
     field: 'name',
     label: '导航名称',
     component: 'Input',
-    labelWidth: 50,
-    colProps: { span: 4 },
+    labelWidth: 80,
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请输入导航名称',
+    },
   },
   {
     field: 'type',
     label: '跳转类型',
     component: 'Select',
     componentProps: {
+      placeholder: '请输选择类型',
       options: [
         { label: '页面', value: 1 },
         { label: '网址', value: 2 },
       ],
     },
-    colProps: { span: 4 },
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
   },
   {
     field: 'status',
     label: '状态',
     component: 'Select',
     componentProps: {
+      placeholder: '请选择状态',
       options: [
         { label: '启用', value: true },
         { label: '停用', value: false },
       ],
     },
-    colProps: { span: 4 },
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
   },
 ];
 
@@ -184,6 +213,16 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     required: false,
     show: false,
+  },
+  {
+    field: 'sort',
+    label: '排序',
+    component: 'InputNumber',
+    required: true,
+    defaultValue: 1,
+    componentProps: {
+      min: 1,
+    },
   },
   {
     field: 'remark',

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-17 09:57:43
- * @LastEditTime: 2022-02-17 10:14:58
+ * @LastEditTime: 2022-04-12 15:31:27
  * @Description: Modify here please
  */
 
@@ -36,6 +36,16 @@ export interface CreateClassifyNavigationParameters {
 
   // 备注
   remark: string;
+
+  // 排序
+  sort: number;
 }
 
+// 更新
 export type UpdateClassifyNavigationParameters = CreateClassifyNavigationParameters;
+
+// 改变状态
+export interface ChangeClassifyNavigationStatusParameters {
+  // 状态
+  status: boolean;
+}
