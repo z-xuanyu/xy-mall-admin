@@ -6,7 +6,7 @@ import { BasicColumn, FormSchema } from '/@/components/Table';
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-18 16:47:57
- * @LastEditTime: 2022-04-02 16:45:07
+ * @LastEditTime: 2022-04-12 15:52:49
  * @Description: Modify here please
  */
 
@@ -80,10 +80,19 @@ export const columns: BasicColumn[] = [
 //  搜索form
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'name',
-    label: '关键词',
+    field: 'title',
+    label: '商品标题',
     component: 'Input',
     labelWidth: 70,
-    colProps: { span: 6 },
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请输入商品标题',
+    },
   },
 ];
