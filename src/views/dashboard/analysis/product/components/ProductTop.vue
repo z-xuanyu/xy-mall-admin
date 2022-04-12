@@ -4,12 +4,12 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-12 10:17:20
- * @LastEditTime: 2022-04-12 10:50:29
+ * @LastEditTime: 2022-04-12 11:09:51
  * @Description: Modify here please
 -->
 <script setup lang="ts">
   import { ref } from 'vue';
-  import { Card, RangePicker, Button, Select, SelectOption } from 'ant-design-vue';
+  import { Card, DatePicker, Button, Select, SelectOption } from 'ant-design-vue';
   import { BasicTable, useTable } from '/@/components/Table';
   import { columns } from './product.data';
 
@@ -46,7 +46,7 @@
             <SelectOption value="6">收藏数</SelectOption>
             <SelectOption value="7">访客-支付转化率</SelectOption>
           </Select>
-          <RangePicker v-model:value="date" />
+          <DatePicker v-model:value="date" />
           <Button type="primary">查询</Button>
         </div>
       </div>

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-07 15:50:08
- * @LastEditTime: 2022-01-08 14:58:57
+ * @LastEditTime: 2022-04-12 14:32:57
  * @Description: Modify here please
  */
 import {
@@ -12,7 +12,10 @@ import {
   QueryMediaLibraryParameters,
   UploadFileParams,
 } from './type';
+import { getAppEnvConfig } from '/@/utils/env';
 import { defHttp } from '/@/utils/http/axios';
+
+const { VITE_GLOB_UPLOAD_URL } = getAppEnvConfig();
 
 enum Api {
   MediaLibrary = '/media-library',
@@ -53,7 +56,7 @@ export function removeMediaLibrary(id: string) {
 export function upload(params: UploadFileParams) {
   return defHttp.uploadFile(
     {
-      url: '/upload',
+      url: VITE_GLOB_UPLOAD_URL,
     },
     params,
   );
