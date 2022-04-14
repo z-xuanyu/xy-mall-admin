@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2021-12-24 14:44:20
- * @LastEditTime: 2022-01-05 10:51:46
+ * @LastEditTime: 2022-04-14 17:35:21
  * @Description: 后台用户登录
  */
 import { defHttp } from '/@/utils/http/axios';
@@ -15,7 +15,7 @@ import { ErrorMessageMode } from '/#/axios';
 enum Api {
   Login = '/auth/admin/login',
   GetUserInfo = '/auth/admin/info',
-  GetPermCode = '/getPermCode',
+  GetPermCode = '/auth/admin/getPermCode',
 }
 
 /**
@@ -40,6 +40,7 @@ export function getUserInfo() {
   return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo }, { errorMessageMode: 'none' });
 }
 
+// 获取权限码
 export function getPermCode() {
   return defHttp.get<string[]>({ url: Api.GetPermCode });
 }
