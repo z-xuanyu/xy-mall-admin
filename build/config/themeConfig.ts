@@ -1,6 +1,15 @@
+/*
+ * @Author: xuanyu
+ * @LastEditors: xuanyu
+ * @email: 969718197@qq.com
+ * @github: https://github.com/z-xuanyu
+ * @Date: 2021-12-24 14:44:20
+ * @LastEditTime: 2022-04-15 15:29:37
+ * @Description: Modify here please
+ */
 import { generate } from '@ant-design/colors';
 
-export const primaryColor = '#0960bd';
+export const primaryColor = '#536dfe';
 
 export const darkMode = 'light';
 

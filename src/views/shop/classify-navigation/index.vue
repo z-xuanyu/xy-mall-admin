@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 15:21:17
- * @LastEditTime: 2022-02-18 15:32:25
+ * @LastEditTime: 2022-04-15 15:37:03
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -18,7 +18,7 @@
   const { createMessage } = useMessage();
   const [registerModal, { openModal }] = useModal();
   const [registerTable, { reload }] = useTable({
-    title: '标签列表',
+    title: '导航列表',
     api: getClassifyNavigationList,
     columns,
     formConfig: {
@@ -70,7 +70,7 @@
   <div class="classify-navigation-page">
     <BasicTable @register="registerTable" :rowSelection="{ type: 'checkbox' }">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 添加分类导航 </a-button>
+        <a-button type="primary" @click="handleCreate"> 添加 </a-button>
       </template>
       <template #action="{ record }">
         <TableAction

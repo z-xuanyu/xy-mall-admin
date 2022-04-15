@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:53:34
- * @LastEditTime: 2022-02-16 15:09:42
+ * @LastEditTime: 2022-04-15 15:36:02
  * @Description: Modify here please
  */
 import { BasicColumn, FormSchema } from '/@/components/Table';
@@ -45,10 +45,19 @@ export const columns: BasicColumn[] = [
 export const searchFormSchema: FormSchema[] = [
   {
     field: 'name',
-    label: '名称',
+    label: '分类名称',
     component: 'Input',
     labelWidth: 80,
-    colProps: { span: 4 },
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请输入分类名称',
+    },
   },
 ];
 // 添加 form
@@ -59,7 +68,7 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     required: true,
     componentProps: {
-      placeholder: '请输入名称',
+      placeholder: '请输入分类名称',
     },
   },
   {

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:03:21
- * @LastEditTime: 2022-02-12 17:51:59
+ * @LastEditTime: 2022-04-15 15:34:08
  * @Description: 分类列表
 -->
 <script setup lang="ts">
@@ -73,7 +73,7 @@
   <div class="category-page">
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增分类 </a-button>
+        <a-button type="primary" @click="handleCreate"> 新增 </a-button>
       </template>
       <template #action="{ record }">
         <TableAction

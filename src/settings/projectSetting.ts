@@ -26,7 +26,7 @@ const setting: ProjectConfig = {
   // 权限模式
   permissionMode: PermissionModeEnum.BACK,
 
-  // Permission-related cache is stored in sessionStorage or localStorage
+  // 权限缓存方式。默认为本地
   permissionCacheType: CacheTypeEnum.LOCAL,
 
   // Session timeout processing

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:38:24
- * @LastEditTime: 2022-01-05 16:53:05
+ * @LastEditTime: 2022-04-15 15:32:07
  * @Description: Modify here please
  */
 import {
@@ -19,7 +19,7 @@ enum Api {
 }
 
 // 分类列表
-export function getCategoryList(params: QueryCategoryParameters) {
+export function getCategoryList(params?: QueryCategoryParameters) {
   return defHttp.get({
     url: Api.Category,
     params,

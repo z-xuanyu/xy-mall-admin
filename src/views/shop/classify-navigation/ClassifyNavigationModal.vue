@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-17 09:55:19
- * @LastEditTime: 2022-02-18 15:06:36
+ * @LastEditTime: 2022-04-15 15:37:10
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -48,7 +48,7 @@
       show: data?.record?.type == 2,
     });
   });
-  const getTitle = computed(() => (!unref(isUpdate) ? '新增分类导航' : '编辑分类导航'));
+  const getTitle = computed(() => (!unref(isUpdate) ? '新增' : '编辑'));
   async function handleSubmit() {
     try {
       const values = await validate();
