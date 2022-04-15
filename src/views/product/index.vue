@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 12:33:22
- * @LastEditTime: 2022-02-18 17:37:57
+ * @LastEditTime: 2022-04-15 15:53:05
  * @Description: 产品列表
 -->
 
@@ -38,7 +38,7 @@
       title: '操作',
       dataIndex: 'action',
       slots: { customRender: 'action' },
-      fixed: undefined,
+      fixed: 'right',
     },
   });
 
@@ -72,7 +72,7 @@
   <div class="product-page">
     <BasicTable @register="registerTable" :rowSelection="{ type: 'checkbox' }">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增商品 </a-button>
+        <a-button type="primary" @click="handleCreate"> 新增 </a-button>
       </template>
       <template #action="{ record }">
         <TableAction
@@ -80,10 +80,12 @@
             {
               icon: 'clarity:note-edit-line',
               onClick: handleEdit.bind(null, record),
+              tooltip: '编辑商品',
             },
             {
               icon: 'ant-design:delete-outlined',
               color: 'error',
+              tooltip: '删除商品',
               popConfirm: {
                 title: '是否确认删除',
                 confirm: handleDelete.bind(null, record),

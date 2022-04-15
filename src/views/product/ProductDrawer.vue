@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-04-01 17:14:25
+ * @LastEditTime: 2022-04-15 15:47:10
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
@@ -95,7 +95,7 @@
     });
 
     // 产品标签
-    const getProductTags = await getTagList({ type: 1 });
+    const getProductTags = await getTagList({ type: 1 } as const);
     updateSchema({
       field: 'tags',
       componentProps: {
@@ -153,7 +153,7 @@
     v-bind="$attrs"
     @register="registerDrawer"
     :title="getTitle"
-    width="100%"
+    width="80%"
     showFooter
     @ok="handleSubmit"
     @visible-change="handleVisibleChange"
