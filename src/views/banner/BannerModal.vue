@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-03-07 18:14:05
+ * @LastEditTime: 2022-04-22 11:14:53
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -31,7 +31,6 @@
     isUpdate.value = !!data?.isUpdate;
 
     if (unref(isUpdate)) {
-      console.log(data, 5555);
       bannerId.value = data?.record?._id;
       setFieldsValue({
         ...data.record,
