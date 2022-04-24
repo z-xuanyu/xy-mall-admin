@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 12:00:59
- * @LastEditTime: 2022-04-22 16:36:22
+ * @LastEditTime: 2022-04-22 18:31:05
  * @Description: 客服聊天
 -->
 <script setup lang="ts">
@@ -14,7 +14,7 @@
 </script>
 
 <template>
-  <div class="flex justify-center mt-[50px]">
+  <div class="flex justify-center mt-[20px]">
     <div class="w-[1200px] 2xl:w-[1500px] h-[80vh] border flex shadow-xl">
       <div class="w-[320px]">
         <Conversations />

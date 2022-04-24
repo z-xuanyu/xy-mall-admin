@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 14:11:15
- * @LastEditTime: 2022-04-22 16:14:51
+ * @LastEditTime: 2022-04-24 10:17:05
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -14,9 +14,9 @@
 <template>
   <div class="h-[200px] border-t bg-white relative">
     <div class="flex items-center p-2 space-x-2">
-      <Icon :size="25" icon="fluent:emoji-24-regular" />
-      <Icon :size="25" icon="tabler:photo" />
-      <Icon :size="25" icon="fa-regular:comment-dots" />
+      <Icon class="cursor-pointer" :size="25" icon="fluent:emoji-24-regular" />
+      <Icon class="cursor-pointer" :size="25" icon="tabler:photo" />
+      <Icon class="cursor-pointer" :size="25" icon="fa-regular:comment-dots" />
     </div>
     <textarea
       class="w-full h-[150px] p-2 outline-none resize-none"

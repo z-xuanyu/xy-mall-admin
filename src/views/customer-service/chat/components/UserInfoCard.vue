@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 16:51:09
- * @LastEditTime: 2022-04-22 17:28:24
+ * @LastEditTime: 2022-04-24 10:45:26
  * @Description: 聊天右边用户信息
 -->
 <script setup lang="ts">
@@ -22,7 +22,7 @@
         :size="50"
         src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIlbWnxNPEJxpnicbBibfJSxsZkVicJKLeBlB18VMFnYyWTicNLxrtpIDJrCIhN6fKj7HtIgjfc6qq8FQ/132"
       />
-      <span class="text-lg">朱杨林 </span>
+      <span class="text-lg">阿宇_Coder </span>
       <Tag color="green">公众号</Tag>
     </div>
     <div class="py-4 space-y-3 px-2 border-b">

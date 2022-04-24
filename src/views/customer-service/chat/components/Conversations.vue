@@ -4,11 +4,12 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 14:08:34
- * @LastEditTime: 2022-04-22 15:51:34
+ * @LastEditTime: 2022-04-24 10:43:42
  * @Description: Modify here please
 -->
 <script setup lang="ts">
   import { Icon } from '/@/components/Icon';
+  import { Avatar, Tag } from 'ant-design-vue';
 
   import { ref } from 'vue';
 
@@ -55,13 +56,35 @@
       </div>
       <!-- 会话列表 -->
       <div class="conversation__list overflow-y-auto">
-        <div class="py-20">
+        <!-- 空数据 -->
+        <div class="py-20" v-if="false">
           <img
             class="w-[120px] mx-auto"
             src="http://v4.crmeb.net/admin/img/no_chat.b9c3e583.png"
             alt=""
           />
           <p class="text-center mt-5 text-gray-400">暂无用户列表</p>
+        </div>
+        <!--用户列表 -->
+        <div
+          class="flex p-3 cursor-pointer"
+          v-for="item in 20"
+          :key="item + 'user'"
+          :class="item == 1 ? 'border-l-4 border-blue-500 bg-gray-100' : ''"
+        >
+          <Avatar :size="45" src="https://www.zhouxuanyu.com/usr/uploads/2022/02/47540976.jpg" />
+          <div class="flex-1 ml-2 overflow-hidden">
+            <div class="flex justify-between">
+              <div
+                ><span class="mr-2">阿宇_Coder</span
+                ><Tag size="small" color="green">公众号</Tag></div
+              >
+              <span class="text-xs text-gray-400">4月8日 17:31</span>
+            </div>
+            <div class="text-gray-400 truncate py-1"
+              >您好您好您好您好您好您好您好您好您好您好您好您好您好您好您好您好您好您好</div
+            >
+          </div>
         </div>
       </div>
     </div>

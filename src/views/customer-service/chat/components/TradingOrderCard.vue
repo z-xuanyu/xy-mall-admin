@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 16:52:49
- * @LastEditTime: 2022-04-22 18:23:02
+ * @LastEditTime: 2022-04-24 10:04:49
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -88,7 +88,7 @@
         <!-- 商品列表 -->
         <div class="flex py-2" v-for="item in 2" :key="item">
           <img
-            class="w-[80px]"
+            class="w-[80px] h-[80px] object-cover"
             src="https://qiniu.crmeb.net/attach/2022/03/11/3ecf8b90a37aa051fb0c379a9e868113.jpg?imageView2/2/w/300/h/300"
             alt=""
           />
