@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 14:08:34
- * @LastEditTime: 2022-04-27 15:32:57
+ * @LastEditTime: 2022-04-27 15:44:54
  * @Description: 聊天会话列表
 -->
 <script setup lang="ts">
@@ -12,6 +12,7 @@
   import { Avatar, Tag } from 'ant-design-vue';
   import { useSocketStoreWithOut } from '/@/store/modules/socket';
   import { computed } from 'vue';
+  import { formatChatMessageTime } from '/@/utils/dateUtil';
 
   const useSocketChat = useSocketStoreWithOut();
 
@@ -52,7 +53,7 @@
                 ><span class="mr-2">{{ item.user.name }}</span
                 ><Tag size="small" color="green">公众号</Tag></div
               >
-              <span class="text-xs text-gray-400">4月8日 17:31</span>
+              <span class="text-xs text-gray-400">{{ formatChatMessageTime(item.updatedAt) }}</span>
             </div>
             <div class="text-gray-400 truncate py-1">{{ item.messageContent }}</div>
           </div>

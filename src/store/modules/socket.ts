@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-04 15:38:53
- * @LastEditTime: 2022-04-27 15:05:09
+ * @LastEditTime: 2022-04-27 16:20:35
  * @Description: Modify here please
  */
 
@@ -61,7 +61,7 @@ export const socketState = defineStore({
             ...item,
             showTime: index
               ? getTime(item.createdAt) - getTime(arr[index - 1].createdAt) > maxTime
-              : false,
+              : true,
           };
         })
       );
@@ -79,13 +79,7 @@ export const socketState = defineStore({
       this.socket = socket;
       // 接受消息监听
       this.socket.on('onMessage', (data) => {
-        if (data.user._id == this.targetId) {
-          this.messageList.push(data);
-        }
-      });
-      // 消息发送成功
-      this.socket.on('sendSuccess', (data) => {
-        if (data.user._id == this.userId) {
+        if (data.user._id == this.targetId || data.user._id == this.userId) {
           this.messageList.push(data);
         }
       });
