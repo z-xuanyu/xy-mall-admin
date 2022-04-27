@@ -4,11 +4,28 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 14:11:15
- * @LastEditTime: 2022-04-24 10:17:05
+ * @LastEditTime: 2022-04-27 10:02:24
  * @Description: Modify here please
 -->
 <script setup lang="ts">
+  import { ref } from 'vue';
   import { Icon } from '/@/components/Icon';
+  import { useSocketStoreWithOut } from '/@/store/modules/socket';
+
+  const useSocket = useSocketStoreWithOut();
+
+  const sendContent = ref('');
+
+  // 发送消息
+  function handleSendMessage() {
+    useSocket.sendMessage({
+      userId: '6262218cb74277f628093064',
+      targetId: '622707f8ddf23c9a77a88092',
+      content: sendContent.value,
+      messageType: 1,
+    });
+    sendContent.value = '';
+  }
 </script>
 
 <template>
@@ -20,9 +37,14 @@
     </div>
     <textarea
       class="w-full h-[150px] p-2 outline-none resize-none"
+      v-model="sendContent"
       placeholder="请输入文字内容"
     ></textarea>
-    <button class="bg-gray-300 absolute right-2 bottom-2 px-4 py-1 rounded-sm text-white"
+    <button
+      @click="handleSendMessage"
+      class="absolute right-2 bottom-2 px-4 py-1 rounded-sm text-white"
+      :class="sendContent ? 'bg-blue-500' : 'bg-gray-300'"
+      :disabled="!sendContent"
       >发送</button
     >
   </div>

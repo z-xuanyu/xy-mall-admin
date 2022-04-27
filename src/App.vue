@@ -20,9 +20,7 @@
   import { AppProvider } from '/@/components/Application';
   import { useTitle } from '/@/hooks/web/useTitle';
   import { useLocale } from '/@/locales/useLocale';
-  import { setupSocketIo } from '/@/socket.io';
 
-  setupSocketIo();
   // support Multi-language
   const { getAntdLocale } = useLocale();
 

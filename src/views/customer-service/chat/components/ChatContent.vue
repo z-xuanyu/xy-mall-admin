@@ -4,129 +4,35 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 14:10:21
- * @LastEditTime: 2022-04-24 11:28:11
- * @Description: Modify here please
+ * @LastEditTime: 2022-04-27 15:29:19
+ * @Description: 客服聊天
 -->
 <script setup lang="ts">
   import { Avatar, Popover } from 'ant-design-vue';
   import { Icon } from '/@/components/Icon';
   import SendMessageBox from './SendMessageBox.vue';
-  import { ref } from 'vue';
+  import { computed, ref, watch, nextTick } from 'vue';
+  import { useSocketStoreWithOut } from '/@/store/modules/socket';
+  import { formatChatMessageTime } from '/@/utils/dateUtil';
 
-  const messageList = ref<any>([
-    {
-      isMe: false,
-      content: '你好在吗？',
-      messageType: 1,
-      avatar:
-        'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKDZPvXt08QV5TyoUTT5NMFX3j3p3ZKnfWjXiaUGTJYvbL0ZvRsd2IzFQgyvorAv5JwcazafpfhshQ/132',
-      sendTime: '2022-04-22 16:32',
+  const useSocketChat = useSocketStoreWithOut();
+  const messageList = computed(() => useSocketChat.getMessageList);
+  const userId = computed(() => useSocketChat.getUserId);
+
+  const messageContentRef = ref<HTMLDivElement | null>(null);
+
+  watch(
+    () => useSocketChat.messageList,
+    () => {
+      nextTick(() => {
+        // 滚到底部
+        messageContentRef.value?.lastElementChild?.scrollIntoView({ behavior: 'smooth' });
+      });
     },
     {
-      isMe: true,
-      content: '你好。有什么能帮助到你的？',
-      messageType: 1,
-      avatar:
-        'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKDZPvXt08QV5TyoUTT5NMFX3j3p3ZKnfWjXiaUGTJYvbL0ZvRsd2IzFQgyvorAv5JwcazafpfhshQ/132',
-      sendTime: '2022-04-22 16:32',
+      deep: true,
     },
-    {
-      isMe: false,
-      content: '发个商品链接过来',
-      messageType: 1,
-      avatar:
-        'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKDZPvXt08QV5TyoUTT5NMFX3j3p3ZKnfWjXiaUGTJYvbL0ZvRsd2IzFQgyvorAv5JwcazafpfhshQ/132',
-      sendTime: '2022-04-22 16:32',
-    },
-    {
-      isMe: false,
-      content: '推荐爆款那个',
-      messageType: 1,
-      avatar:
-        'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKDZPvXt08QV5TyoUTT5NMFX3j3p3ZKnfWjXiaUGTJYvbL0ZvRsd2IzFQgyvorAv5JwcazafpfhshQ/132',
-      sendTime: '2022-04-22 16:32',
-    },
-    {
-      isMe: true,
-      content: {
-        goods_id: 44,
-        goods_pic:
-          'http://img30.360buyimg.com/popWaterMark/jfs/t1/118268/24/20913/49337/6225c410Eb5b62c7d/68007ca7550b4244.jpg',
-        title: '智能水牙线口腔清理正畸洁牙器洗牙智能水牙线口腔清理正畸洁牙器洗牙',
-        inventory: 1491,
-        sales: 5,
-        price: 149,
-      },
-      messageType: 5,
-      avatar:
-        'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKDZPvXt08QV5TyoUTT5NMFX3j3p3ZKnfWjXiaUGTJYvbL0ZvRsd2IzFQgyvorAv5JwcazafpfhshQ/132',
-      sendTime: '2022-04-22 16:32',
-    },
-    {
-      isMe: true,
-      content: {
-        goods_id: 44,
-        goods_pic:
-          'http://img30.360buyimg.com/popWaterMark/jfs/t1/118268/24/20913/49337/6225c410Eb5b62c7d/68007ca7550b4244.jpg',
-        title: '智能水牙线口腔清理正畸洁牙器洗牙智能水牙线口腔清理正畸洁牙器洗牙',
-        inventory: 1491,
-        sales: 5,
-        price: 149,
-      },
-      messageType: 5,
-      avatar:
-        'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKDZPvXt08QV5TyoUTT5NMFX3j3p3ZKnfWjXiaUGTJYvbL0ZvRsd2IzFQgyvorAv5JwcazafpfhshQ/132',
-      sendTime: '2022-04-22 16:32',
-    },
-    {
-      isMe: true,
-      content: {
-        goods_id: 44,
-        goods_pic:
-          'http://img30.360buyimg.com/popWaterMark/jfs/t1/118268/24/20913/49337/6225c410Eb5b62c7d/68007ca7550b4244.jpg',
-        title: '智能水牙线口腔清理正畸洁牙器洗牙智能水牙线口腔清理正畸洁牙器洗牙',
-        inventory: 1491,
-        sales: 5,
-        price: 149,
-      },
-      messageType: 5,
-      avatar:
-        'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKDZPvXt08QV5TyoUTT5NMFX3j3p3ZKnfWjXiaUGTJYvbL0ZvRsd2IzFQgyvorAv5JwcazafpfhshQ/132',
-      sendTime: '2022-04-22 16:32',
-    },
-    {
-      isMe: true,
-      content: {
-        goods_id: 44,
-        goods_pic:
-          'http://img30.360buyimg.com/popWaterMark/jfs/t1/118268/24/20913/49337/6225c410Eb5b62c7d/68007ca7550b4244.jpg',
-        title: '智能水牙线口腔清理正畸洁牙器洗牙智能水牙线口腔清理正畸洁牙器洗牙',
-        inventory: 1491,
-        sales: 5,
-        price: 149,
-      },
-      messageType: 5,
-      avatar:
-        'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKDZPvXt08QV5TyoUTT5NMFX3j3p3ZKnfWjXiaUGTJYvbL0ZvRsd2IzFQgyvorAv5JwcazafpfhshQ/132',
-      sendTime: '2022-04-22 16:32',
-    },
-    {
-      isMe: true,
-      content: {
-        goods_id: 44,
-        goods_pic:
-          'http://img30.360buyimg.com/popWaterMark/jfs/t1/118268/24/20913/49337/6225c410Eb5b62c7d/68007ca7550b4244.jpg',
-        title: '智能水牙线口腔清理正畸洁牙器洗牙智能水牙线口腔清理正畸洁牙器洗牙',
-        inventory: 1491,
-        sales: 5,
-        price: 149,
-      },
-      messageType: 5,
-      avatar:
-        'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKDZPvXt08QV5TyoUTT5NMFX3j3p3ZKnfWjXiaUGTJYvbL0ZvRsd2IzFQgyvorAv5JwcazafpfhshQ/132',
-      sendTime: '2022-04-22 16:32',
-    },
-  ]);
+  );
 </script>
 
 <template>
@@ -161,17 +67,19 @@
         <span class="bg-white text-blue-500 cursor-pointer px-4 py-1 rounded-4xl">退出登录</span>
       </div>
     </div>
-    <div class="h-[calc(80vh-270px)] overflow-y-auto p-2">
+    <div class="h-[calc(80vh-270px)] overflow-y-auto p-2" ref="messageContentRef">
       <div class="py-2" v-for="(item, index) in messageList" :key="index + 'msg'">
-        <p class="text-center text-gray-400">{{ item.sendTime }}</p>
-        <div class="flex" :class="item.isMe ? 'flex-row-reverse' : ''">
-          <Avatar :size="40" :src="item.avatar" />
+        <p v-if="item.showTime" class="text-center text-gray-400">{{
+          formatChatMessageTime(item.createdAt)
+        }}</p>
+        <div class="flex" :class="item.user._id == userId ? 'flex-row-reverse' : ''">
+          <Avatar :size="40" :src="item.user.avatar" />
           <!-- 文本类型 -->
           <template v-if="item.messageType == 1">
             <div
               class="max-w-[200px] rounded-b-lg shadow-2xl mt-2 py-2 px-4"
               :class="
-                item.isMe
+                item.user._id == userId
                   ? 'bg-blue-500 rounded-tl-lg text-white mr-2'
                   : 'bg-white rounded-tr-lg ml-2'
               "

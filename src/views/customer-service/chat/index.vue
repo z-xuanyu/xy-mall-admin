@@ -4,13 +4,16 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 12:00:59
- * @LastEditTime: 2022-04-22 18:31:05
+ * @LastEditTime: 2022-04-26 09:56:17
  * @Description: 客服聊天
 -->
 <script setup lang="ts">
   import Conversations from './components/Conversations.vue';
   import ChatContent from './components/ChatContent.vue';
   import ChatRightBox from './components/ChatRightBox.vue';
+  import { setupSocketIo } from '/@/socket.io';
+  // 链接socket
+  setupSocketIo();
 </script>
 
 <template>

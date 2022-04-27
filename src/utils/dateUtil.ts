@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2021-12-24 14:44:22
- * @LastEditTime: 2022-04-08 14:19:56
+ * @LastEditTime: 2022-04-27 15:29:06
  * @Description: Modify here please
  */
 /**
@@ -34,5 +34,10 @@ export function get30days() {
     thrityMonth.unshift(dateStr);
   }
   return thrityMonth;
+}
+
+// 处理聊天信息时间格式化
+export function formatChatMessageTime(date: moment.MomentInput = undefined) {
+  return moment(date).calendar();
 }
 export const dateUtil = moment;

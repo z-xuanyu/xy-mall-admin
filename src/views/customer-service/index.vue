@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-04 14:05:47
- * @LastEditTime: 2022-04-22 12:13:52
+ * @LastEditTime: 2022-04-26 09:55:54
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -15,6 +15,7 @@
   import { useModal } from '/@/components/Modal';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useGo } from '/@/hooks/web/usePage';
+
   const go = useGo();
 
   const { createMessage } = useMessage();
