@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-04 15:38:53
- * @LastEditTime: 2022-04-27 16:20:35
+ * @LastEditTime: 2022-04-28 14:17:54
  * @Description: Modify here please
  */
 
@@ -18,12 +18,11 @@ interface SendMessageType {
   // 目标用户id
   targetId: string;
   // 发送内容
-  content: string;
+  content?: string;
   // 发送消息类型
   messageType: number;
-
-  // 发送时间
-  sendTime?: string | number;
+  // 推送商品信息
+  product?: any;
 }
 
 export const socketState = defineStore({

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-30 10:32:59
- * @LastEditTime: 2022-04-07 15:03:35
+ * @LastEditTime: 2022-04-28 14:56:56
  * @Description: Modify here please
  */
 
@@ -20,8 +20,11 @@ export interface GetUserOrdersParameters extends BasicPageParams {
   userId: string;
 
   // 订单id
-  orderId: string;
+  orderId?: string;
 
   // 收货人名称
-  addressName: string;
+  addressName?: string;
+
+  // 订单状态
+  status?: number;
 }

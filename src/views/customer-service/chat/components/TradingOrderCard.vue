@@ -4,16 +4,18 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 16:52:49
- * @LastEditTime: 2022-04-24 10:04:49
+ * @LastEditTime: 2022-04-28 16:47:08
  * @Description: Modify here please
 -->
 <script setup lang="ts">
   import { Input, Button } from 'ant-design-vue';
   import { Icon } from '/@/components/Icon';
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
+  import { getUserOrders } from '/@/api/order';
+  import { useSocketStoreWithOut } from '/@/store/modules/socket';
 
   const activeKey = ref('1');
-
+  const useChatState = useSocketStoreWithOut();
   const tabs = ref([
     {
       key: '1',
@@ -32,6 +34,13 @@
       text: '退款中',
     },
   ]);
+
+  const list = ref<any>([]);
+  onMounted(async () => {
+    const res = await getUserOrders({ userId: useChatState.targetId });
+    list.value = res.items;
+    console.log(list.value, 999);
+  });
 
   function handleTabsChange(key: string) {
     activeKey.value = key;
@@ -63,7 +72,7 @@
     </div>
     <!-- 订单列表 -->
     <div class="h-[calc(80vh-170px)] overflow-y-auto">
-      <div class="p-2" v-for="orderItem in 10" :key="orderItem + 'order'">
+      <div class="p-2" v-for="orderItem in list" :key="orderItem._id">
         <div class="flex justify-between px-2 bg-gray-100 p-1">
           <div class="space-x-2 flex items-center"
             ><span
@@ -86,16 +95,16 @@
           <span class="text-xs">2022-04-11 22:13:13</span>
         </div>
         <!-- 商品列表 -->
-        <div class="flex py-2" v-for="item in 2" :key="item">
-          <img
-            class="w-[80px] h-[80px] object-cover"
-            src="https://qiniu.crmeb.net/attach/2022/03/11/3ecf8b90a37aa051fb0c379a9e868113.jpg?imageView2/2/w/300/h/300"
-            alt=""
-          />
+        <div
+          class="flex py-2"
+          v-for="(productItem, pIndex) in orderItem.products"
+          :key="productItem._id"
+        >
+          <img class="w-[80px] h-[80px] object-cover" :src="productItem.pic" alt="" />
           <div class="flex-1 overflow-hidden space-y-1">
-            <div class="truncate"> 智能水牙线口腔清理正畸阿斯達四方阿斯弗 </div>
-            <div class="text-gray-400">白色</div>
-            <div>¥9.90 x 1</div>
+            <div class="truncate"> {{ productItem.title }} </div>
+            <div class="text-gray-400">{{ orderItem.skus[pIndex].skuName }}</div>
+            <div>¥{{ orderItem.skus[pIndex].price }} x {{ orderItem.skus[pIndex].num }}</div>
           </div>
         </div>
         <!-- 订单信息 -->
@@ -114,7 +123,7 @@
           </div>
           <div>
             <span class="inline-block w-[70px] text-right">实收款：</span>
-            <span>¥ 9.90</span>
+            <span>¥ {{ orderItem.totalPrice.toFixed(2) }}</span>
           </div>
         </div>
         <!-- 操作按钮 -->

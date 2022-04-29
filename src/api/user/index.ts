@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 10:52:24
- * @LastEditTime: 2022-04-07 17:26:59
+ * @LastEditTime: 2022-04-28 11:44:09
  * @Description: Modify here please
  */
 import {
@@ -49,5 +49,22 @@ export function getMemberCollections(params: GetMemberCollectionsParameters) {
   return defHttp.get({
     url: `${Api.Member}/${params.userId}/collections`,
     params,
+  });
+}
+
+/**
+ * 获取用户订单信息
+ *
+ * @export
+ * @param {string} id 用户id
+ * @param {number} status 订单状态
+ * @return {*}
+ */
+export function getMemberOrder(id: string, status: number) {
+  return defHttp.get({
+    url: `${Api.Member}/${id}/orderList`,
+    params: {
+      status,
+    },
   });
 }

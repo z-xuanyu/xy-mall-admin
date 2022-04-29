@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 15:22:14
- * @LastEditTime: 2022-04-08 10:23:00
+ * @LastEditTime: 2022-04-28 16:32:24
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -41,10 +41,11 @@
 
   // 编辑
   const handleEdit = (record: Recordable) => {
-    openDrawer(true, {
-      record,
-      isUpdate: true,
-    });
+    console.log(record);
+    // openDrawer(true, {
+    //   record,
+    //   isUpdate: true,
+    // });
   };
   const handleSuccess = () => {
     reload();

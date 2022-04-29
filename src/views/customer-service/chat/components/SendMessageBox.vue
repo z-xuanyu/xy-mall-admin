@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 14:11:15
- * @LastEditTime: 2022-04-27 10:02:24
+ * @LastEditTime: 2022-04-28 14:19:43
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -19,8 +19,8 @@
   // 发送消息
   function handleSendMessage() {
     useSocket.sendMessage({
-      userId: '6262218cb74277f628093064',
-      targetId: '622707f8ddf23c9a77a88092',
+      userId: useSocket.userId, // 客服id
+      targetId: useSocket.targetId, // 目标用户id
       content: sendContent.value,
       messageType: 1,
     });

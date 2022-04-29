@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 14:10:21
- * @LastEditTime: 2022-04-27 15:29:19
+ * @LastEditTime: 2022-04-28 14:37:24
  * @Description: 客服聊天
 -->
 <script setup lang="ts">
@@ -68,6 +68,7 @@
       </div>
     </div>
     <div class="h-[calc(80vh-270px)] overflow-y-auto p-2" ref="messageContentRef">
+      <p class="text-center text-gray-500" v-if="!messageList.length"> 暂无聊天记录 </p>
       <div class="py-2" v-for="(item, index) in messageList" :key="index + 'msg'">
         <p v-if="item.showTime" class="text-center text-gray-400">{{
           formatChatMessageTime(item.createdAt)
@@ -90,17 +91,17 @@
           <!-- 商品推送 -->
           <template v-if="item.messageType == 5">
             <div class="max-w-[300px] bg-white flex mr-2 p-2 rounded-lg shadow-sm">
-              <img class="w-[70px] h-[70px] object-cover" :src="item.content?.goods_pic" />
+              <img class="w-[70px] h-[70px] object-cover" :src="item.product?.pic" />
               <div class="flex-1 overflow-hidden">
-                <div class="truncate">{{ item.content?.title }}</div>
+                <div class="truncate">{{ item.product?.title }}</div>
                 <div class="text-xs text-gray-400 py-1">
                   <span>库存：</span>
-                  <span>{{ item.content?.inventory }}</span>
-                  <span>销量：</span>
-                  <span>{{ item.content?.sales }}</span>
+                  <span>{{ item.product?.inventory }}</span>
+                  <span class="ml-2">销量：</span>
+                  <span>{{ item.product?.sales }}</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-red-500">￥{{ item.content?.price }}</span>
+                  <span class="text-red-500">￥{{ item.product?.price }}</span>
                   <span class="text-blue-500 cursor-pointer">查看商品 ></span>
                 </div>
               </div>
