@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-20 15:41:17
- * @LastEditTime: 2022-01-20 16:03:05
+ * @LastEditTime: 2022-05-05 11:14:07
  * @Description: Modify here please
  */
 
@@ -16,7 +16,7 @@ import {
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
-  getProductSkuTemplate = '/product-sku',
+  getProductSkuTemplate = '/productSku',
 }
 
 // 新增规格模板

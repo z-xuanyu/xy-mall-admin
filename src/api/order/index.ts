@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-30 10:32:52
- * @LastEditTime: 2022-04-07 14:31:58
+ * @LastEditTime: 2022-05-05 11:12:19
  * @Description: Modify here please
  */
 import { GetUserOrdersParameters, QueryOrderParameters } from './type';
@@ -38,7 +38,7 @@ export function removeOrder(id: string) {
 // 获取用户订单列表
 export function getUserOrders(params: GetUserOrdersParameters) {
   return defHttp.get({
-    url: `${Api.Order}/by-user`,
+    url: `${Api.Order}/byUser`,
     params,
   });
 }

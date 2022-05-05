@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-07 10:12:22
- * @LastEditTime: 2022-04-07 10:46:23
+ * @LastEditTime: 2022-05-05 11:17:58
  * @Description: Modify here please
  */
 import {
@@ -15,7 +15,7 @@ import {
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
-  ProductUnit = '/product-unit',
+  ProductUnit = '/productUnit',
 }
 
 // 获取商品单位列表

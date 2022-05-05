@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-07 15:50:08
- * @LastEditTime: 2022-04-12 14:32:57
+ * @LastEditTime: 2022-05-05 11:17:17
  * @Description: Modify here please
  */
 import {
@@ -18,7 +18,7 @@ import { defHttp } from '/@/utils/http/axios';
 const { VITE_GLOB_UPLOAD_URL } = getAppEnvConfig();
 
 enum Api {
-  MediaLibrary = '/media-library',
+  MediaLibrary = '/mediaLibrary',
 }
 
 // 媒体文件列表

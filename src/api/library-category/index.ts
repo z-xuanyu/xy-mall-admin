@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-07 15:35:24
- * @LastEditTime: 2022-01-07 15:43:28
+ * @LastEditTime: 2022-05-05 11:16:36
  * @Description: Modify here please
  */
 
@@ -12,7 +12,7 @@ import { CreateLibraryCategoryParameters } from './type';
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
-  LibraryCategory = '/library-category',
+  LibraryCategory = '/libraryCategory',
 }
 
 // 文件分类列表

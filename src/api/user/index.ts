@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 10:52:24
- * @LastEditTime: 2022-04-28 11:44:09
+ * @LastEditTime: 2022-05-05 11:09:11
  * @Description: Modify here please
  */
 import {
@@ -17,7 +17,7 @@ import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
   Member = '/user',
-  MemberAddress = '/user-address',
+  MemberAddress = '/userAddress',
 }
 
 // 获取会员列表
