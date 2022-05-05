@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 15:22:14
- * @LastEditTime: 2022-04-28 16:32:24
+ * @LastEditTime: 2022-05-05 14:49:26
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -12,9 +12,15 @@
   import { useMessage } from '/@/hooks/web/useMessage';
   import { getOrderList, removeOrder } from '/@/api/order';
   import { searchFormSchema, columns } from './order.data';
+  import { useModal } from '/@/components/Modal';
+  import { useDrawer } from '/@/components/Drawer';
   import { Image } from 'ant-design-vue';
+  import DeliveryModal from './DeliveryModal.vue';
+  import DetailDrawer from './DetailDrawer.vue';
 
   const { createMessage } = useMessage();
+  const [registerDetailDrawer, { openDrawer: openDetailDrawer }] = useDrawer();
+  const [registerDeliveryModal, { openModal: openDeliveryModal }] = useModal();
   const [registerTable, { reload }] = useTable({
     title: '订单列表',
     api: getOrderList,
@@ -30,32 +36,38 @@
     bordered: true,
     showIndexColumn: false,
     canResize: false,
+    clickToRowSelect: false,
     actionColumn: {
       width: 80,
       title: '操作',
       dataIndex: 'action',
       slots: { customRender: 'action' },
-      fixed: undefined,
+      fixed: 'right',
     },
   });
 
-  // 编辑
-  const handleEdit = (record: Recordable) => {
-    console.log(record);
-    // openDrawer(true, {
-    //   record,
-    //   isUpdate: true,
-    // });
-  };
-  const handleSuccess = () => {
+  // 订单详细
+  function handleLookDetail(record: Recordable) {
+    openDetailDrawer(true, {
+      record,
+    });
+  }
+  // 处理发货
+  function handleDelivery(record: Recordable) {
+    openDeliveryModal(true, {
+      record,
+    });
+  }
+  // 成功
+  function handleSuccess() {
     reload();
-  };
+  }
   // 处理删除
-  const handleDelete = async (record: Recordable) => {
+  async function handleDelete(record: Recordable) {
     await removeOrder(record._id);
     handleSuccess();
     createMessage.success('删除成功!');
-  };
+  }
 </script>
 
 <template>
@@ -85,11 +97,14 @@
         <TableAction
           :actions="[
             {
+              label: '发送货',
+              onClick: handleDelivery.bind(null, record),
+              ifShow: record.status == 2,
+            },
+            {
               icon: 'icon-park-outline:transaction-order',
-              popConfirm: {
-                title: '查看详细',
-                confirm: handleEdit.bind(null, record),
-              },
+              tooltip: '订单详细',
+              onClick: handleLookDetail.bind(null, record),
             },
             {
               icon: 'ant-design:delete-outlined',
@@ -103,6 +118,10 @@
         />
       </template>
     </BasicTable>
+    <!-- 发货modal -->
+    <DeliveryModal @register="registerDeliveryModal" @success="handleSuccess" />
+    <!-- 订单详细 -->
+    <DetailDrawer @register="registerDetailDrawer" />
   </div>
 </template>
 

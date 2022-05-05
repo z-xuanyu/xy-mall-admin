@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-30 10:22:01
- * @LastEditTime: 2022-03-30 16:11:21
+ * @LastEditTime: 2022-05-05 11:35:39
  * @Description: Modify here please
  */
 
@@ -20,9 +20,9 @@ export const columns: BasicColumn[] = [
     title: '订单编号',
     dataIndex: 'orderNo',
     width: 120,
-    align: 'left',
+    align: 'center',
     customRender: ({ record }) => {
-      return record.orderNo ? record.orderNo : new Date().getTime();
+      return record.orderNo ? record.orderNo : 'wx2022115447';
     },
   },
   {
