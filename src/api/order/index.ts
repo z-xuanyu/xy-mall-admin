@@ -4,8 +4,8 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-30 10:32:52
- * @LastEditTime: 2022-05-05 11:12:19
- * @Description: Modify here please
+ * @LastEditTime: 2022-05-07 14:48:17
+ * @Description: 订单
  */
 import { GetUserOrdersParameters, QueryOrderParameters } from './type';
 import { defHttp } from '/@/utils/http/axios';
@@ -40,5 +40,18 @@ export function getUserOrders(params: GetUserOrdersParameters) {
   return defHttp.get({
     url: `${Api.Order}/byUser`,
     params,
+  });
+}
+
+/**
+ *  订单发货
+ *
+ * @export
+ * @param {string} id
+ * @return {*}
+ */
+export function deliveryOrder(id: string) {
+  return defHttp.get({
+    url: `${Api.Order}/${id}/delivery`,
   });
 }
