@@ -4,8 +4,8 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-25 16:49:06
- * @LastEditTime: 2022-03-29 11:17:46
- * @Description: Modify here please
+ * @LastEditTime: 2022-05-07 11:40:43
+ * @Description: 添加角色
 -->
 <script setup lang="ts">
   import { computed, ref, unref } from 'vue';
@@ -21,7 +21,7 @@
   const emits = defineEmits(['success', 'register']);
 
   const { createMessage } = useMessage();
-  const roleId = ref(null);
+  const roleId = ref<string | null>(null);
   const menuList = ref([]);
   const isUpdate = ref(true);
   const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
@@ -33,7 +33,7 @@
     resetFields();
     setModalProps({ confirmLoading: false });
     if (!menuList.value.length) {
-      const menuListRes = await getMenus();
+      const menuListRes = await getMenus({ pageNumber: 1, pageSize: 100 });
       menuList.value = TransformTreeArr(
         menuListRes.map((item) => ({ ...item, title: item.meta.title })),
       );
@@ -57,7 +57,7 @@
         createMessage.success('添加成功');
       } else {
         // 编辑
-        await updateRole(roleId.value, values);
+        await updateRole(roleId.value as string, values);
         createMessage.success('更新成功');
       }
       closeModal();
@@ -76,7 +76,7 @@
           <BasicTree
             v-model:value="model[field]"
             :treeData="menuList"
-            :replaceFields="{ title: 'title', key: '_id' }"
+            :fieldNames="{ title: 'title', key: '_id' }"
             checkable
           />
         </div>

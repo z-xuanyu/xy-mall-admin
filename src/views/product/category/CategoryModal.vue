@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:53:51
- * @LastEditTime: 2022-04-15 15:33:30
+ * @LastEditTime: 2022-05-07 10:46:46
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -22,7 +22,7 @@
   const { createMessage } = useMessage();
   const isUpdate = ref(true);
   const [registerForm, { resetFields, setFieldsValue, updateSchema, validate }] = useForm({
-    labelWidth: 80,
+    labelWidth: 60,
     schemas: formSchema,
     showActionButtonGroup: false,
   });

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:18:10
- * @LastEditTime: 2022-02-16 11:06:01
+ * @LastEditTime: 2022-05-06 17:57:07
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -91,7 +91,7 @@
     v-bind="$attrs"
     @register="registerDrawer"
     :title="getTitle"
-    width="50%"
+    :width="1000"
     showFooter
     @ok="handleSubmit"
   >

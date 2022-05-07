@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 12:32:34
- * @LastEditTime: 2022-02-16 11:03:50
+ * @LastEditTime: 2022-05-06 18:02:14
  * @Description: 新闻列表
 -->
 <script setup lang="ts">
@@ -72,26 +72,30 @@
       <template #toolbar>
         <a-button type="primary" @click="handleCreate"> 新增新闻 </a-button>
       </template>
-      <template #content="{ record }">
-        <div v-html="record.content" class="overflow-hidden"></div>
-      </template>
-      <template #action="{ record }">
-        <TableAction
-          :actions="[
-            {
-              icon: 'clarity:note-edit-line',
-              onClick: handleEdit.bind(null, record),
-            },
-            {
-              icon: 'ant-design:delete-outlined',
-              color: 'error',
-              popConfirm: {
-                title: '是否确认删除',
-                confirm: handleDelete.bind(null, record),
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.dataIndex === 'content'">
+          <div class="overflow-hidden">
+            {{ record.content }}
+          </div>
+        </template>
+        <template v-if="column.dataIndex === 'action'">
+          <TableAction
+            :actions="[
+              {
+                icon: 'clarity:note-edit-line',
+                onClick: handleEdit.bind(null, record),
               },
-            },
-          ]"
-        />
+              {
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                popConfirm: {
+                  title: '是否确认删除',
+                  confirm: handleDelete.bind(null, record),
+                },
+              },
+            ]"
+          />
+        </template>
       </template>
     </BasicTable>
     <NewsDrawer @register="registerDrawer" @success="handleSuccess" />

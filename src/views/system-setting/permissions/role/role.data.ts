@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-25 16:44:53
- * @LastEditTime: 2022-03-28 16:16:35
+ * @LastEditTime: 2022-05-07 11:34:45
  * @Description: Modify here please
  */
 import { BasicColumn, FormSchema } from '/@/components/Table';
@@ -44,8 +44,17 @@ export const searchFormSchema: FormSchema[] = [
     field: 'name',
     label: '角色名称',
     component: 'Input',
-    labelWidth: 100,
-    colProps: { span: 4 },
+    labelWidth: 80,
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请输入角色名称',
+    },
   },
 ];
 
@@ -56,6 +65,9 @@ export const formSchema: FormSchema[] = [
     label: '角色名称',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       placeholder: '请输入角色名称',
     },
@@ -65,6 +77,9 @@ export const formSchema: FormSchema[] = [
     label: '角色标识',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       placeholder: '请输入角色名称',
     },
@@ -73,6 +88,9 @@ export const formSchema: FormSchema[] = [
     field: 'remark',
     label: '角色备注',
     component: 'InputTextArea',
+    colProps: {
+      span: 24,
+    },
     required: true,
     componentProps: {
       placeholder: '请输入角色的备注',
@@ -83,5 +101,8 @@ export const formSchema: FormSchema[] = [
     label: '权限菜单',
     component: 'Input',
     slot: 'menuIds',
+    colProps: {
+      span: 24,
+    },
   },
 ];

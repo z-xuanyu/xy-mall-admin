@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-02-18 14:42:58
+ * @LastEditTime: 2022-05-06 17:53:39
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -18,7 +18,7 @@
   const tagId = ref<string>('');
   const isUpdate = ref(true);
   const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
-    labelWidth: 80,
+    labelWidth: 50,
     schemas: formSchema,
     showActionButtonGroup: false,
   });

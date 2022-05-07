@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-28 10:27:38
- * @LastEditTime: 2022-03-29 15:25:50
+ * @LastEditTime: 2022-05-07 11:47:14
  * @Description: Modify here please
  */
 import { BasicColumn, FormSchema } from '/@/components/Table';
@@ -114,6 +114,7 @@ export const formSchema: FormSchema[] = [
     helpMessage: ['说明：页面访问的URL地址。', '注意：路径要以 / 开头，例如：/user'],
     component: 'Input',
     required: true,
+    colProps: { span: 24 },
     componentProps: {
       placeholder: '请输入路由路径,例如：/user',
     },
@@ -130,6 +131,7 @@ export const formSchema: FormSchema[] = [
     label: '菜单名称',
     component: 'Input',
     required: true,
+    colProps: { span: 24 },
     componentProps: {
       placeholder: '请输入菜单名称',
     },
@@ -139,6 +141,7 @@ export const formSchema: FormSchema[] = [
     label: '组件路径',
     helpMessage: ['说明：路由组件文件Path路径。'],
     component: 'Select',
+    colProps: { span: 24 },
     required: true,
     componentProps: {
       placeholder: '请选择组件路径',
@@ -149,10 +152,11 @@ export const formSchema: FormSchema[] = [
     field: 'parentId',
     label: '上级菜单',
     component: 'TreeSelect',
+    colProps: { span: 24 },
     componentProps: {
       placeholder: '请选择上级',
-      replaceFields: {
-        title: 'title',
+      fieldNames: {
+        label: 'title',
         key: '_id',
         value: '_id',
       },
@@ -163,12 +167,14 @@ export const formSchema: FormSchema[] = [
     field: 'icon',
     label: '菜单图标',
     component: 'IconPicker',
+    colProps: { span: 24 },
     required: true,
   },
   {
     field: 'orderNo',
     label: '排序',
     component: 'InputNumber',
+    colProps: { span: 24 },
     required: true,
     componentProps: {
       placeholder: '请输入排序',
@@ -179,6 +185,7 @@ export const formSchema: FormSchema[] = [
     label: '是否缓存',
     component: 'RadioButtonGroup',
     defaultValue: false,
+    colProps: { span: 24 },
     componentProps: {
       options: [
         { label: '否', value: false },
@@ -191,6 +198,7 @@ export const formSchema: FormSchema[] = [
     label: '隐藏菜单',
     component: 'RadioButtonGroup',
     defaultValue: false,
+    colProps: { span: 24 },
     componentProps: {
       options: [
         { label: '否', value: false },

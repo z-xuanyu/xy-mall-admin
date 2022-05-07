@@ -43,7 +43,7 @@
   import type { ColEx } from '../types/index';
   //import type { ButtonProps } from 'ant-design-vue/es/button/buttonTypes';
   import { defineComponent, computed, PropType } from 'vue';
-  import { Form, Col } from 'ant-design-vue';
+  import { Col, FormItem } from 'ant-design-vue';
   import { Button, ButtonProps } from '/@/components/Button';
   import { BasicArrow } from '/@/components/Basic';
   import { useFormContext } from '../hooks/useFormContext';
@@ -55,7 +55,7 @@
   export default defineComponent({
     name: 'BasicFormAction',
     components: {
-      FormItem: Form.Item,
+      FormItem,
       Button,
       BasicArrow,
       [Col.name]: Col,

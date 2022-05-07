@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:53:34
- * @LastEditTime: 2022-04-15 15:36:02
+ * @LastEditTime: 2022-05-07 10:46:15
  * @Description: Modify here please
  */
 import { BasicColumn, FormSchema } from '/@/components/Table';
@@ -67,6 +67,9 @@ export const formSchema: FormSchema[] = [
     label: '名称',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       placeholder: '请输入分类名称',
     },
@@ -75,10 +78,13 @@ export const formSchema: FormSchema[] = [
     field: 'parentId',
     label: '上级分类',
     component: 'TreeSelect',
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       placeholder: '请选择上级',
-      replaceFields: {
-        title: 'name',
+      fieldNames: {
+        label: 'name',
         key: '_id',
         value: '_id',
       },

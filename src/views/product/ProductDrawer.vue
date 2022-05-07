@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-04-15 15:47:10
+ * @LastEditTime: 2022-05-06 15:36:50
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
@@ -153,7 +153,7 @@
     v-bind="$attrs"
     @register="registerDrawer"
     :title="getTitle"
-    width="80%"
+    :width="1300"
     showFooter
     @ok="handleSubmit"
     @visible-change="handleVisibleChange"

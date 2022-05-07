@@ -4,14 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-07 16:10:58
- * @LastEditTime: 2022-02-12 17:54:34
+ * @LastEditTime: 2022-05-07 10:38:31
  * @Description: Modify here please
 -->
 <script setup lang="ts">
   import { ref, onMounted } from 'vue';
   import { Button, Popconfirm } from 'ant-design-vue';
   import { ScrollContainer } from '/@/components/Container/index';
-  import { Icon } from '@iconify/vue';
+  import { Icon } from '/@/components/Icon';
   import { BasicTree, TreeItem } from '/@/components/Tree';
   import { useModal } from '/@/components/Modal';
   import LibraryCategoryModal from './LibraryCategoryModal.vue';
@@ -68,7 +68,7 @@
     fetch();
   }
   // 选中
-  function handleSelect(keys, e) {
+  function handleSelect(_: any, e: any) {
     emit('select', e.node.dataRef._id);
   }
 </script>
@@ -88,11 +88,11 @@
         <template #title="item">
           <div class="flex w-full justify-between cursor-pointer">
             <div class="flex items-center">
-              <Icon icon="bx:bxs-folder-open" width="24" color="rgb(255,206,49)" />
+              <Icon icon="bx:bxs-folder-open" :size="24" color="rgb(255,206,49)" />
               <span class="ml-2">{{ item.name }}</span>
             </div>
             <div class="flex items-center space-x-2" v-if="!isSelectCard">
-              <Icon icon="carbon:edit" width="20" @click.stop="handleEdit(item)" />
+              <Icon icon="carbon:edit" size="20" @click.stop="handleEdit(item)" />
               <Popconfirm
                 title="您确认删除该分类?"
                 @confirm.prevent="handleDelete(item)"

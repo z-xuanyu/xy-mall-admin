@@ -4,8 +4,8 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-25 18:25:14
- * @LastEditTime: 2022-03-28 14:41:12
- * @Description: Modify here please
+ * @LastEditTime: 2022-05-07 11:45:23
+ * @Description: 系统设置-权限管理-菜单管理
 -->
 <script setup lang="ts">
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
@@ -75,23 +75,25 @@
       <template #toolbar>
         <a-button type="primary" @click="handleCreate"> 新增菜单 </a-button>
       </template>
-      <template #action="{ record }">
-        <TableAction
-          :actions="[
-            {
-              icon: 'clarity:note-edit-line',
-              onClick: handleEdit.bind(null, record),
-            },
-            {
-              icon: 'ant-design:delete-outlined',
-              color: 'error',
-              popConfirm: {
-                title: '是否确认删除',
-                confirm: handleDelete.bind(null, record),
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.dataIndex === 'action'">
+          <TableAction
+            :actions="[
+              {
+                icon: 'clarity:note-edit-line',
+                onClick: handleEdit.bind(null, record),
               },
-            },
-          ]"
-        />
+              {
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                popConfirm: {
+                  title: '是否确认删除',
+                  confirm: handleDelete.bind(null, record),
+                },
+              },
+            ]"
+          />
+        </template>
       </template>
     </BasicTable>
     <MenuModal @register="registerModal" @success="handleSuccess" />

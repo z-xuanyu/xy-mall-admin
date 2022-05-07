@@ -107,9 +107,18 @@ export const columns: BasicColumn[] = [
 export const searchFormSchema: FormSchema[] = [
   {
     field: 'name',
-    label: '名称',
+    label: '会员名称',
     component: 'Input',
     labelWidth: 80,
-    colProps: { span: 4 },
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请输入会员名称',
+    },
   },
 ];

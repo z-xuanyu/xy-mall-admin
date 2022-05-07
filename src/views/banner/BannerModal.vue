@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-04-22 11:14:53
+ * @LastEditTime: 2022-05-06 18:09:36
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -55,7 +55,7 @@
   // 下拉选择搜索产品关键词
   const keyword = ref<string>('');
   const productSearchParams = computed<Recordable>(() => {
-    return { title: unref(keyword) };
+    return { title: unref(keyword), pageSize: 10, pageCount: 1 };
   });
 
   // 搜索产品

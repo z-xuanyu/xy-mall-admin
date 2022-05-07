@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-04 14:05:47
- * @LastEditTime: 2022-04-26 09:55:54
+ * @LastEditTime: 2022-05-06 18:29:27
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -84,27 +84,29 @@
       <template #toolbar>
         <a-button type="primary" @click="handleCreate"> 新增 </a-button>
       </template>
-      <template #action="{ record }">
-        <TableAction
-          :actions="[
-            {
-              icon: 'clarity:note-edit-line',
-              onClick: handleEdit.bind(null, record),
-            },
-            {
-              icon: 'ant-design:delete-outlined',
-              color: 'error',
-              popConfirm: {
-                title: '是否确认删除',
-                confirm: handleDelete.bind(null, record),
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.dataIndex === 'action'">
+          <TableAction
+            :actions="[
+              {
+                icon: 'clarity:note-edit-line',
+                onClick: handleEdit.bind(null, record),
               },
-            },
-            {
-              label: '进入工作台',
-              onClick: jumpChat.bind(null, record),
-            },
-          ]"
-        />
+              {
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                popConfirm: {
+                  title: '是否确认删除',
+                  confirm: handleDelete.bind(null, record),
+                },
+              },
+              {
+                label: '进入工作台',
+                onClick: jumpChat.bind(null, record),
+              },
+            ]"
+          />
+        </template>
       </template>
     </BasicTable>
     <CustomerServiceModal @register="registerModal" @success="handleSuccess" />

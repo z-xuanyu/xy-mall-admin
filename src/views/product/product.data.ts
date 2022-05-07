@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-04-15 15:51:50
+ * @LastEditTime: 2022-05-06 16:11:20
  * @Description: 产品模块配置项
  */
 
@@ -138,12 +138,18 @@ export const formSchema: FormSchema[] = [
     label: '标题',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 12,
+    },
   },
   {
     field: 'subTitle',
     label: '副标题',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 12,
+    },
   },
   {
     field: 'tags',
@@ -175,10 +181,11 @@ export const formSchema: FormSchema[] = [
     },
     componentProps: {
       placeholder: '请选择分类',
-      replaceFields: {
-        title: 'name',
+      fieldNames: {
+        label: 'name',
         key: '_id',
         value: '_id',
+        children: 'children',
       },
       getPopupContainer: () => document.body,
     },
@@ -189,6 +196,9 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     required: true,
     slot: 'pic',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'skuType',
@@ -196,6 +206,9 @@ export const formSchema: FormSchema[] = [
     component: 'RadioGroup',
     required: true,
     defaultValue: 1,
+    colProps: {
+      span: 24,
+    },
     componentProps: ({ formActionType }) => {
       return {
         options: [
@@ -245,6 +258,9 @@ export const formSchema: FormSchema[] = [
     slot: 'skus',
     required: false,
     ifShow: false,
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'bannerImg',
@@ -252,6 +268,9 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     required: true,
     slot: 'bannerImg',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'price',
@@ -295,6 +314,9 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     label: '产品描述',
     defaultValue: '描述',
+    colProps: {
+      span: 24,
+    },
     rules: [{ required: true }],
     render: ({ model, field }) => {
       return h(Tinymce, {

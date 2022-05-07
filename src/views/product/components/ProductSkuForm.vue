@@ -4,12 +4,11 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-12 14:33:38
- * @LastEditTime: 2022-04-02 11:28:01
+ * @LastEditTime: 2022-05-06 16:54:55
  * @Description: 封装产品规格添加修改Form
 -->
 <script setup lang="ts">
   import { ref, watch, onMounted } from 'vue';
-  import { Input, InputNumber } from 'ant-design-vue';
   import { CloseCircleOutlined } from '@ant-design/icons-vue';
   import { descartes } from '/@/utils';
   import { useMessage } from '/@/hooks/web/useMessage';
@@ -18,8 +17,8 @@
 
   const props = defineProps({
     modelValue: {
-      type: [Object, null, Array],
-      default: null,
+      type: [Object],
+      default: () => {},
     },
   });
   const emit = defineEmits(['update:modelValue']);
@@ -38,7 +37,7 @@
   // 规格表格头属性名称
   const headerNames = ref([]);
   // 规格属性值
-  let skus = ref([]);
+  let skus = ref<any>([]);
   onMounted(() => {
     if (props.modelValue?.skuAttrs && props.modelValue?.skus) {
       const value = ref(props.modelValue);
@@ -94,11 +93,11 @@
     skus,
     (newV) => {
       emit('update:modelValue', {
-        skuAttrs: skuAttrs.value.map((item) => ({
+        skuAttrs: skuAttrs.value.map((item: any) => ({
           name: item.name,
           values: item.values.map((v) => v.name),
         })),
-        skus: newV.map((item) => ({ ...item, image: item.image.join() })),
+        skus: newV.map((item: any) => ({ ...item, image: item?.image.join() })),
       });
     },
     { deep: true },
@@ -111,7 +110,7 @@
         if (!v.name) return createMessage.error('请填写属性值');
       }
     }
-    headerNames.value = skuAttrs.value.map((item) => item.name);
+    headerNames.value = skuAttrs.value.map((item) => item.name) as any;
     const values = skuAttrs.value.map((item) => item.values.map((v) => v.name));
     const res = descartes(values);
     // 生成sku表格数据
@@ -140,13 +139,18 @@
       <div class="bg-gray-100 p-2 py-4 space-x-4 flex items-center">
         <span>规格名</span>
         <div class="w-[180px]">
-          <Input v-model:value="item.name" placeholder="请输入规格名称" />
+          <!-- <Input v-model:value="item.name" placeholder="请输入规格名称" /> -->
         </div>
       </div>
       <div class="p-2 flex py-4 items-center space-x-4">
         <span>规格值</span>
         <div class="w-[180px] relative" v-for="(attrVal, skuIdx) in item.values" :key="skuIdx">
-          <Input placeholder="请输入规格值" v-model:value="attrVal.name" />
+          <input
+            class="outline-none border px-2 py-1"
+            type="text"
+            placeholder="请输入规格值"
+            v-model="attrVal.name"
+          />
           <div
             class="absolute -top-2 -right-2 cursor-pointer"
             v-if="item.values.length > 1"
@@ -186,17 +190,13 @@
           <th class="border">货号</th>
         </thead>
         <tbody>
-          <template v-for="(item, index) in skus" :key="index + 'sku'">
+          <template v-for="(item, _i) in skus" :key="_i + 'sku'">
             <tr class="border">
-              <td
-                class="w-[150px] text-center border"
-                v-for="(v, vIndex) in skuAttrs"
-                :key="vIndex + 'v'"
-              >
-                <span class="py-4 inline-block">{{ item[`value${vIndex + 1}`] }}</span>
+              <td class="text-center border" v-for="(_, vIndex) in skuAttrs" :key="vIndex + 'v'">
+                <span class="py-4 w-[100px] inline-block">{{ item[`value${vIndex + 1}`] }}</span>
               </td>
               <td class="text-center border">
-                <div class="p-1">
+                <div class="p-1 w-[100px]">
                   <UploadImage
                     v-model="item.image"
                     :isShowTips="false"
@@ -207,31 +207,48 @@
                 </div>
               </td>
               <td class="py-1 text-center border">
-                <InputNumber
+                <input
+                  type="number"
+                  class="outline-none border py-1 px-2"
                   placeholder="请输入价格"
+                  v-model="item.price"
                   :min="0"
-                  string-mode
-                  :step="0.01"
-                  v-model:value="item.price"
                 />
               </td>
               <td class="py-1 text-center border">
-                <InputNumber placeholder="请输入库存" :min="0" v-model:value="item.inventory" />
+                <input
+                  type="number"
+                  class="outline-none border py-1 px-2"
+                  placeholder="请输入库存"
+                  v-model="item.inventory"
+                  :min="0"
+                />
               </td>
               <td class="py-1 text-center border">
-                <InputNumber
+                <input
+                  type="number"
+                  class="outline-none border py-1 px-2"
                   placeholder="请输入原价"
+                  v-model="item.costPrice"
                   :min="0"
-                  string-mode
-                  :step="0.01"
-                  v-model:value="item.costPrice"
                 />
               </td>
               <td class="py-1 text-center border">
-                <InputNumber placeholder="请输入重量" :min="0" v-model:value="item.weight" />
+                <input
+                  type="number"
+                  class="outline-none border py-1 px-2"
+                  placeholder="请输入重量"
+                  v-model="item.weight"
+                  :min="0"
+                />
               </td>
-              <td class="px-5 py-1 text-center border">
-                <Input placeholder="请输入货号" v-model:value="item.artNo" />
+              <td class="py-1 text-center border">
+                <input
+                  type="text"
+                  class="outline-none border py-1 px-2"
+                  placeholder="请输入货号"
+                  v-model="item.artNo"
+                />
               </td>
             </tr>
           </template>

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 12:24:45
- * @LastEditTime: 2022-02-25 14:12:11
+ * @LastEditTime: 2022-05-06 17:01:47
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -50,30 +50,32 @@
 <template>
   <div class="member-page">
     <BasicTable @register="registerMemberTable">
-      <template #action="{ record }">
-        <TableAction
-          :actions="[
-            {
-              icon: 'clarity:note-edit-line',
-              onClick: handleEdit.bind(null, record),
-              tooltip: '编辑',
-            },
-            {
-              icon: 'mdi:card-account-details-outline',
-              onClick: jumpDetail.bind(null, record),
-              tooltip: '详情',
-            },
-            {
-              icon: 'ant-design:delete-outlined',
-              color: 'error',
-              popConfirm: {
-                title: '是否确认删除',
-                confirm: handleDelete.bind(null, record),
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.dataIndex === 'action'">
+          <TableAction
+            :actions="[
+              {
+                icon: 'clarity:note-edit-line',
+                onClick: handleEdit.bind(null, record),
+                tooltip: '编辑',
               },
-              tooltip: '删除',
-            },
-          ]"
-        />
+              {
+                icon: 'mdi:card-account-details-outline',
+                onClick: jumpDetail.bind(null, record),
+                tooltip: '详情',
+              },
+              {
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                popConfirm: {
+                  title: '是否确认删除',
+                  confirm: handleDelete.bind(null, record),
+                },
+                tooltip: '删除',
+              },
+            ]"
+          />
+        </template>
       </template>
     </BasicTable>
   </div>

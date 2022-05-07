@@ -4,8 +4,8 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-29 15:35:38
- * @LastEditTime: 2022-03-29 18:12:05
- * @Description: Modify here please
+ * @LastEditTime: 2022-05-06 17:44:34
+ * @Description: 商品评论
 -->
 <script setup lang="ts">
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
@@ -64,29 +64,31 @@
 <template>
   <div class="product-comment">
     <BasicTable @register="registerTable">
-      <template #productInfo="{ record }">
-        <div class="flex items-center">
-          <Image :src="record.product.pic" :width="100" />
-          <p class="ml-2">{{ record.product.title }}</p>
-        </div>
-      </template>
-      <template #action="{ record }">
-        <TableAction
-          :actions="[
-            {
-              icon: 'clarity:note-edit-line',
-              onClick: handleEdit.bind(null, record),
-            },
-            {
-              icon: 'ant-design:delete-outlined',
-              color: 'error',
-              popConfirm: {
-                title: '是否确认删除',
-                confirm: handleDelete.bind(null, record),
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.dataIndex === 'productInfo'">
+          <div class="flex items-center">
+            <Image :src="record.product.pic" :width="100" />
+            <p class="ml-2">{{ record.product.title }}</p>
+          </div>
+        </template>
+        <template v-if="column.dataIndex === 'action'">
+          <TableAction
+            :actions="[
+              {
+                icon: 'clarity:note-edit-line',
+                onClick: handleEdit.bind(null, record),
               },
-            },
-          ]"
-        />
+              {
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                popConfirm: {
+                  title: '是否确认删除',
+                  confirm: handleDelete.bind(null, record),
+                },
+              },
+            ]"
+          />
+        </template>
       </template>
     </BasicTable>
     <CommentModel @register="registerModal" @success="handleSuccess" />

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-03-28 17:28:41
+ * @LastEditTime: 2022-05-07 11:27:01
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
@@ -86,19 +86,35 @@ export const searchFormSchema: FormSchema[] = [
     label: '名称',
     component: 'Input',
     labelWidth: 50,
-    colProps: { span: 4 },
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请输入管理员名称',
+    },
   },
   {
     field: 'status',
     label: '状态',
     component: 'Select',
     componentProps: {
+      placeholder: '请选择状态',
       options: [
         { label: '启用', value: true },
         { label: '停用', value: false },
       ],
     },
-    colProps: { span: 4 },
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
   },
 ];
 
@@ -109,11 +125,17 @@ export const formSchema: FormSchema[] = [
     label: '名称',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'email',
     label: '邮箱',
     component: 'Input',
+    colProps: {
+      span: 24,
+    },
     rules: [
       { required: true },
       {
@@ -128,6 +150,9 @@ export const formSchema: FormSchema[] = [
     label: '密码',
     component: 'InputPassword',
     required: true,
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'roleIds',
@@ -135,5 +160,8 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     slot: 'roleIds',
     required: true,
+    colProps: {
+      span: 24,
+    },
   },
 ];

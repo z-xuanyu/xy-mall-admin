@@ -1,9 +1,18 @@
+/*
+ * @Author: xuanyu
+ * @LastEditors: xuanyu
+ * @email: 969718197@qq.com
+ * @github: https://github.com/z-xuanyu
+ * @Date: 2021-12-24 14:44:20
+ * @LastEditTime: 2022-05-05 17:39:28
+ * @Description: Modify here please
+ */
 /**
  * Plugin to minimize and use ejs template syntax in index.html.
  * https://github.com/anncwb/vite-plugin-html
  */
-import type { Plugin } from 'vite';
-import html from 'vite-plugin-html';
+import type { PluginOption } from 'vite';
+import { createHtmlPlugin } from 'vite-plugin-html';
 import pkg from '../../../package.json';
 import { GLOB_CONFIG_FILE_NAME } from '../../constant';
 
@@ -16,7 +25,7 @@ export function configHtmlPlugin(env: ViteEnv, isBuild: boolean) {
     return `${path || '/'}${GLOB_CONFIG_FILE_NAME}?v=${pkg.version}-${new Date().getTime()}`;
   };
 
-  const htmlPlugin: Plugin[] = html({
+  const htmlPlugin: PluginOption[] = createHtmlPlugin({
     minify: isBuild,
     inject: {
       // Inject data into ejs template

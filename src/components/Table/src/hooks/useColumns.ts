@@ -15,7 +15,7 @@ function handleItem(item: BasicColumn, ellipsis: boolean) {
   item.align = item.align || DEFAULT_ALIGN;
   if (ellipsis) {
     if (!key) {
-      item.key = dataIndex;
+      item.key = dataIndex as string;
     }
     if (!isBoolean(item.ellipsis)) {
       Object.assign(item, {
@@ -152,13 +152,18 @@ export function useColumns(
         return hasPermission(column.auth) && isIfShow(column);
       })
       .map((column) => {
-        const { slots, dataIndex, customRender, format, edit, editRow, flag } = column;
+        const { slots, customRender, format, edit, editRow, flag } = column;
 
+        // 兼容ant 2 版本写法
+        if (column.customSlots) {
+          column.slots = slots;
+        }
         if (!slots || !slots?.title) {
-          column.slots = { title: `header-${dataIndex}`, ...(slots || {}) };
-          column.customTitle = column.title;
+          // column.slots = { title: `header-${dataIndex}`, ...(slots || {}) };
+          column.customTitle = column.title as VueNode;
           Reflect.deleteProperty(column, 'title');
         }
+        Reflect.deleteProperty(column, 'slots'); // 删除是slots配置, ant 3已不支持
         const isDefaultAction = [INDEX_COLUMN_FLAG, ACTION_COLUMN_FLAG].includes(flag!);
         if (!customRender && format && !edit && !isDefaultAction) {
           column.customRender = ({ text, record, index }) => {
@@ -197,7 +202,7 @@ export function useColumns(
    * set columns
    * @param columnList key｜column
    */
-  function setColumns(columnList: Partial<BasicColumn>[] | string[]) {
+  function setColumns(columnList: Partial<BasicColumn>[] | (string | string[])[]) {
     const columns = cloneDeep(columnList);
     if (!isArray(columns)) return;
 
@@ -210,31 +215,23 @@ export function useColumns(
 
     const cacheKeys = cacheColumns.map((item) => item.dataIndex);
 
-    if (!isString(firstColumn)) {
+    if (!isString(firstColumn) && !isArray(firstColumn)) {
       columnsRef.value = columns as BasicColumn[];
     } else {
-      const columnKeys = columns as string[];
+      const columnKeys = (columns as (string | string[])[]).map((m) => m.toString());
       const newColumns: BasicColumn[] = [];
       cacheColumns.forEach((item) => {
-        if (columnKeys.includes(item.dataIndex! || (item.key as string))) {
-          newColumns.push({
-            ...item,
-            defaultHidden: false,
-          });
-        } else {
-          newColumns.push({
-            ...item,
-            defaultHidden: true,
-          });
-        }
+        newColumns.push({
+          ...item,
+          defaultHidden: !columnKeys.includes(item.dataIndex?.toString() || (item.key as string)),
+        });
       });
-
       // Sort according to another array
       if (!isEqual(cacheKeys, columns)) {
         newColumns.sort((prev, next) => {
           return (
-            cacheKeys.indexOf(prev.dataIndex as string) -
-            cacheKeys.indexOf(next.dataIndex as string)
+            columnKeys.indexOf(prev.dataIndex?.toString() as string) -
+            columnKeys.indexOf(next.dataIndex?.toString() as string)
           );
         });
       }
@@ -306,7 +303,7 @@ export function formatCell(text: string, format: CellFormat, record: Recordable,
   try {
     // date type
     const DATE_FORMAT_PREFIX = 'date|';
-    if (isString(format) && format.startsWith(DATE_FORMAT_PREFIX)) {
+    if (isString(format) && format.startsWith(DATE_FORMAT_PREFIX) && text) {
       const dateFormat = format.replace(DATE_FORMAT_PREFIX, '');
 
       if (!dateFormat) {

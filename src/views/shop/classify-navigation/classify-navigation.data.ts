@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-17 09:54:46
- * @LastEditTime: 2022-04-12 15:33:40
+ * @LastEditTime: 2022-05-06 11:59:38
  * @Description: Modify here please
  */
 
@@ -164,6 +164,9 @@ export const formSchema: FormSchema[] = [
     label: '导航名称',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'pic',
@@ -171,12 +174,18 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     required: true,
     slot: 'pic',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'type',
     label: '类型',
     component: 'Select',
     required: true,
+    colProps: {
+      span: 24,
+    },
     componentProps: ({ formActionType }) => {
       return {
         options: [
@@ -206,6 +215,9 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     required: false,
     show: false,
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'url',
@@ -213,6 +225,9 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     required: false,
     show: false,
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'sort',
@@ -220,6 +235,9 @@ export const formSchema: FormSchema[] = [
     component: 'InputNumber',
     required: true,
     defaultValue: 1,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       min: 1,
     },
@@ -229,5 +247,8 @@ export const formSchema: FormSchema[] = [
     label: '备注',
     component: 'InputTextArea',
     required: true,
+    colProps: {
+      span: 24,
+    },
   },
 ];

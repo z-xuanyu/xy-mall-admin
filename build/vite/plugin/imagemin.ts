@@ -1,3 +1,12 @@
+/*
+ * @Author: xuanyu
+ * @LastEditors: xuanyu
+ * @email: 969718197@qq.com
+ * @github: https://github.com/z-xuanyu
+ * @Date: 2021-12-24 14:44:20
+ * @LastEditTime: 2022-05-05 17:59:37
+ * @Description: Modify here please
+ */
 // Image resource files used to compress the output of the production environment
 // https://github.com/anncwb/vite-plugin-imagemin
 import viteImagemin from 'vite-plugin-imagemin';

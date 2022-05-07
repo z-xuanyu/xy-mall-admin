@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 10:28:13
- * @LastEditTime: 2022-04-22 11:37:06
+ * @LastEditTime: 2022-05-06 18:30:40
  * @Description: Modify here please
  */
 import { Switch, Avatar } from 'ant-design-vue';
@@ -103,12 +103,16 @@ const validatePass2 = async (_rule: RuleObject, value: string) => {
   return Promise.resolve();
 };
 
+//添加客服
 export const formSchema: FormSchema[] = [
   {
     field: 'name',
     label: '客服名称',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       placeholder: '请输入设置客服名称',
     },
@@ -118,6 +122,9 @@ export const formSchema: FormSchema[] = [
     label: '手机号(账号)',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       placeholder: '请输入登录客服账号',
     },
@@ -127,6 +134,9 @@ export const formSchema: FormSchema[] = [
     label: '账号密码',
     component: 'InputPassword',
     required: true,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       placeholder: '请输入设置账号密码',
     },
@@ -140,6 +150,9 @@ export const formSchema: FormSchema[] = [
     label: '确认密码',
     component: 'InputPassword',
     required: true,
+    colProps: {
+      span: 24,
+    },
     rules: [{ required: true, validator: validatePass2, trigger: 'change' }],
     componentProps: {
       placeholder: '请再次确认密码',

@@ -1,9 +1,15 @@
-/**
- * Generate additional configuration files when used for packaging. The file can be configured with some global variables, so that it can be changed directly externally without repackaging
+/*
+ * @Author: xuanyu
+ * @LastEditors: xuanyu
+ * @email: 969718197@qq.com
+ * @github: https://github.com/z-xuanyu
+ * @Date: 2021-12-24 14:44:20
+ * @LastEditTime: 2022-05-05 17:57:02
+ * @Description: Modify here please
  */
 import { GLOB_CONFIG_FILE_NAME, OUTPUT_DIR } from '../constant';
 import fs, { writeFileSync } from 'fs-extra';
-import chalk from 'chalk';
+import colors from 'picocolors';
 
 import { getEnvConfig, getRootPath } from '../utils';
 import { getConfigFileName } from '../getConfigFileName';
@@ -31,10 +37,10 @@ function createConfig(params: CreateConfigParams) {
     fs.mkdirp(getRootPath(OUTPUT_DIR));
     writeFileSync(getRootPath(`${OUTPUT_DIR}/${configFileName}`), configStr);
 
-    console.log(chalk.cyan(`✨ [${pkg.name}]`) + ` - configuration file is build successfully:`);
-    console.log(chalk.gray(OUTPUT_DIR + '/' + chalk.green(configFileName)) + '\n');
+    console.log(colors.cyan(`✨ [${pkg.name}]`) + ` - configuration file is build successfully:`);
+    console.log(colors.gray(OUTPUT_DIR + '/' + colors.green(configFileName)) + '\n');
   } catch (error) {
-    console.log(chalk.red('configuration file configuration file failed to package:\n' + error));
+    console.log(colors.red('configuration file configuration file failed to package:\n' + error));
   }
 }
 

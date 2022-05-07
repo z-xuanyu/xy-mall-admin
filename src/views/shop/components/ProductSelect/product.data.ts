@@ -6,7 +6,7 @@ import { BasicColumn, FormSchema } from '/@/components/Table';
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-18 16:47:57
- * @LastEditTime: 2022-02-24 15:45:57
+ * @LastEditTime: 2022-05-06 15:12:53
  * @Description: Modify here please
  */
 
@@ -33,11 +33,6 @@ export const columns: BasicColumn[] = [
     dataIndex: 'inventory',
     width: 50,
     align: 'center',
-    customRender: ({ record }) => {
-      return record.skuType == 1
-        ? record.inventory
-        : record.sku && record.sku[0].skuValues[0].inventory;
-    },
   },
   {
     title: '状态',

@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-04-12 16:30:41
+ * @LastEditTime: 2022-05-06 18:13:33
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
@@ -142,12 +142,18 @@ export const formSchema: FormSchema[] = [
     label: '名称',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'type',
     component: 'Select',
     label: '类型',
     required: true,
+    colProps: {
+      span: 24,
+    },
     componentProps: ({ formActionType }) => {
       return {
         options: [
@@ -190,6 +196,9 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     required: true,
     slot: 'image',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'url',
@@ -197,6 +206,9 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     show: false,
     required: false,
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'product',
@@ -205,5 +217,8 @@ export const formSchema: FormSchema[] = [
     show: false,
     required: false,
     slot: 'product',
+    colProps: {
+      span: 24,
+    },
   },
 ];

@@ -4,8 +4,8 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-03-28 17:33:15
- * @Description: Modify here please
+ * @LastEditTime: 2022-05-07 11:30:49
+ * @Description: 添加管理员
 -->
 <script setup lang="ts">
   import { ref, unref, computed } from 'vue';
@@ -17,11 +17,11 @@
   import { Row, Col, CheckboxGroup, Checkbox } from 'ant-design-vue';
 
   const emit = defineEmits(['success', 'register']);
-  const adminId = ref(null);
-  const roleList = ref([]);
+  const adminId = ref<string | null>(null);
+  const roleList = ref<any>([]);
   const isUpdate = ref(true);
   const [registerForm, { resetFields, setFieldsValue, updateSchema, validate }] = useForm({
-    labelWidth: 80,
+    labelWidth: 60,
     schemas: formSchema,
     showActionButtonGroup: false,
   });
@@ -29,7 +29,7 @@
     resetFields();
     setModalProps({ confirmLoading: false });
     isUpdate.value = !!data?.isUpdate;
-    const roleListRes = await getRoles();
+    const roleListRes = await getRoles({ pageNumber: 1, pageSize: 100 });
     roleList.value = roleListRes.items;
 
     if (unref(isUpdate)) {
@@ -61,7 +61,7 @@
           email: values.email,
           roles: values.roles,
         };
-        await updateAdmin(state.adminId, data);
+        await updateAdmin(adminId.value as string, data);
       }
       closeModal();
       emit('success');

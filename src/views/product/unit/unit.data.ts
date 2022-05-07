@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-02 15:57:44
- * @LastEditTime: 2022-04-07 10:40:29
+ * @LastEditTime: 2022-05-06 15:20:33
  * @Description: Modify here please
  */
 
@@ -61,6 +61,9 @@ export const formSchema: FormSchema[] = [
     label: '名称',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       placeholder: '请输入单位名称',
     },
@@ -70,6 +73,9 @@ export const formSchema: FormSchema[] = [
     label: '排序',
     component: 'InputNumber',
     required: true,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       placeholder: '请输入排序',
       min: 1,

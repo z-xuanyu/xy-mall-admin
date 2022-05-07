@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-02-18 11:21:19
+ * @LastEditTime: 2022-05-06 17:52:15
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
@@ -74,22 +74,38 @@ export const columns: BasicColumn[] = [
 export const searchFormSchema: FormSchema[] = [
   {
     field: 'name',
-    label: '名称',
+    label: '标签名称',
     component: 'Input',
-    labelWidth: 50,
-    colProps: { span: 4 },
+    labelWidth: 60,
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请输入标签名称',
+    },
   },
   {
     field: 'type',
-    label: '类型',
+    label: '标签类型',
     component: 'Select',
     componentProps: {
+      placeholder: '请选择标签类型',
       options: [
         { label: '产品', value: 1 },
         { label: '文章', value: 2 },
       ],
     },
-    colProps: { span: 4 },
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
   },
   {
     field: 'status',
@@ -101,7 +117,13 @@ export const searchFormSchema: FormSchema[] = [
         { label: '停用', value: false },
       ],
     },
-    colProps: { span: 4 },
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
   },
 ];
 
@@ -112,12 +134,18 @@ export const formSchema: FormSchema[] = [
     label: '名称',
     component: 'Input',
     required: true,
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'type',
     label: '类型',
     component: 'Select',
     required: true,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       options: [
         { label: '产品', value: 1, key: 1 },
@@ -130,5 +158,8 @@ export const formSchema: FormSchema[] = [
     label: '描述',
     component: 'InputTextArea',
     required: true,
+    colProps: {
+      span: 24,
+    },
   },
 ];

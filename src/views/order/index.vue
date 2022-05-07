@@ -4,8 +4,8 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 15:22:14
- * @LastEditTime: 2022-05-05 14:49:26
- * @Description: Modify here please
+ * @LastEditTime: 2022-05-07 11:18:00
+ * @Description: 订单列表
 -->
 <script setup lang="ts">
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
@@ -73,49 +73,52 @@
 <template>
   <div class="order-page">
     <BasicTable @register="registerTable" :rowSelection="{ type: 'checkbox' }">
-      <template #userName="{ record }">
-        <router-link :to="'/member/detail/' + record.userId">
-          {{ record.userName }}
-        </router-link>
-      </template>
-      <!-- 商品信息 -->
-      <template #productInfo="{ record }">
-        <div class="flex items-center" v-for="(item, index) in record.products" :key="item._id">
-          <Image :src="item.pic" :width="100" :height="100" />
-          <div class="ml-2 flex-1">
-            <div>{{ item.title }}</div>
-            <div class="space-x-4 mt-1">
-              <span class="text-gray-400">{{ record.skus[index].skuName }}</span>
-              <span>x</span>
-              <span>{{ record.skus[index].num }}</span>
-              <span class="font-medium">￥{{ record.skus[index].price }}</span>
+      <template #bodyCell="{ column, record }">
+        <!-- 用户信息 -->
+        <template v-if="column.dataIndex === 'userName'">
+          <router-link :to="'/member/detail/' + record.userId">
+            {{ record.userName }}
+          </router-link>
+        </template>
+        <!-- 商品信息 -->
+        <template v-if="column.dataIndex === 'productInfo'">
+          <div class="flex items-center" v-for="(item, index) in record.products" :key="item._id">
+            <Image :src="item.pic" :width="100" :height="100" />
+            <div class="ml-2 flex-1">
+              <div>{{ item.title }}</div>
+              <div class="space-x-4 mt-1">
+                <span class="text-gray-400">{{ record.skus[index].skuName }}</span>
+                <span>x</span>
+                <span>{{ record.skus[index].num }}</span>
+                <span class="font-medium">￥{{ record.skus[index].price }}</span>
+              </div>
             </div>
           </div>
-        </div>
-      </template>
-      <template #action="{ record }">
-        <TableAction
-          :actions="[
-            {
-              label: '发送货',
-              onClick: handleDelivery.bind(null, record),
-              ifShow: record.status == 2,
-            },
-            {
-              icon: 'icon-park-outline:transaction-order',
-              tooltip: '订单详细',
-              onClick: handleLookDetail.bind(null, record),
-            },
-            {
-              icon: 'ant-design:delete-outlined',
-              color: 'error',
-              popConfirm: {
-                title: '是否确认删除',
-                confirm: handleDelete.bind(null, record),
+        </template>
+        <template v-if="column.dataIndex === 'action'">
+          <TableAction
+            :actions="[
+              {
+                label: '发送货',
+                onClick: handleDelivery.bind(null, record),
+                ifShow: record.status == 2,
               },
-            },
-          ]"
-        />
+              {
+                icon: 'icon-park-outline:transaction-order',
+                tooltip: '订单详细',
+                onClick: handleLookDetail.bind(null, record),
+              },
+              {
+                icon: 'ant-design:delete-outlined',
+                color: 'error',
+                popConfirm: {
+                  title: '是否确认删除',
+                  confirm: handleDelete.bind(null, record),
+                },
+              },
+            ]"
+          />
+        </template>
       </template>
     </BasicTable>
     <!-- 发货modal -->
