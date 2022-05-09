@@ -45,6 +45,7 @@ export function useFormRules(formData?: Recordable) {
   const getPasswordFormRule = computed(() => createRule(t('sys.login.passwordPlaceholder')));
   const getSmsFormRule = computed(() => createRule(t('sys.login.smsPlaceholder')));
   const getMobileFormRule = computed(() => createRule(t('sys.login.mobilePlaceholder')));
+  const getCaptchaFormRule = computed(() => createRule('请输入验证码'));
 
   const validatePolicy = async (_: RuleObject, value: boolean) => {
     return !value ? Promise.reject(t('sys.login.policyPlaceholder')) : Promise.resolve();
@@ -67,13 +68,14 @@ export function useFormRules(formData?: Recordable) {
     const passwordFormRule = unref(getPasswordFormRule);
     const smsFormRule = unref(getSmsFormRule);
     const mobileFormRule = unref(getMobileFormRule);
+    const captchaFormRule = unref(getCaptchaFormRule);
 
     const mobileRule = {
       sms: smsFormRule,
       mobile: mobileFormRule,
     };
     switch (unref(currentState)) {
-      // register form rules
+      // 注册规则
       case LoginStateEnum.REGISTER:
         return {
           account: accountFormRule,
@@ -85,29 +87,30 @@ export function useFormRules(formData?: Recordable) {
           ...mobileRule,
         };
 
-      // reset password form rules
+      // 重置密码规则
       case LoginStateEnum.RESET_PASSWORD:
         return {
           account: accountFormRule,
           ...mobileRule,
         };
 
-      // mobile form rules
+      // 手机登录
       case LoginStateEnum.MOBILE:
         return mobileRule;
 
-      // login form rules
+      // 默认登录规则
       default:
         return {
           account: accountFormRule,
           password: passwordFormRule,
+          captcha: captchaFormRule,
         };
     }
   });
   return { getFormRules };
 }
 
-function createRule(message: string) {
+function createRule(message: string): RuleObject | RuleObject[] {
   return [
     {
       required: true,

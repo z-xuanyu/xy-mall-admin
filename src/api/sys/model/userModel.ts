@@ -4,15 +4,17 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2021-12-24 14:44:20
- * @LastEditTime: 2022-01-05 10:32:37
+ * @LastEditTime: 2022-05-09 16:48:17
  * @Description: Modify here please
  */
 /**
  * @description: Login interface parameters
  */
 export interface LoginParams {
-  username: string;
+  username?: string;
   password: string;
+  email: string;
+  captcha: string;
 }
 
 export interface RoleInfo {
@@ -44,4 +46,7 @@ export interface GetUserInfoModel {
   avatar: string;
   // 介绍
   desc?: string;
+
+  //名称
+  name?: string;
 }

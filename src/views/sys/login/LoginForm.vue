@@ -25,6 +25,13 @@
       />
     </FormItem>
 
+    <FormItem name="captcha" class="enter-x">
+      <div class="flex space-x-3">
+        <Input size="large" v-model:value="formData.captcha" placeholder="请输入验证码" />
+        <div @click="fetchCaptchaSvg" class="rounded-sm cursor-pointer" v-html="captchaSvg"></div>
+      </div>
+    </FormItem>
+
     <ARow class="enter-x">
       <ACol :span="12">
         <FormItem>
@@ -82,7 +89,8 @@
   </Form>
 </template>
 <script lang="ts" setup>
-  import { reactive, ref, unref, computed } from 'vue';
+  import { reactive, ref, unref, computed, onMounted } from 'vue';
+  import { getCaptcha } from '/@/api/sys/user';
 
   import { Checkbox, Form, Input, Row, Col, Button, Divider } from 'ant-design-vue';
   import {
@@ -117,10 +125,18 @@
   const formRef = ref();
   const loading = ref(false);
   const rememberMe = ref(false);
+  const captchaSvg = ref('');
+  onMounted(() => {
+    fetchCaptchaSvg();
+  });
 
+  async function fetchCaptchaSvg() {
+    captchaSvg.value = await getCaptcha();
+  }
   const formData = reactive({
     email: 'xuanyu@qq.com',
     password: '123456',
+    captcha: '',
   });
 
   const { validForm } = useFormValid(formRef);
@@ -137,6 +153,7 @@
       const userInfo = await userStore.login({
         password: data.password,
         email: data.email,
+        captcha: data.captcha,
         mode: 'none', //不要默认的错误提示
       });
       if (userInfo) {
