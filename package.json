@@ -1,7 +1,7 @@
 {
-  "name": "fukucho-admin",
+  "name": "xy-mall-admin",
   "version": "2.8.0",
-  "description": "一个开源零销商城Admin中后台管理系统",
+  "description": "一款简易的商城系统Admin中后台管理",
   "keywords": [
     "Vue3",
     "Vite",
@@ -12,7 +12,7 @@
   "author": {
     "name": "xuanyu",
     "email": "969718197@qq.com",
-    "url": "https://github.com/z-xuanyu/fukucho-admin"
+    "url": "https://github.com/z-xuanyu/xy-mall-admin"
   },
   "scripts": {
     "bootstrap": "pnpm install",
