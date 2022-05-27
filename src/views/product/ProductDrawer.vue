@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-05-06 15:36:50
+ * @LastEditTime: 2022-05-10 10:36:15
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
@@ -40,27 +40,14 @@
     resetFields();
     setDrawerProps({ confirmLoading: false });
     isUpdate.value = !!data?.isUpdate;
-
     updateSchema({
       field: 'skus',
       ifShow: false,
       required: false,
     });
-
     if (unref(isUpdate)) {
       // 产品id
       productId.value = data.record._id;
-      setFieldsValue({
-        ...data.record,
-        tags: data.record.tags.map((item) => item._id),
-        category: data.record.category._id,
-        pic: [data.record.pic],
-        skus: {
-          skuAttrs: data.record.skuAttrs,
-          skus: data.record.skus,
-        },
-      });
-
       updateSchema({
         field: 'skus',
         ifShow: data.record.skuType == 2,
@@ -83,6 +70,16 @@
         field: 'inventory',
         show: data.record.skuType !== 2,
         required: data.record.skuType !== 2,
+      });
+      setFieldsValue({
+        ...data.record,
+        tags: data.record.tags.map((item) => item._id),
+        category: data.record.category._id,
+        pic: [data.record.pic],
+        skus: {
+          skuAttrs: data.record.skuAttrs,
+          skus: data.record.skus,
+        },
       });
     }
 

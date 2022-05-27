@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-05-06 16:11:20
+ * @LastEditTime: 2022-05-10 10:35:31
  * @Description: 产品模块配置项
  */
 
@@ -205,7 +205,6 @@ export const formSchema: FormSchema[] = [
     label: '选择规格',
     component: 'RadioGroup',
     required: true,
-    defaultValue: 1,
     colProps: {
       span: 24,
     },
