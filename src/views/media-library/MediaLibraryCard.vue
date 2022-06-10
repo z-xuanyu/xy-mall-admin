@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 11:23:44
- * @LastEditTime: 2022-03-08 11:45:07
+ * @LastEditTime: 2022-06-10 14:11:00
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -25,7 +25,7 @@
   const { createMessage } = useMessage();
   const props = defineProps({
     categoryId: {
-      type: [String, null],
+      type: String,
       default: null,
     },
     dataVal: {
@@ -137,7 +137,7 @@
           <ListItem>
             <Card>
               <template #cover>
-                <div class="h-[180px] overflow-hidden">
+                <div class="overflow-hidden w-[180px] h-[180px]">
                   <Image :src="item.url" />
                 </div>
               </template>
@@ -172,11 +172,12 @@
     right: 0;
   }
   .list-card :deep(.ant-image) {
-    height: 100%;
-    width: 100%;
+    height: 180px;
+    width: 180px;
   }
   .list-card :deep(.ant-image-img) {
-    height: 100%;
+    height: 180px;
+    width: 180px;
     object-fit: cover;
   }
 </style>

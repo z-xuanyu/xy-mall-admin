@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-07 15:50:14
- * @LastEditTime: 2022-01-08 14:58:32
+ * @LastEditTime: 2022-06-10 14:06:26
  * @Description: Modify here please
  */
 
@@ -13,6 +13,7 @@ import { BasicPageParams } from '../model/baseModel';
 export interface CreateMediaLibraryParameters {
   name: string;
   url: string;
+  categoryId: string | null;
 }
 
 export interface UploadFileParams {

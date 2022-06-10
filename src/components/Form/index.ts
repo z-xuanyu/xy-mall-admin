@@ -1,3 +1,12 @@
+/*
+ * @Author: xuanyu
+ * @LastEditors: xuanyu
+ * @email: 969718197@qq.com
+ * @github: https://github.com/z-xuanyu
+ * @Date: 2022-05-30 16:22:30
+ * @LastEditTime: 2022-06-10 14:51:04
+ * @Description: Modify here please
+ */
 import BasicForm from './src/BasicForm.vue';
 
 export * from './src/types/form';
@@ -12,5 +21,6 @@ export { default as ApiTreeSelect } from './src/components/ApiTreeSelect.vue';
 export { default as ApiTree } from './src/components/ApiTree.vue';
 export { default as ApiRadioGroup } from './src/components/ApiRadioGroup.vue';
 export { default as ApiCascader } from './src/components/ApiCascader.vue';
+export { default as ApiSelectProduct } from './src/components/ApiSelectProduct.vue';
 
 export { BasicForm };

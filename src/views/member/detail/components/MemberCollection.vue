@@ -4,14 +4,21 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 15:18:48
- * @LastEditTime: 2022-04-07 17:42:18
- * @Description: Modify here please
+ * @LastEditTime: 2022-06-10 15:04:26
+ * @Description: 用户收藏
 -->
 <script setup lang="ts">
   import { ref, onMounted } from 'vue';
   import { Card, List, Row, Col, ListItem, Avatar, Empty } from 'ant-design-vue';
   import { getMemberCollections } from '/@/api/user';
 
+  // 收藏商品类型
+  interface GoodsItem {
+    _id: string;
+    pic: string;
+    title: string;
+    price: number;
+  }
   const props = defineProps({
     userId: {
       type: String,
@@ -19,33 +26,33 @@
     },
   });
 
-  const loading = ref(false);
-  const list = ref([]);
+  const loading = ref<boolean>(false);
+  const list = ref<Array<GoodsItem>>([]);
 
-  const prefixCls = ref('list-card');
+  const prefixCls = ref<string>('list-card');
 
   // 分页
-  const page = ref(1);
-  const pageSize = ref(12);
-  const total = ref(0);
+  const page = ref<number>(1);
+  const pageSize = ref<number>(12);
+  const total = ref<number>(0);
   const paginationProp = ref({
     showSizeChanger: false,
     showQuickJumper: true,
     pageSize,
     current: page,
     total,
-    showTotal: (total) => `总 ${total} 条`,
+    showTotal: (total: number) => `总 ${total} 条`,
     onChange: pageChange,
     onShowSizeChange: pageSizeChange,
   });
 
-  function pageChange(p, pz) {
+  function pageChange(p: number, pz: number) {
     loading.value = true;
     page.value = p;
     pageSize.value = pz;
     fetch();
   }
-  function pageSizeChange(_current, size) {
+  function pageSizeChange(_current: number, size: number) {
     loading.value = true;
     pageSize.value = size;
     fetch();
@@ -58,7 +65,7 @@
   async function fetch(p = {}) {
     const result = await getMemberCollections({
       userId: props.userId,
-      pageCount: page.value,
+      pageNumber: page.value,
       pageSize: pageSize.value,
       ...p,
     });

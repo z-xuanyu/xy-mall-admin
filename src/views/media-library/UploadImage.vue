@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 17:35:14
- * @LastEditTime: 2022-04-02 10:09:13
+ * @LastEditTime: 2022-06-10 16:24:14
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -51,7 +51,7 @@
     },
   });
 
-  let dataVal = ref([]);
+  let dataVal = ref<any>([]);
   watchEffect(() => {
     dataVal.value = props.modelValue;
   });
@@ -82,6 +82,10 @@
   function handleDelImage(index) {
     currentDelIndex.value = index;
     dataVal.value.splice(index, 1);
+  }
+
+  function handleOpenModal() {
+    openModal();
   }
 </script>
 
@@ -124,7 +128,7 @@
           :class="[width, height]"
           v-else
         >
-          <Image class="object-cover" :src="dataVal[0]" />
+          <Image class="object-cover" :src="(dataVal[0] as string)" />
           <div class="hidden active">
             <div
               class="
@@ -148,7 +152,7 @@
       </template>
 
       <div
-        @click="openModal"
+        @click="handleOpenModal"
         v-if="!dataVal.length || multiple"
         :class="[width, height]"
         class="

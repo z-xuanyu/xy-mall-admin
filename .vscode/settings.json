@@ -3,5 +3,6 @@
         "src/locales",
         "src/locales/lang",
         "public/resource/tinymce/langs"
-    ]
+    ],
+    "nuxt.isNuxtApp": false
 }

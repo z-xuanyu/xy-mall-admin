@@ -4,13 +4,13 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-05-06 18:09:36
+ * @LastEditTime: 2022-06-10 15:16:50
  * @Description: Modify here please
 -->
 <script setup lang="ts">
   import { ref, unref, computed } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { BasicForm, useForm, ApiSelect } from '/@/components/Form/index';
+  import { BasicForm, useForm, ApiSelectProduct } from '/@/components/Form/index';
   import { formSchema } from './banner.data';
   import { createBanner, updateBanner } from '/@/api/banner';
   import { getProductList } from '/@/api/product';
@@ -52,17 +52,6 @@
     });
   });
 
-  // 下拉选择搜索产品关键词
-  const keyword = ref<string>('');
-  const productSearchParams = computed<Recordable>(() => {
-    return { title: unref(keyword), pageSize: 10, pageCount: 1 };
-  });
-
-  // 搜索产品
-  function onSearchProduct(value: string) {
-    keyword.value = value;
-  }
-
   const getTitle = computed(() => (!unref(isUpdate) ? '新增Banner' : '编辑Banner'));
   async function handleSubmit() {
     try {
@@ -91,18 +80,7 @@
         <UploadImage v-model="model[field]" />
       </template>
       <template #product="{ model, field }">
-        <ApiSelect
-          :api="getProductList"
-          showSearch
-          v-model:value="model[field]"
-          :filterOption="false"
-          resultField="items"
-          labelField="title"
-          valueField="_id"
-          placeholder="请选择关联产品"
-          :params="productSearchParams"
-          @search="onSearchProduct"
-        />
+        <ApiSelectProduct v-model:value="model[field]" :api="getProductList" />
       </template>
     </BasicForm>
   </BasicModal>
