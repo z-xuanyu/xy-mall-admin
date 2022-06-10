@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-22 10:34:00
- * @LastEditTime: 2022-04-26 10:51:48
+ * @LastEditTime: 2022-06-10 17:38:09
  * @Description: 客服管理接口
  */
 import {
@@ -15,7 +15,7 @@ import {
 import { defHttp } from '/@/utils/http/axios';
 
 enum Api {
-  customerService = 'customerService',
+  customerService = '/customerService',
 }
 
 // 获取客服列表
