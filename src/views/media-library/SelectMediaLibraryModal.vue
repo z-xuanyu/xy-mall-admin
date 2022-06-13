@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 15:02:59
- * @LastEditTime: 2022-02-16 12:44:05
+ * @LastEditTime: 2022-06-13 18:26:20
  * @Description: Modify here please
 -->
 
@@ -29,11 +29,11 @@
   });
   const [registerModal, { closeModal }] = useModalInner();
   // 是否替換图片
-  const isReplace = inject('isReplace');
-  const currentDelIndex = inject('currentDelIndex');
+  const isReplace = inject('isReplace') as any;
+  const currentDelIndex = inject('currentDelIndex') as any;
   const emit = defineEmits(['success', 'register']);
-  const selectVal = ref([]);
-  const selectCardRef = ref<HTMLElement>(null);
+  const selectVal = ref<any>([]);
+  const selectCardRef = ref<HTMLElement | null>(null);
 
   let selectCategoryId = ref<string | null>(null);
   //   选择分类
@@ -47,7 +47,7 @@
   }
   //   取消选中素材
   function handleDelSelectVal(id: string) {
-    selectCardRef.value.handleDelSelect(id);
+    (selectCardRef.value as any).handleDelSelect(id);
   }
   //  确认
   function onConfirm() {
@@ -59,13 +59,13 @@
   function handleVisibleChange(val) {
     if (!val) {
       isReplace.value = false;
-      selectCardRef.value.fetch();
-      selectCardRef.value.resetSelectVal();
+      (selectCardRef.value as any).fetch();
+      (selectCardRef.value as any).resetSelectVal();
       selectVal.value = [];
     }
   }
 
-  const mergeSelectVal = ref([]);
+  const mergeSelectVal = ref<any>([]);
   watch(
     () => currentDelIndex.value,
     () => {

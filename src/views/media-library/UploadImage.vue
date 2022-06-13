@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 17:35:14
- * @LastEditTime: 2022-06-10 16:24:14
+ * @LastEditTime: 2022-06-13 18:24:44
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -17,7 +17,7 @@
 
   const props = defineProps({
     modelValue: {
-      type: Array,
+      type: [Array, String],
       default: () => [],
     },
     // 是否多图上传

@@ -4,11 +4,13 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:53:34
- * @LastEditTime: 2022-05-07 10:46:15
+ * @LastEditTime: 2022-06-13 18:19:47
  * @Description: Modify here please
  */
 import { BasicColumn, FormSchema } from '/@/components/Table';
 import { formatToDateTime } from '/@/utils/dateUtil';
+import { Image } from 'ant-design-vue';
+import { h } from 'vue';
 
 export const columns: BasicColumn[] = [
   {
@@ -18,10 +20,22 @@ export const columns: BasicColumn[] = [
     align: 'left',
   },
   {
-    title: '排序',
-    dataIndex: 'sort',
+    title: '名称',
+    dataIndex: 'name',
+    width: 80,
+    align: 'center',
+  },
+  {
+    title: '缩略图',
+    dataIndex: 'thumbnail',
     width: 50,
     align: 'center',
+    customRender: ({ record }) => {
+      return h(Image, {
+        src: record.thumbnail,
+        width: 50,
+      });
+    },
   },
   {
     title: '创建时间',
@@ -89,6 +103,16 @@ export const formSchema: FormSchema[] = [
         value: '_id',
       },
       getPopupContainer: () => document.body,
+    },
+  },
+  {
+    field: 'thumbnail',
+    label: '缩略图',
+    component: 'Input',
+    required: true,
+    slot: 'thumbnail',
+    colProps: {
+      span: 24,
     },
   },
   {

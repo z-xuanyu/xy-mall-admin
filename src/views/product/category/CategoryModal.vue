@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:53:51
- * @LastEditTime: 2022-05-07 10:46:46
+ * @LastEditTime: 2022-06-13 18:21:49
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -15,6 +15,7 @@
   import { TransformTreeArr } from '/@/utils';
   import { createCategory, getCategoryList, updateCategory } from '/@/api/category';
   import { useMessage } from '/@/hooks/web/useMessage';
+  import UploadImage from '/@/views/media-library/UploadImage.vue';
 
   const emit = defineEmits(['success', 'register']);
 
@@ -35,6 +36,7 @@
       categoryId.value = data.record._id;
       setFieldsValue({
         ...data.record,
+        thumbnail: [data.record.thumbnail],
       });
     }
 
@@ -53,6 +55,7 @@
     try {
       const values = await validate();
       setModalProps({ confirmLoading: true });
+      values.thumbnail = values.thumbnail[0];
       // 新增
       if (!unref(isUpdate)) {
         await createCategory(values);
@@ -72,7 +75,11 @@
 
 <template>
   <BasicModal v-bind="$attrs" @register="registerModal" :title="getTitle" @ok="handleSubmit">
-    <BasicForm @register="registerForm" />
+    <BasicForm @register="registerForm">
+      <template #thumbnail="{ model, field }">
+        <UploadImage v-model="model[field]" />
+      </template>
+    </BasicForm>
   </BasicModal>
 </template>
 
