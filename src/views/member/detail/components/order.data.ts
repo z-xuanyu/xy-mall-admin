@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-28 14:51:56
- * @LastEditTime: 2022-04-07 15:34:15
+ * @LastEditTime: 2022-06-20 14:26:04
  * @Description: Modify here please
  */
 import { h } from 'vue';
@@ -26,11 +26,11 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '商品信息',
-    dataIndex: 'info',
+    dataIndex: 'products',
     width: 180,
     align: 'center',
     slots: {
-      customRender: 'info',
+      customRender: 'products',
     },
   },
   {

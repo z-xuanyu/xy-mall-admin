@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 15:10:55
- * @LastEditTime: 2022-04-07 15:16:27
+ * @LastEditTime: 2022-06-20 14:29:20
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -42,19 +42,21 @@
 
 <template>
   <BasicTable @register="registerTable">
-    <template #info="{ record }">
-      <div class="flex items-center" v-for="(item, index) in record.products" :key="item._id">
-        <Image :src="item.pic" :width="60" :height="60" />
-        <div class="ml-2 flex-1 text-left">
-          <div>{{ item.title }}</div>
-          <div class="space-x-4 mt-1">
-            <span class="text-gray-400">{{ record.skus[index].skuName }}</span>
-            <span>x</span>
-            <span>{{ record.skus[index].num }}</span>
-            <span class="font-medium">￥{{ record.skus[index].price }}</span>
+    <template #bodyCell="{ column, record }">
+      <template v-if="column.dataIndex === 'products'">
+        <div class="flex items-center" v-for="(item, index) in record.products" :key="item._id">
+          <Image :src="item.pic" :width="60" :height="60" />
+          <div class="ml-2 flex-1 text-left">
+            <div>{{ item.title }}</div>
+            <div class="space-x-4 mt-1">
+              <span class="text-gray-400">{{ record.skus[index].skuName }}</span>
+              <span>x</span>
+              <span>{{ record.skus[index].num }}</span>
+              <span class="font-medium">￥{{ record.skus[index].price }}</span>
+            </div>
           </div>
         </div>
-      </div>
+      </template>
     </template>
   </BasicTable>
 </template>
