@@ -18,6 +18,7 @@ export const formSchema: FormSchema[] = [
     component: 'RadioGroup',
     required: true,
     defaultValue: 1,
+    colProps: { span: 24 },
     componentProps: {
       options: [
         {
@@ -41,6 +42,7 @@ export const formSchema: FormSchema[] = [
     component: 'RadioGroup',
     defaultValue: 1,
     required: true,
+    colProps: { span: 24 },
     componentProps: {
       options: [
         { label: '手动填写', value: 1, key: 1 },
@@ -53,6 +55,7 @@ export const formSchema: FormSchema[] = [
     label: '快递公司',
     component: 'Select',
     required: true,
+    colProps: { span: 24 },
     componentProps: {
       placeholder: '请选择快递公司',
       options: [
@@ -69,6 +72,7 @@ export const formSchema: FormSchema[] = [
     label: '快递单号',
     required: true,
     component: 'Input',
+    colProps: { span: 24 },
     componentProps: {
       placeholder: '请输入快递单号',
     },
