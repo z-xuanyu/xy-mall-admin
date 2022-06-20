@@ -4,16 +4,15 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-06-10 15:16:50
+ * @LastEditTime: 2022-06-20 12:28:13
  * @Description: Modify here please
 -->
 <script setup lang="ts">
   import { ref, unref, computed } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { BasicForm, useForm, ApiSelectProduct } from '/@/components/Form/index';
+  import { BasicForm, useForm } from '/@/components/Form/index';
   import { formSchema } from './banner.data';
   import { createBanner, updateBanner } from '/@/api/banner';
-  import { getProductList } from '/@/api/product';
   import UploadImage from '/@/views/media-library/UploadImage.vue';
 
   const emit = defineEmits(['success', 'register']);
@@ -37,6 +36,8 @@
         image: [data?.record?.image],
         product: data?.record?.product?._id,
       });
+
+      console.log('banner modal');
     }
 
     updateSchema({
@@ -78,9 +79,6 @@
     <BasicForm @register="registerForm">
       <template #image="{ model, field }">
         <UploadImage v-model="model[field]" />
-      </template>
-      <template #product="{ model, field }">
-        <ApiSelectProduct v-model:value="model[field]" :api="getProductList" />
       </template>
     </BasicForm>
   </BasicModal>

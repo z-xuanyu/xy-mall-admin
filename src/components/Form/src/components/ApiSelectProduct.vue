@@ -4,11 +4,11 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-06-10 14:43:08
- * @LastEditTime: 2022-06-10 16:42:39
+ * @LastEditTime: 2022-06-20 14:08:12
  * @Description: 选择商品卡片组件封装
 -->
 <script setup lang="ts">
-  import { onMounted, ref, computed } from 'vue';
+  import { onMounted, ref, computed, watchEffect } from 'vue';
   import type { PropType } from 'vue';
   import { Modal, Card, List, Row, Col, ListItem, Avatar, Empty } from 'ant-design-vue';
   import { Icon } from '@iconify/vue';
@@ -29,13 +29,16 @@
       default: '',
     },
     api: { type: Function as PropType<(arg?: Recordable) => Promise<Recordable>> },
+    id: { type: String, default: '' },
   });
 
   const emit = defineEmits(['update:value']);
 
   const visible = ref(false);
-  const defaultValue = ref(props.value);
-
+  const defaultValue = ref<string>('');
+  watchEffect(() => {
+    defaultValue.value = props.value;
+  });
   //  下面是商品卡片列表逻辑
   //  选择卡片内容区域
   //

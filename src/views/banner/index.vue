@@ -4,8 +4,8 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 12:31:34
- * @LastEditTime: 2022-05-06 18:04:52
- * @Description: Modify here please
+ * @LastEditTime: 2022-06-20 11:53:38
+ * @Description: 首页轮播图
 -->
 <script setup lang="ts">
   import { BasicTable, useTable, TableAction } from '/@/components/Table';

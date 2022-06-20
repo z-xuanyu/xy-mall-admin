@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:53:34
- * @LastEditTime: 2022-06-13 18:19:47
+ * @LastEditTime: 2022-06-20 11:53:13
  * @Description: Modify here please
  */
 import { BasicColumn, FormSchema } from '/@/components/Table';
@@ -18,12 +18,6 @@ export const columns: BasicColumn[] = [
     dataIndex: 'name',
     width: 80,
     align: 'left',
-  },
-  {
-    title: '名称',
-    dataIndex: 'name',
-    width: 80,
-    align: 'center',
   },
   {
     title: '缩略图',
