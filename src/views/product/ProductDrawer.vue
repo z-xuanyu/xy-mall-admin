@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-05-10 10:36:15
+ * @LastEditTime: 2022-06-20 16:04:21
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
@@ -15,7 +15,7 @@
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { formSchema } from './product.data';
-  import { createProduct, updateProduct } from '/@/api/product';
+  import { createProduct, updateProduct, getProductInfo } from '/@/api/product';
   import { getCategoryList } from '/@/api/category';
   import { getTagList } from '/@/api/tag';
   import { TransformTreeArr } from '/@/utils';
@@ -37,6 +37,7 @@
   });
 
   const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
+    const info = await getProductInfo(data.record._id);
     resetFields();
     setDrawerProps({ confirmLoading: false });
     isUpdate.value = !!data?.isUpdate;
@@ -77,8 +78,8 @@
         category: data.record.category._id,
         pic: [data.record.pic],
         skus: {
-          skuAttrs: data.record.skuAttrs,
-          skus: data.record.skus,
+          skuAttrs: info.skuAttrs,
+          skus: info.skus,
         },
       });
     }

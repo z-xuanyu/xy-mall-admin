@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 17:35:14
- * @LastEditTime: 2022-06-20 14:07:07
+ * @LastEditTime: 2022-06-20 16:06:06
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -55,7 +55,6 @@
   watchEffect(() => {
     dataVal.value = props.modelValue;
   });
-  console.log(dataVal.value, 7788877);
   const isReplace = ref(false);
   const currentIndex = ref(0); // 替换当前的index
   const currentDelIndex = ref(0); // 删除选择项index

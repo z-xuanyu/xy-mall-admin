@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-12 14:33:38
- * @LastEditTime: 2022-05-06 16:54:55
+ * @LastEditTime: 2022-06-20 15:52:02
  * @Description: 封装产品规格添加修改Form
 -->
 <script setup lang="ts">
@@ -140,6 +140,12 @@
         <span>规格名</span>
         <div class="w-[180px]">
           <!-- <Input v-model:value="item.name" placeholder="请输入规格名称" /> -->
+          <input
+            v-model="item.name"
+            placeholder="请输入规格名称"
+            type="text"
+            class="outline-none border px-2 py-1"
+          />
         </div>
       </div>
       <div class="p-2 flex py-4 items-center space-x-4">
@@ -206,46 +212,46 @@
                   />
                 </div>
               </td>
-              <td class="py-1 text-center border">
+              <td class="py-1 px-2 text-center border">
                 <input
                   type="number"
-                  class="outline-none border py-1 px-2"
+                  class="outline-none border py-1 px-2 w-[100px]"
                   placeholder="请输入价格"
                   v-model="item.price"
                   :min="0"
                 />
               </td>
-              <td class="py-1 text-center border">
+              <td class="py-1 px-2 text-center border">
                 <input
                   type="number"
-                  class="outline-none border py-1 px-2"
+                  class="outline-none border py-1 px-2 w-[100px]"
                   placeholder="请输入库存"
                   v-model="item.inventory"
                   :min="0"
                 />
               </td>
-              <td class="py-1 text-center border">
+              <td class="py-1 text-center px-2 border">
                 <input
                   type="number"
-                  class="outline-none border py-1 px-2"
+                  class="outline-none border py-1 px-2 w-[100px]"
                   placeholder="请输入原价"
                   v-model="item.costPrice"
                   :min="0"
                 />
               </td>
-              <td class="py-1 text-center border">
+              <td class="py-1 text-center border px-2">
                 <input
                   type="number"
-                  class="outline-none border py-1 px-2"
+                  class="outline-none border py-1 px-2 w-[100px]"
                   placeholder="请输入重量"
                   v-model="item.weight"
                   :min="0"
                 />
               </td>
-              <td class="py-1 text-center border">
+              <td class="py-1 text-center border px-2">
                 <input
                   type="text"
-                  class="outline-none border py-1 px-2"
+                  class="outline-none border py-1 px-2 w-[100px]"
                   placeholder="请输入货号"
                   v-model="item.artNo"
                 />

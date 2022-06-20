@@ -77,7 +77,7 @@
   <div class="h-[450px]" :class="!isSelectCard ? 'md:h-[800px]' : 'md:h-[500px]'">
     <ScrollContainer class="mt-4">
       <BasicTree
-        title="分组名称"
+        title="分组"
         :treeData="treeData"
         :clickRowToExpand="true"
         :fieldNames="{ key: '_id', title: 'name' }"
