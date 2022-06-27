@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 11:23:44
- * @LastEditTime: 2022-06-10 14:11:00
+ * @LastEditTime: 2022-06-27 12:15:18
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -94,8 +94,9 @@
   async function handleUploadRequest(file) {
     const res = await upload({ file: file.file });
     if (res.data.result) {
+      const imgPath = res.data.result.url.split('/');
       await createMediaLibrary({
-        name: file.file.name,
+        name: imgPath.pop(),
         url: res.data.result.url,
         categoryId: props.categoryId,
         storageType: res.data.result.storageType,
