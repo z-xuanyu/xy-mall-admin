@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-08 11:23:44
- * @LastEditTime: 2022-01-11 15:22:53
+ * @LastEditTime: 2022-06-27 11:39:32
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -20,7 +20,7 @@
   const props = defineProps({
     // 素材分类id
     categoryId: {
-      type: [String, null],
+      type: [String],
       default: null,
     },
     // 是否多图
@@ -35,16 +35,16 @@
   });
 
   // 是否替換图片
-  const isReplace = inject('isReplace');
+  const isReplace: any = inject('isReplace');
   // 替换当前item
-  const currentIndex = inject('currentIndex');
+  const currentIndex: any = inject('currentIndex');
   const emit = defineEmits(['select']);
   defineExpose({
     handleDelSelect,
     fetch,
     resetSelectVal,
   });
-  const list = ref([]);
+  const list = ref<any>([]);
   const loading = ref<boolean>(false);
 
   onMounted(() => {
@@ -106,8 +106,9 @@
     if (res.data.result) {
       await createMediaLibrary({
         name: file.file.name,
-        url: res.data.result,
+        url: res.data.result.url,
         categoryId: props.categoryId,
+        storageType: res.data.result.storageType,
       });
       fetch();
       createMessage.success('图片上传成功!');
@@ -122,7 +123,7 @@
         v._id == item._id ? (item.isSelect = !item.isSelect) : (v.isSelect = false);
       });
       // 替换
-      let selectArr = [...props.dataVal];
+      let selectArr: any = [...props.dataVal];
       selectArr[currentIndex.value] = item;
       emit('select', selectArr);
     } else {
@@ -139,7 +140,7 @@
         } else {
           // 去除
           selectVal.value.splice(
-            selectVal.value.findIndex((v) => v._id == item._id),
+            selectVal.value.findIndex((v) => v?._id == item._id),
             1,
           );
         }
@@ -149,7 +150,7 @@
     }
   }
   // 选择中图片
-  const selectVal = ref([]);
+  const selectVal = ref<any>([]);
   // 删除选择
   function handleDelSelect(id: string) {
     list.value.forEach((item) => {
