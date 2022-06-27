@@ -92,13 +92,13 @@
   }
   // 上传接口
   async function handleUploadRequest(file) {
-    console.log(file, 1111);
     const res = await upload({ file: file.file });
     if (res.data.result) {
       await createMediaLibrary({
         name: file.file.name,
-        url: res.data.result,
+        url: res.data.result.url,
         categoryId: props.categoryId,
+        storageType: res.data.result.storageType,
       });
       fetch();
       createMessage.success('图片上传成功!');
