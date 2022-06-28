@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-06-10 14:43:08
- * @LastEditTime: 2022-06-20 14:08:12
+ * @LastEditTime: 2022-06-28 12:16:34
  * @Description: 选择商品卡片组件封装
 -->
 <script setup lang="ts">
@@ -122,7 +122,7 @@
     return item ? item.pic : '';
   });
   // 如果关闭弹出未选择确认，恢复默认
-  function afterClose() {
+  function onClose() {
     defaultValue.value = props.value;
   }
 
@@ -156,7 +156,8 @@
       width="1000px"
       title="选择商品"
       @ok="handleOk"
-      :afterClose="afterClose"
+      @cancel="onClose"
+      :maskClosable="false"
     >
       <div class="p-4" :class="prefixCls">
         <!-- 搜索表单 -->
