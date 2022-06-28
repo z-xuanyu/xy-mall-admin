@@ -4,17 +4,23 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 12:24:45
- * @LastEditTime: 2022-05-06 17:01:47
- * @Description: Modify here please
+ * @LastEditTime: 2022-06-28 11:48:29
+ * @Description: 用户列表
 -->
 <script setup lang="ts">
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { getMemberList } from '/@/api/user';
+  import { getMemberList, deleteMember } from '/@/api/user';
   import { columns, searchFormSchema } from './member.data';
   import { useGo } from '/@/hooks/web/usePage';
+  import { useMessage } from '/@/hooks/web/useMessage';
+  import { useModal } from '/@/components/Modal';
+  import MemberModal from './MemberModal.vue';
+
+  const [registerModal, { openModal }] = useModal();
 
   const go = useGo();
-  const [registerMemberTable] = useTable({
+  const { createMessage } = useMessage();
+  const [registerMemberTable, { reload }] = useTable({
     title: '会员列表',
     api: getMemberList,
     columns,
@@ -38,12 +44,29 @@
     },
   });
 
-  function handleEdit() {}
+  // 编辑用户信息
+  function handleEdit(record: Recordable) {
+    openModal(true, {
+      record,
+      isUpdate: true,
+    });
+  }
 
-  function handleDelete() {}
+  // 删除用户
+  async function handleDelete(record: Recordable) {
+    await deleteMember(record._id);
+    reload();
+    createMessage.success('删除成功!');
+  }
 
-  function jumpDetail(record) {
+  // 跳转用户详情页面
+  function jumpDetail(record: Recordable) {
     go(`detail/${record._id}`);
+  }
+
+  // 更新完成
+  function handleSuccess() {
+    reload();
   }
 </script>
 
@@ -78,6 +101,7 @@
         </template>
       </template>
     </BasicTable>
+    <MemberModal @register="registerModal" @success="handleSuccess" />
   </div>
 </template>
 

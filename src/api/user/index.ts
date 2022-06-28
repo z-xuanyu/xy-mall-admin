@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 10:52:24
- * @LastEditTime: 2022-05-05 11:09:11
+ * @LastEditTime: 2022-06-28 11:03:48
  * @Description: Modify here please
  */
 import {
@@ -66,5 +66,18 @@ export function getMemberOrder(id: string, status: number) {
     params: {
       status,
     },
+  });
+}
+
+/**
+ *  删除会员信息
+ *
+ * @export
+ * @param {string} id 会员ID
+ * @return {*}
+ */
+export function deleteMember(id: string) {
+  return defHttp.delete({
+    url: `${Api.Member}/${id}`,
   });
 }
