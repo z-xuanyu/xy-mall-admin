@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-06-20 16:04:21
+ * @LastEditTime: 2022-07-01 16:54:14
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
@@ -114,8 +114,8 @@
   const handleSubmit = async () => {
     try {
       const values = await validate();
-      values.skuAttrs = values.skus.skuAttrs;
-      values.skus = values.skus.skus;
+      values.skuAttrs = values.skuType == 2 ? values.skus.skuAttrs : [];
+      values.skus = values.skuType == 2 ? values.skus.skus : [];
       values.pic = values.pic[0];
       setDrawerProps({ confirmLoading: true });
       if (!unref(isUpdate)) {
