@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 14:21:43
- * @LastEditTime: 2022-05-10 10:35:31
+ * @LastEditTime: 2022-07-04 14:25:31
  * @Description: 产品模块配置项
  */
 
@@ -312,9 +312,11 @@ export const formSchema: FormSchema[] = [
     field: 'description',
     component: 'Input',
     label: '产品描述',
-    defaultValue: '描述',
     colProps: {
       span: 24,
+    },
+    componentProps: {
+      placeholder: '请输入产品描述',
     },
     rules: [{ required: true }],
     render: ({ model, field }) => {
