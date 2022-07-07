@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-05-30 16:22:30
- * @LastEditTime: 2022-06-20 12:25:38
+ * @LastEditTime: 2022-07-07 17:40:40
  * @Description: Modify here please
  */
 import type { Component } from 'vue';
@@ -34,6 +34,7 @@ import ApiRadioGroup from './components/ApiRadioGroup.vue';
 import RadioButtonGroup from './components/RadioButtonGroup.vue';
 import ApiSelect from './components/ApiSelect.vue';
 import ApiSelectProduct from './components/ApiSelectProduct.vue';
+import ApiSelectMediaCard from './components/ApiSelectMediaCard.vue';
 import ApiTree from './components/ApiTree.vue';
 import ApiTreeSelect from './components/ApiTreeSelect.vue';
 import ApiCascader from './components/ApiCascader.vue';
@@ -58,6 +59,7 @@ componentMap.set('ApiTree', ApiTree);
 componentMap.set('TreeSelect', TreeSelect);
 componentMap.set('ApiTreeSelect', ApiTreeSelect);
 componentMap.set('ApiSelectProduct', ApiSelectProduct);
+componentMap.set('ApiSelectMediaCard', ApiSelectMediaCard);
 componentMap.set('ApiRadioGroup', ApiRadioGroup);
 componentMap.set('Switch', Switch);
 componentMap.set('RadioButtonGroup', RadioButtonGroup);

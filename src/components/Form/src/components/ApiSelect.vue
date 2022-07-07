@@ -68,7 +68,7 @@
       const attrs = useAttrs();
       const { t } = useI18n();
 
-      const [state] = useRuleFormItem(props, 'value', 'change', emitData);
+      const [state] = useRuleFormItem(props, 'value', 'change', emitData) as any;
 
       const getOptions = computed(() => {
         const { labelField, valueField, numberToString } = props;
