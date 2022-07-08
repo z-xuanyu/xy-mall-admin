@@ -4,10 +4,11 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 10:52:24
- * @LastEditTime: 2022-06-28 11:03:48
+ * @LastEditTime: 2022-07-08 14:20:53
  * @Description: Modify here please
  */
 import {
+  EditMemberBaseInfoParameters,
   GetMemberCollectionsParameters,
   GetMemberListParameters,
   GetMemberUserAddressListParameters,
@@ -79,5 +80,13 @@ export function getMemberOrder(id: string, status: number) {
 export function deleteMember(id: string) {
   return defHttp.delete({
     url: `${Api.Member}/${id}`,
+  });
+}
+
+// 编辑会员基本信息
+export function editMember(id: string, params: EditMemberBaseInfoParameters) {
+  return defHttp.patch({
+    url: `${Api.Member}/${id}`,
+    data: params,
   });
 }

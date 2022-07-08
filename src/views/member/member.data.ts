@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 12:26:06
- * @LastEditTime: 2022-06-28 11:40:42
+ * @LastEditTime: 2022-07-08 14:36:00
  * @Description: 会员列表
  */
 
@@ -16,7 +16,7 @@ import { formatToDateTime } from '/@/utils/dateUtil';
 export const columns: BasicColumn[] = [
   {
     title: '昵称',
-    dataIndex: 'name',
+    dataIndex: 'nickName',
     width: 80,
     align: 'center',
   },
@@ -34,11 +34,11 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '头像',
-    dataIndex: 'avatar',
+    dataIndex: 'avatarUrl',
     width: 80,
     align: 'center',
     customRender: ({ record }) => {
-      return h(Avatar, { src: record.avatar, size: 50 });
+      return h(Avatar, { src: record.avatarUrl, size: 50 });
     },
   },
   {
@@ -107,7 +107,7 @@ export const columns: BasicColumn[] = [
 export const searchFormSchema: FormSchema[] = [
   {
     field: 'name',
-    label: '会员名称',
+    label: '用户昵称',
     component: 'Input',
     labelWidth: 80,
     colProps: {
@@ -119,6 +119,101 @@ export const searchFormSchema: FormSchema[] = [
     },
     componentProps: {
       placeholder: '请输入会员名称',
+    },
+  },
+  {
+    field: 'phone',
+    label: '手机号',
+    component: 'Input',
+    labelWidth: 80,
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请输入手机号',
+    },
+  },
+  {
+    field: 'email',
+    label: '邮箱',
+    component: 'Input',
+    labelWidth: 80,
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请输入邮箱',
+    },
+  },
+  {
+    field: 'gener',
+    label: '性别',
+    component: 'Select',
+    labelWidth: 80,
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请选择性别',
+      options: [
+        { label: '男', value: 1 },
+        { label: '女', value: 2 },
+        { label: '无', value: 0 },
+      ],
+    },
+  },
+  {
+    field: 'status',
+    label: '状态',
+    component: 'Select',
+    labelWidth: 80,
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请选择状态',
+      options: [
+        { label: '正常', value: 1 },
+        { label: '禁用', value: 0 },
+      ],
+    },
+  },
+  {
+    field: 'source',
+    label: '用户来源',
+    component: 'Select',
+    labelWidth: 80,
+    colProps: {
+      xxl: 4,
+      xl: 6,
+      lg: 8,
+      md: 12,
+      sm: 24,
+    },
+    componentProps: {
+      placeholder: '请选择来源',
+      options: [
+        { label: '公众号', value: 1 },
+        { label: '小程序', value: 2 },
+        { label: 'APP', value: 3 },
+        { label: '其他', value: 4 },
+      ],
     },
   },
 ];

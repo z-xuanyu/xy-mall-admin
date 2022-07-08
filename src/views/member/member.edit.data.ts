@@ -4,12 +4,10 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-06-28 11:16:43
- * @LastEditTime: 2022-07-08 10:15:00
+ * @LastEditTime: 2022-07-08 12:10:15
  * @Description: 会员编辑
  */
 import { FormSchema } from '/@/components/Form';
-import { getMediaLibraryList } from '/@/api/media-library';
-import { getLibraryCategoryList } from '/@/api/library-category';
 export const formSchema: FormSchema[] = [
   {
     field: 'nickName',
@@ -45,15 +43,12 @@ export const formSchema: FormSchema[] = [
   {
     field: 'avatarUrl',
     label: '头像',
-    component: 'ApiSelectMediaCard',
+    component: 'Input',
     required: true,
     colProps: {
       span: 24,
     },
     rules: [{ required: true, trigger: 'blur', message: '请选择头像' }],
-    componentProps: {
-      api: getMediaLibraryList,
-      categoryApi: getLibraryCategoryList,
-    },
+    slot: 'avatarUrl',
   },
 ];

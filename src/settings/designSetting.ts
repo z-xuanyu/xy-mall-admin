@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2021-12-24 14:44:22
- * @LastEditTime: 2022-04-15 15:29:01
+ * @LastEditTime: 2022-07-08 14:40:09
  * @Description: Modify here please
  */
 import { ThemeEnum } from '../enums/appEnum';
@@ -13,7 +13,7 @@ export const prefixCls = 'vben';
 
 export const darkMode = ThemeEnum.LIGHT;
 
-// app theme preset color
+// 系统主题色
 export const APP_PRESET_COLOR_LIST: string[] = [
   '#536dfe',
   '#0960bd',
@@ -25,7 +25,7 @@ export const APP_PRESET_COLOR_LIST: string[] = [
   '#ff9800',
 ];
 
-// header preset color
+// 顶部导航栏颜色
 export const HEADER_PRESET_BG_COLOR_LIST: string[] = [
   '#ffffff',
   '#151515',
@@ -40,12 +40,12 @@ export const HEADER_PRESET_BG_COLOR_LIST: string[] = [
   '#383f45',
 ];
 
-// sider preset color
+// 菜单栏颜色
 export const SIDE_BAR_BG_COLOR_LIST: string[] = [
-  '#ffffff',
+  '#273352',
   '#001529',
   '#212121',
-  '#273352',
+  '#ffffff',
   '#191b24',
   '#191a23',
   '#304156',
