@@ -4,29 +4,20 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 15:53:58
- * @LastEditTime: 2022-07-08 10:49:52
+ * @LastEditTime: 2022-07-08 16:39:23
  * @Description: Modify here please
 -->
 <script setup lang="ts">
-  import { ApiSelectMediaCard } from '/@/components/Form';
-  import { getMediaLibraryList } from '/@/api/media-library';
-  import { getLibraryCategoryList } from '/@/api/library-category';
+  import { ApiSelectUserCard } from '/@/components/Form';
   import { ref } from 'vue';
 
-  const defaultUrl = ref('');
   const arr = ref<string[]>([]);
 </script>
 
 <template>
   <div>
     <h1>付费会员</h1>
-    <ApiSelectMediaCard
-      :api="getMediaLibraryList"
-      :category-api="getLibraryCategoryList"
-      v-model:value="defaultUrl"
-    />
-
-    {{ defaultUrl }}
+    <ApiSelectUserCard v-model:value="arr" />
     {{ arr }}
   </div>
 </template>

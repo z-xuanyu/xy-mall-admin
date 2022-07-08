@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 10:52:24
- * @LastEditTime: 2022-07-08 14:20:53
+ * @LastEditTime: 2022-07-08 16:58:34
  * @Description: Modify here please
  */
 import {
@@ -88,5 +88,13 @@ export function editMember(id: string, params: EditMemberBaseInfoParameters) {
   return defHttp.patch({
     url: `${Api.Member}/${id}`,
     data: params,
+  });
+}
+
+// 批量获取用户信息
+export function getMemberListByIds(ids: string[]) {
+  return defHttp.post({
+    url: `${Api.Member}/findIds`,
+    params: ids,
   });
 }

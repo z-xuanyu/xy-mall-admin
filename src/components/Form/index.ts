@@ -4,8 +4,8 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-05-30 16:22:30
- * @LastEditTime: 2022-07-06 15:20:35
- * @Description: Modify here please
+ * @LastEditTime: 2022-07-08 15:02:45
+ * @Description: 表单组件
  */
 import BasicForm from './src/BasicForm.vue';
 
@@ -23,5 +23,6 @@ export { default as ApiRadioGroup } from './src/components/ApiRadioGroup.vue';
 export { default as ApiCascader } from './src/components/ApiCascader.vue';
 export { default as ApiSelectProduct } from './src/components/ApiSelectProduct.vue';
 export { default as ApiSelectMediaCard } from './src/components/ApiSelectMediaCard.vue';
+export { default as ApiSelectUserCard } from './src/components/ApiSelectUserCard.vue';
 
 export { BasicForm };
