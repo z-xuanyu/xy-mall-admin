@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:08:31
- * @LastEditTime: 2022-06-20 12:27:07
+ * @LastEditTime: 2022-07-08 10:56:39
  * @Description: Modify here please
  */
 import { BasicColumn } from '/@/components/Table';
@@ -15,7 +15,6 @@ import { Switch, Image, Tag } from 'ant-design-vue';
 import { formatToDateTime } from '/@/utils/dateUtil';
 import { bannerTypeMap } from '/@/enumMaps';
 import { changeBannerStatus } from '/@/api/banner';
-import { getProductList } from '/@/api/product';
 
 export const columns: BasicColumn[] = [
   {
@@ -196,10 +195,10 @@ export const formSchema: FormSchema[] = [
     label: '图片',
     component: 'Input',
     required: true,
-    slot: 'image',
     colProps: {
       span: 24,
     },
+    slot: 'image',
   },
   {
     field: 'url',
@@ -214,14 +213,12 @@ export const formSchema: FormSchema[] = [
   {
     field: 'product',
     label: '关联商品',
-    component: 'ApiSelectProduct',
+    component: 'Input',
     show: false,
     required: false,
     colProps: {
       span: 24,
     },
-    componentProps: {
-      api: getProductList,
-    },
+    slot: 'product',
   },
 ];

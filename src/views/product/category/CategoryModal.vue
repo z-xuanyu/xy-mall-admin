@@ -4,18 +4,19 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 16:53:51
- * @LastEditTime: 2022-06-20 12:00:56
- * @Description: Modify here please
+ * @LastEditTime: 2022-07-08 11:45:44
+ * @Description: 商品分类
 -->
 <script setup lang="ts">
   import { ref, computed, unref } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { BasicForm, useForm } from '/@/components/Form/index';
+  import { BasicForm, useForm, ApiSelectMediaCard } from '/@/components/Form/index';
   import { formSchema } from './category.data';
   import { TransformTreeArr } from '/@/utils';
   import { createCategory, getCategoryList, updateCategory } from '/@/api/category';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import UploadImage from '/@/views/media-library/UploadImage.vue';
+  import { getMediaLibraryList } from '/@/api/media-library';
+  import { getLibraryCategoryList } from '/@/api/library-category';
 
   const emit = defineEmits(['success', 'register']);
 
@@ -36,7 +37,6 @@
       categoryId.value = data.record._id;
       setFieldsValue({
         ...data.record,
-        thumbnail: [data.record.thumbnail],
       });
     }
 
@@ -55,7 +55,6 @@
     try {
       const values = await validate();
       setModalProps({ confirmLoading: true });
-      values.thumbnail = values.thumbnail[0];
       // 新增
       if (!unref(isUpdate)) {
         await createCategory(values);
@@ -77,7 +76,11 @@
   <BasicModal v-bind="$attrs" @register="registerModal" :title="getTitle" @ok="handleSubmit">
     <BasicForm @register="registerForm">
       <template #thumbnail="{ model, field }">
-        <UploadImage v-model="model[field]" />
+        <ApiSelectMediaCard
+          v-model:value="model[field]"
+          :api="getMediaLibraryList"
+          :category-api="getLibraryCategoryList"
+        />
       </template>
     </BasicForm>
   </BasicModal>

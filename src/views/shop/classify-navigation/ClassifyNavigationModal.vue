@@ -4,16 +4,17 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-17 09:55:19
- * @LastEditTime: 2022-04-15 15:37:10
- * @Description: Modify here please
+ * @LastEditTime: 2022-07-08 11:06:22
+ * @Description: 导航分类Modal
 -->
 <script setup lang="ts">
   import { ref, unref, computed } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { BasicForm, useForm } from '/@/components/Form/index';
+  import { BasicForm, useForm, ApiSelectMediaCard } from '/@/components/Form/index';
   import { formSchema } from './classify-navigation.data';
-  import UploadImage from '/@/views/media-library/UploadImage.vue';
   import { createClassifyNavigation, updateClassifyNavigation } from '/@/api/classify-navigation';
+  import { getMediaLibraryList } from '/@/api/media-library';
+  import { getLibraryCategoryList } from '/@/api/library-category';
 
   const emit = defineEmits(['success', 'register']);
   const navigationId = ref<string>('');
@@ -32,7 +33,6 @@
       navigationId.value = data.record._id;
       setFieldsValue({
         ...data.record,
-        pic: [data.record.pic],
       });
     }
 
@@ -53,7 +53,6 @@
     try {
       const values = await validate();
       setModalProps({ confirmLoading: true });
-      values.pic = values.pic[0];
       // 新增
       if (!unref(isUpdate)) {
         await createClassifyNavigation(values);
@@ -73,7 +72,11 @@
   <BasicModal v-bind="$attrs" @register="registerModal" :title="getTitle" @ok="handleSubmit">
     <BasicForm @register="registerForm">
       <template #pic="{ model, field }">
-        <UploadImage v-model="model[field]" />
+        <ApiSelectMediaCard
+          v-model:value="model[field]"
+          :api="getMediaLibraryList"
+          :category-api="getLibraryCategoryList"
+        />
       </template>
     </BasicForm>
   </BasicModal>

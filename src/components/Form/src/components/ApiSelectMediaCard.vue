@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-07-04 10:33:59
- * @LastEditTime: 2022-07-07 17:38:57
+ * @LastEditTime: 2022-07-08 11:39:07
  * @Description: 媒体文件选择卡
 -->
 
@@ -103,8 +103,8 @@
   }
   // 打开选择文件弹窗
   function handleOpen() {
-    if(isArray(props.value) && !props.isMultiple) return message.warning('请传入isMultiple为true');
-    if(!isArray(props.value) && props.isMultiple) return message.warning('v-model:value请绑定数组类型数据');
+    if(isArray(selectImg.value) && !props.isMultiple) return message.warning('请传入isMultiple为true');
+    if(!isArray(selectImg.value) && props.isMultiple) return message.warning('v-model:value请绑定数组类型数据');
     // 重置选中
     imgData.value.forEach(i => (i.isSelected = false));
     visible.value = true;
@@ -184,7 +184,7 @@
 <template>
   <div class="select-media-page">
     <!-- 选中框 -->
-    <div class="flex space-x-2">
+    <div class="flex" :class="isArray(selectImg) ? 'space-x-2' : ''">
       <!-- 单图 -->
       <div
         v-if="!isArray(selectImg) && !isMultiple && selectImg"
@@ -353,7 +353,7 @@
             <!-- 单图 -->
             <img
               class="rounded-md w-[80px] h-[80px] object-cover"
-              v-if="!isArray(selectImg) && !isMultiple"
+              v-if="!isArray(selectImg) && !isMultiple && selectImg.length"
               :src="(selectImg as string)"
             />
             <!-- 多图 -->
@@ -372,8 +372,4 @@
   </div>
 </template>
 
-<style lang="less" scoped>
-  .ant-spin-nested-loading {
-    height: 100% !important;
-  }
-</style>
+<style lang="less" scoped></style>

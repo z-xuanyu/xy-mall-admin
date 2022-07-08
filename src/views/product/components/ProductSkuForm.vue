@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-12 14:33:38
- * @LastEditTime: 2022-06-20 15:52:02
+ * @LastEditTime: 2022-07-08 11:34:57
  * @Description: 封装产品规格添加修改Form
 -->
 <script setup lang="ts">
@@ -12,7 +12,9 @@
   import { CloseCircleOutlined } from '@ant-design/icons-vue';
   import { descartes } from '/@/utils';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import UploadImage from '/@/views/media-library/UploadImage.vue';
+  import { getMediaLibraryList } from '/@/api/media-library';
+  import { getLibraryCategoryList } from '/@/api/library-category';
+  import { ApiSelectMediaCard } from '/@/components/Form/index';
   const { createMessage } = useMessage();
 
   const props = defineProps({
@@ -54,7 +56,6 @@
         return {
           ...item,
           ...obj,
-          image: item.image ? [item.image] : [],
         };
       });
     }
@@ -97,7 +98,7 @@
           name: item.name,
           values: item.values.map((v) => v.name),
         })),
-        skus: newV.map((item: any) => ({ ...item, image: item?.image.join() })),
+        skus: newV,
       });
     },
     { deep: true },
@@ -126,7 +127,7 @@
         costPrice: 0,
         weight: 0,
         artNo: '',
-        image: [],
+        image: '',
         skuNames: item,
       };
     });
@@ -202,13 +203,13 @@
                 <span class="py-4 w-[100px] inline-block">{{ item[`value${vIndex + 1}`] }}</span>
               </td>
               <td class="text-center border">
-                <div class="p-1 w-[100px]">
-                  <UploadImage
-                    v-model="item.image"
-                    :isShowTips="false"
-                    justify="justify-center"
-                    width="w-14"
-                    height="h-14"
+                <div class="p-1 pl-6">
+                  <ApiSelectMediaCard
+                    v-model:value="item.image"
+                    :api="getMediaLibraryList"
+                    :categoryApi="getLibraryCategoryList"
+                    :width="60"
+                    :height="60"
                   />
                 </div>
               </td>

@@ -4,15 +4,19 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-03-16 14:38:52
- * @LastEditTime: 2022-03-16 15:24:44
- * @Description: Modify here please
+ * @LastEditTime: 2022-07-08 11:46:44
+ * @Description: 站点设置
 -->
 <script setup lang="ts">
   import { RadioGroup, Radio, Input, Switch } from 'ant-design-vue';
-  import UploadImage from '/@/views/media-library/UploadImage.vue';
   import { ref } from 'vue';
+  import { getMediaLibraryList } from '/@/api/media-library';
+  import { getLibraryCategoryList } from '/@/api/library-category';
+  import { ApiSelectMediaCard } from '/@/components/Form/index';
 
   const value = ref(1);
+
+  const logo = ref('');
 </script>
 
 <template>
@@ -37,7 +41,11 @@
       <div class="flex my-4 items-center p-2">
         <span class="w-[100px]">店铺LOGO</span>
         <div class="w-[200px]">
-          <UploadImage />
+          <ApiSelectMediaCard
+            v-model:value="logo"
+            :api="getMediaLibraryList"
+            :category-api="getLibraryCategoryList"
+          />
         </div>
       </div>
     </div>

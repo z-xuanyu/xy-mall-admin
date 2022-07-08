@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-17 09:54:46
- * @LastEditTime: 2022-05-06 11:59:38
+ * @LastEditTime: 2022-07-08 11:05:40
  * @Description: Modify here please
  */
 
@@ -20,7 +20,7 @@ export const columns: BasicColumn[] = [
     title: '导航名称',
     dataIndex: 'name',
     width: 160,
-    align: 'left',
+    align: 'center',
   },
   {
     title: '导航图片',
@@ -173,10 +173,10 @@ export const formSchema: FormSchema[] = [
     label: '导航图片',
     component: 'Input',
     required: true,
-    slot: 'pic',
     colProps: {
       span: 24,
     },
+    slot: 'pic',
   },
   {
     field: 'type',

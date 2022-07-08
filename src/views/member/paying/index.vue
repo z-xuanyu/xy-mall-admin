@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 15:53:58
- * @LastEditTime: 2022-07-07 17:35:25
+ * @LastEditTime: 2022-07-08 10:49:52
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -13,9 +13,7 @@
   import { getLibraryCategoryList } from '/@/api/library-category';
   import { ref } from 'vue';
 
-  const defaultUrl = ref(
-    'http://nestshop.oss-cn-shenzhen.aliyuncs.com/images/00fba5b8-5aae-466f-9eba-8551d039080b.jpg',
-  );
+  const defaultUrl = ref('');
   const arr = ref<string[]>([]);
 </script>
 

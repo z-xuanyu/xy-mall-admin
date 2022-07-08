@@ -4,21 +4,22 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-07-01 16:54:14
+ * @LastEditTime: 2022-07-08 11:12:33
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
   import { ref, unref, computed } from 'vue';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
-  import UploadImage from '/@/views/media-library/UploadImage.vue';
   import ProductSkuForm from './components/ProductSkuForm.vue';
-  import { BasicForm, useForm } from '/@/components/Form/index';
+  import { BasicForm, useForm, ApiSelectMediaCard } from '/@/components/Form/index';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { formSchema } from './product.data';
   import { createProduct, updateProduct, getProductInfo } from '/@/api/product';
   import { getCategoryList } from '/@/api/category';
   import { getTagList } from '/@/api/tag';
   import { TransformTreeArr } from '/@/utils';
+  import { getMediaLibraryList } from '/@/api/media-library';
+  import { getLibraryCategoryList } from '/@/api/library-category';
 
   const emit = defineEmits(['success', 'register']);
   const { createMessage } = useMessage();
@@ -76,7 +77,6 @@
         ...data.record,
         tags: data.record.tags.map((item) => item._id),
         category: data.record.category._id,
-        pic: [data.record.pic],
         skus: {
           skuAttrs: info.skuAttrs,
           skus: info.skus,
@@ -116,7 +116,6 @@
       const values = await validate();
       values.skuAttrs = values.skuType == 2 ? values.skus.skuAttrs : [];
       values.skus = values.skuType == 2 ? values.skus.skus : [];
-      values.pic = values.pic[0];
       setDrawerProps({ confirmLoading: true });
       if (!unref(isUpdate)) {
         // 添加产品 api
@@ -159,7 +158,11 @@
     <BasicForm @register="registerForm">
       <!-- 产品封面 -->
       <template #pic="{ model, field }">
-        <UploadImage v-model="model[field]" />
+        <ApiSelectMediaCard
+          v-model:value="model[field]"
+          :api="getMediaLibraryList"
+          :category-api="getLibraryCategoryList"
+        />
       </template>
       <!-- 产品规格 -->
       <template #skus="{ model, field }">
@@ -167,7 +170,12 @@
       </template>
       <!-- 产品封面 -->
       <template #bannerImg="{ model, field }">
-        <UploadImage :multiple="true" v-model="model[field]" />
+        <ApiSelectMediaCard
+          v-model:value="model[field]"
+          :is-multiple="true"
+          :api="getMediaLibraryList"
+          :category-api="getLibraryCategoryList"
+        />
       </template>
     </BasicForm>
   </BasicDrawer>

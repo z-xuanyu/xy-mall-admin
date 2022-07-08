@@ -4,16 +4,23 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-05 11:35:23
- * @LastEditTime: 2022-06-20 12:28:13
- * @Description: Modify here please
+ * @LastEditTime: 2022-07-08 10:57:11
+ * @Description: BannerModal
 -->
 <script setup lang="ts">
   import { ref, unref, computed } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { BasicForm, useForm } from '/@/components/Form/index';
+  import {
+    BasicForm,
+    useForm,
+    ApiSelectMediaCard,
+    ApiSelectProduct,
+  } from '/@/components/Form/index';
   import { formSchema } from './banner.data';
   import { createBanner, updateBanner } from '/@/api/banner';
-  import UploadImage from '/@/views/media-library/UploadImage.vue';
+  import { getMediaLibraryList } from '/@/api/media-library';
+  import { getLibraryCategoryList } from '/@/api/library-category';
+  import { getProductList } from '/@/api/product';
 
   const emit = defineEmits(['success', 'register']);
   const bannerId = ref<string>('');
@@ -33,7 +40,6 @@
       bannerId.value = data?.record?._id;
       setFieldsValue({
         ...data.record,
-        image: [data?.record?.image],
         product: data?.record?.product?._id,
       });
 
@@ -58,7 +64,6 @@
     try {
       const values = await validate();
       setModalProps({ confirmLoading: true });
-      values.image = values.image[0];
       // 新增
       if (!unref(isUpdate)) {
         await createBanner(values);
@@ -78,7 +83,14 @@
   <BasicModal v-bind="$attrs" @register="registerModal" :title="getTitle" @ok="handleSubmit">
     <BasicForm @register="registerForm">
       <template #image="{ model, field }">
-        <UploadImage v-model="model[field]" />
+        <ApiSelectMediaCard
+          v-model:value="model[field]"
+          :api="getMediaLibraryList"
+          :category-api="getLibraryCategoryList"
+        />
+      </template>
+      <template #product="{ model, field }">
+        <ApiSelectProduct v-model:value="model[field]" :api="getProductList" />
       </template>
     </BasicForm>
   </BasicModal>
