@@ -1,19 +1,21 @@
 <template>
   <div ref="wrapRef" :class="getWrapperClass">
-    <BasicForm
-      ref="formRef"
-      submitOnReset
-      v-bind="getFormProps"
-      v-if="getBindValues.useSearchForm"
-      :tableAction="tableAction"
-      @register="registerForm"
-      @submit="handleSearchInfoChange"
-      @advanced-change="redoHeight"
-    >
-      <template #[replaceFormSlotKey(item)]="data" v-for="item in getFormSlotKeys">
-        <slot :name="item" v-bind="data || {}"></slot>
-      </template>
-    </BasicForm>
+    <CollapseContainer title="筛选条件" class="mb-4">
+      <BasicForm
+        ref="formRef"
+        submitOnReset
+        v-bind="getFormProps"
+        v-if="getBindValues.useSearchForm"
+        :tableAction="tableAction"
+        @register="registerForm"
+        @submit="handleSearchInfoChange"
+        @advanced-change="redoHeight"
+      >
+        <template #[replaceFormSlotKey(item)]="data" v-for="item in getFormSlotKeys">
+          <slot :name="item" v-bind="data || {}"></slot>
+        </template>
+      </BasicForm>
+    </CollapseContainer>
 
     <Table
       ref="tableElRef"
@@ -67,6 +69,7 @@
   import { Table } from 'ant-design-vue';
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { PageWrapperFixedHeightKey } from '/@/components/Page';
+  import { CollapseContainer } from '/@/components/Container';
   import HeaderCell from './components/HeaderCell.vue';
   import { InnerHandlers } from './types/table';
 
@@ -96,6 +99,7 @@
       Table,
       BasicForm,
       HeaderCell,
+      CollapseContainer,
     },
     props: basicProps,
     emits: [
