@@ -4,15 +4,22 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-16 16:23:27
- * @LastEditTime: 2022-05-06 18:32:25
- * @Description: Modify here please
+ * @LastEditTime: 2022-07-12 10:38:59
+ * @Description: 优惠券列表
 -->
 <script setup lang="ts">
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { columns, searchFormSchema } from './cunpon.data';
+  import { columns, searchFormSchema, getCunponList } from './coupon.data';
+  import CouponModal from './CouponModal.vue';
+  import { useModal } from '/@/components/Modal';
+  import { useMessage } from '/@/hooks/web/useMessage';
+
+  const { createMessage } = useMessage();
+  const [registerModal, { openModal }] = useModal();
 
   const [registerTable, { reload }] = useTable({
     title: '优惠券列表',
+    api: getCunponList,
     columns,
     formConfig: {
       labelWidth: 120,
@@ -36,16 +43,27 @@
 
   // 新增
   function handleCreate() {
-    // reload();
+    openModal(true, {
+      isUpdate: false,
+    });
   }
   // 编辑
   function handleEdit(record: Recordable) {
-    console.log(record);
+    openModal(true, {
+      record,
+      isUpdate: true,
+    });
+  }
+
+  // 成功回调
+  function handleSuccess() {
+    reload();
   }
 
   // 删除
   function handleDelete() {
-    reload();
+    handleSuccess();
+    createMessage.success('删除成功!');
   }
 </script>
 
@@ -76,6 +94,7 @@
         </template>
       </template>
     </BasicTable>
+    <CouponModal @success="handleSuccess" @register="registerModal" />
   </div>
 </template>
 
