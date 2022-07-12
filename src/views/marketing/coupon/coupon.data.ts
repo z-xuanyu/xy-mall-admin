@@ -4,11 +4,14 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-02 16:23:13
- * @LastEditTime: 2022-07-12 12:02:11
+ * @LastEditTime: 2022-07-12 12:19:34
  * @Description: Modify here please
  */
 import { BasicColumn, FormSchema } from '/@/components/Table';
 import { formatToDateTime } from '/@/utils/dateUtil';
+import { useMessage } from '/@/hooks/web/useMessage';
+import { Switch } from 'ant-design-vue';
+import { h } from 'vue';
 
 // 列表字段
 export const columns: BasicColumn[] = [
@@ -44,13 +47,30 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '发布数量',
-    dataIndex: 'useDate',
+    dataIndex: 'publishCount',
     align: 'left',
   },
   {
     title: '状态',
     dataIndex: 'status',
-    align: 'left',
+    align: 'center',
+    customRender: ({ record }) => {
+      return h(Switch, {
+        checked: record.status,
+        checkedChildren: '开启',
+        unCheckedChildren: '关闭',
+        loading: record.pendingStatus,
+        onChange(checked: boolean) {
+          record.pendingStatus = true;
+          const { createMessage } = useMessage();
+          setTimeout(() => {
+            createMessage.success(`状态更改成功!`);
+            record.status = checked;
+            record.pendingStatus = false;
+          }, 1000);
+        },
+      });
+    },
   },
   {
     title: '创建时间',
@@ -415,6 +435,7 @@ export function getCunponList() {
           receiveDate: '2020-04-02',
           useDate: '2020-04-02',
           status: '已发布',
+          publishCount: '100',
           createdAt: '2020-04-02',
         },
         {
@@ -426,6 +447,7 @@ export function getCunponList() {
           receiveDate: '2020-04-02',
           useDate: '2020-04-02',
           status: '已发布',
+          publishCount: '10',
           createdAt: '2020-04-02',
         },
       ]);
