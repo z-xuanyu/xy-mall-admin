@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-02-25 12:10:39
- * @LastEditTime: 2022-04-07 17:29:28
+ * @LastEditTime: 2022-07-12 15:35:42
  * @Description: Modify here please
 -->
 <script setup lang="ts">
@@ -19,9 +19,9 @@
   import { useRoute } from 'vue-router';
 
   const route = useRoute();
-  const userId = ref(route.params.id);
+  const userId = ref<string>(route.params.id as string);
 
-  const activeKey = ref('order');
+  const activeKey = ref<string>('order');
 
   const tabListTitle = [
     {
@@ -46,7 +46,7 @@
     },
   ];
 
-  function onTabChange(key) {
+  function onTabChange(key: string) {
     activeKey.value = key;
   }
 </script>

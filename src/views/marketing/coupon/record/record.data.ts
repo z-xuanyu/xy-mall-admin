@@ -4,8 +4,8 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-07-12 12:22:36
- * @LastEditTime: 2022-07-12 14:33:54
- * @Description: Modify here please
+ * @LastEditTime: 2022-07-12 14:36:45
+ * @Description: 优惠券领取记录
  */
 
 import { BasicColumn, FormSchema } from '/@/components/Table';

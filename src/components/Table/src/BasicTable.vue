@@ -1,11 +1,10 @@
 <template>
   <div ref="wrapRef" :class="getWrapperClass">
-    <CollapseContainer title="筛选条件" class="mb-4">
+    <CollapseContainer title="筛选条件" class="mb-4" v-if="getBindValues.useSearchForm">
       <BasicForm
         ref="formRef"
         submitOnReset
         v-bind="getFormProps"
-        v-if="getBindValues.useSearchForm"
         :tableAction="tableAction"
         @register="registerForm"
         @submit="handleSearchInfoChange"
