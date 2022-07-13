@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-04-02 16:23:13
- * @LastEditTime: 2022-07-12 12:19:34
+ * @LastEditTime: 2022-07-13 11:25:07
  * @Description: Modify here please
  */
 import { BasicColumn, FormSchema } from '/@/components/Table';
@@ -239,6 +239,7 @@ export const formSchema: FormSchema[] = [
     label: '面值',
     field: 'price',
     component: 'InputNumber',
+    required: true,
     colProps: {
       span: 24,
     },

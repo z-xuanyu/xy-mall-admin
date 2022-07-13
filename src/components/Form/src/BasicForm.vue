@@ -89,7 +89,7 @@
 
       // Get the basic configuration of the form
       const getProps = computed((): FormProps => {
-        return { ...props, ...unref(propsRef) } as FormProps;
+        return Object.assign({ ...props }, unref(propsRef)) as FormProps;
       });
 
       const getFormClass = computed(() => {

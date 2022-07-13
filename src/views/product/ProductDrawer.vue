@@ -4,7 +4,7 @@
  * @email: 969718197@qq.com
  * @github: https://github.com/z-xuanyu
  * @Date: 2022-01-13 11:52:45
- * @LastEditTime: 2022-07-08 11:12:33
+ * @LastEditTime: 2022-07-13 15:49:12
  * @Description: 添加或者编辑产品
 -->
 <script setup lang="ts">
@@ -38,7 +38,6 @@
   });
 
   const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
-    const info = await getProductInfo(data.record._id);
     resetFields();
     setDrawerProps({ confirmLoading: false });
     isUpdate.value = !!data?.isUpdate;
@@ -48,6 +47,7 @@
       required: false,
     });
     if (unref(isUpdate)) {
+      const info = await getProductInfo(data.record._id);
       // 产品id
       productId.value = data.record._id;
       updateSchema({
