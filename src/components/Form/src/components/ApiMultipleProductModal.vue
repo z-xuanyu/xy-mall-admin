@@ -28,6 +28,7 @@
     defaultValue.value = props.value || [];
   });
 
+  // 获取商品列表
   let categoryList = ref([]);
 
   onMounted(() => {

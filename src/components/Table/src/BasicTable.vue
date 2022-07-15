@@ -1,6 +1,6 @@
 <template>
   <div ref="wrapRef" :class="getWrapperClass">
-    <CollapseContainer title="筛选条件" class="mb-4" v-if="getBindValues.useSearchForm">
+    <CollapseContainer title="筛选条件" class="mb-4 border" v-if="getBindValues.useSearchForm">
       <BasicForm
         ref="formRef"
         submitOnReset
