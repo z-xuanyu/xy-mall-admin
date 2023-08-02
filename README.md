@@ -10,7 +10,7 @@
 
 ## 项目介绍
 
-一款简易的商城系统-Admin 端演示地址：[https://xy-mall-admin.vercel.app/](http://xy-mall-admin.zhouxuanyu.com/)
+一款简易的商城系统-Admin 端演示地址：[http://xy-mall-admin.zhouxuanyu.com](http://xy-mall-admin.zhouxuanyu.com)
 
 ## 聚成最新技术
 
